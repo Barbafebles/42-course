@@ -6,19 +6,19 @@
 /*   By: bfebles- <bfebles-@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 11:13:48 by bfebles-          #+#    #+#             */
-/*   Updated: 2023/03/15 10:02:20 by bfebles-         ###   ########.fr       */
+/*   Updated: 2023/03/14 09:49:03 by bfebles-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-void	*ft_memset(void *b, int c, unsigned int len) // la funcion devuelve un puntero a la memoria que se ha rellenado
+void	*ft_memset(void *b, int c, unsigned int len)
 {
-	unsigned int	i; // variable i de tipo entero sin signo negativo
+	unsigned int	i;
 
-	i = 0; // 		inicializo i a 0
-	while (i < len) // mientras i sea menor que len
+	i = 0;
+	while (i < len)
 	{
-		((unsigned char *)b)[i] = (unsigned char)c; // copia el valor de c en b
-		i++; // incrementa i
+		((unsigned char *)b)[i] = (unsigned char)c;
+		i++;
 	}
-	return (b); // devuelve b
+	return (b);
 }

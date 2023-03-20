@@ -6,7 +6,7 @@
 #    By: bfebles- <bfebles-@student.42madrid.com>   +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/07 12:03:12 by bfebles-          #+#    #+#              #
-#    Updated: 2023/03/14 11:32:46 by bfebles-         ###   ########.fr        #
+#    Updated: 2023/03/20 09:58:22 by bfebles-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,30 @@ CC	= gcc
 CFLAGS	= -Wall -Wextra -Werror 
 RM = rm -f
 AR = ar -rcs
-SRCS = ft_isalpha.c ft_isdigit.c ft_isprint.c ft_strlen.c ft_isascii.c ft_isalnum.c ft_memset.c ft_memcpy.c ft_memmove.c ft_strlcpy.c
+SRCS =  ft_isalpha.c \
+		ft_isdigit.c \
+		ft_isprint.c \
+		ft_strlen.c \
+		ft_isascii.c \
+		ft_isalnum.c \
+		ft_memset.c \
+		ft_bzero.c \
+		ft_memcpy.c \
+		ft_memmove.c \
+		ft_strlcpy.c \
+		ft_strlcat.c \
+		ft_toupper.c \
+		ft_tolower.c \
+		ft_strchr.c \
+		ft_strrchr.c \
+		ft_strncmp.c \
+		ft_memchr.c \
+		ft_memcmp.c \
+		ft_strnstr.c \
+		ft_atoi.c \
+		ft_calloc.c \
+		ft_strdup.c \
+
 OBJS = $(SRCS:.c=.o)
 
 all:	$(NAME) 

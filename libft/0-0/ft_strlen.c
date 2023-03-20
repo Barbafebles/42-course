@@ -6,18 +6,18 @@
 /*   By: bfebles- <bfebles-@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 16:07:12 by bfebles-          #+#    #+#             */
-/*   Updated: 2023/03/14 21:32:08 by bfebles-         ###   ########.fr       */
+/*   Updated: 2023/03/14 11:55:18 by bfebles-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-unsigned int	ft_strlen(const char *s) // esto es un unsigned int porque no puede ser negativo
+unsigned int	ft_strlen(const char *s)
 {
-	unsigned int	m; // esto es un unsigned int porque no puede ser negativo
+	unsigned int	m;
 
-	m = 0; //esto hace que el contador empiece en 0
-	while (s[m] != '\0') // mientras que el string sea distinto de 0
+	m = 0;
+	while (s[m] != '\0')
 	{
-		m++; // el contador aumenta
+		m++;
 	}
-	return (m); // devuelve el contador
+	return (m);
 }

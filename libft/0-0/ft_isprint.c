@@ -6,14 +6,20 @@
 /*   By: bfebles- <bfebles-@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/10 11:38:51 by bfebles-          #+#    #+#             */
-/*   Updated: 2023/03/15 09:58:31 by bfebles-         ###   ########.fr       */
+/*   Updated: 2023/03/16 10:26:36 by bfebles-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_isprint(int c) // la funcion devuelve 1 si el caracter es alfanumerico 
+int	ft_isprint(int c)
 {
-	if (c >= 32 && c <= 126) // si el caracter es un caracter imprimible de la tabla ASCII 
-		return (1); // devuelve 1				
-	return (0);	// si no devuelve 0	
+	if (c >= 32 && c <= 126)
+		return (1);
+	return (0);
 }
-// La funcion isprint() devuelve 1 si el caracter es imprimible, 0 si no lo es.
+
+/*int main()
+{
+	int c = '0';
+	printf("%d", ft_isprint(c));
+	return (0);
+}*/

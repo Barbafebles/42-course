@@ -6,14 +6,20 @@
 /*   By: bfebles- <bfebles-@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/10 11:47:29 by bfebles-          #+#    #+#             */
-/*   Updated: 2023/03/15 09:59:15 by bfebles-         ###   ########.fr       */
+/*   Updated: 2023/03/16 10:25:22 by bfebles-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_isdigit(int m) // la funcion devuelve 1 si el caracter es alfanumerico 
+int	ft_isdigit(int m)
 {
-	if (m >= '0' && m <= '9') // si el caracter esta entre el 0 y el 9 
-		return (1); // devuelve 1
-	return (0); // º si no devuelve 0
+	if (m >= '0' && m <= '9')
+		return (1);
+	return (0);
 }
-// La funcion isdigit() devuelve 1 si el caracter es un digito, 0 si no lo es.
+
+/*int main()
+{
+	int m  '0';
+	printf(%d, ft_isdigit(m));
+	return (0);
+}*/

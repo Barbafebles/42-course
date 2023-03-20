@@ -6,18 +6,20 @@
 /*   By: bfebles- <bfebles-@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/15 16:31:46 by bfebles-          #+#    #+#             */
-/*   Updated: 2023/03/15 16:50:28 by bfebles-         ###   ########.fr       */
+/*   Updated: 2023/03/16 10:27:55 by bfebles-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_tolower(int c) // la funcion devuelve el caracter en minuscula
+int	ft_tolower(int c)
 {
-	if (c >= 'A' && c <= 'Z') // si el caracter esta entre A y Z
-		return (c + 32); // devuelve el caracter en minuscula
-	return (c); // si no devuelve el mismo caracter
+	if (c >= 'A' && c <= 'Z')
+		return (c + 32);
+	return (c);
 }
 
-/* int main() 
-{ int c = 'A'; 
-printf("%c", tolower(c)); 
-return (0); } */
+/*int main()
+{
+	int m = 'A';
+	printf("%d", ft_tolowe(m));
+	return(0);
+}*/

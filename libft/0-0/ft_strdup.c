@@ -5,28 +5,29 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: bfebles- <bfebles-@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/15 21:47:19 by bfebles-          #+#    #+#             */
-/*   Updated: 2023/03/15 21:48:37 by bfebles-         ###   ########.fr       */
+/*   Created: 2023/03/20 09:58:48 by bfebles-          #+#    #+#             */
+/*   Updated: 2023/03/20 10:15:48 by bfebles-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-char *strdup(const char *str)
+#include <stdlib.h>
+char	*ft_strdup(const char *str)
 {
-    int i; // contador
-    char *ptr; // puntero
+	int		i;
+	char	*ptr;
 
-    i = 0; // contador empieza en 0
-    while (str[i] != '\0') // mientras que el string sea distinto de 0
-        i++; // el contador aumenta
-    ptr = (char *)malloc(i + 1); // puntero es igual a malloc de i + 1
-    if (ptr == 0) // si el puntero es igual a 0
-        return (0); // devuelve 0
-    i = 0; // contador empieza en 0
-    while (str[i] != '\0') // mientras que el string sea distinto de 0
-    {
-        ptr[i] = str[i]; // el puntero es igual al string
-        i++; // el contador aumenta
-    }
-    ptr[i] = '\0'; // el puntero es igual a 0
-    return (ptr); // devuelve el puntero
+	i = 0;
+	while (str[i] != '\0')
+		i++;
+	ptr = (char *)malloc(i + 1);
+	if (ptr == 0)
+		return (0);
+	i = 0;
+	while (str[i] != '\0')
+	{
+		ptr[i] = str[i];
+		i++;
+	}
+	ptr[i] = '\0';
+	return (ptr);
 }

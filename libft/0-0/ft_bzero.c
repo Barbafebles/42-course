@@ -1,31 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlcpy.c                                       :+:      :+:    :+:   */
+/*   ft_bzero.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bfebles- <bfebles-@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/14 09:32:02 by bfebles-          #+#    #+#             */
-/*   Updated: 2023/03/20 09:52:19 by bfebles-         ###   ########.fr       */
+/*   Created: 2023/03/15 17:37:08 by bfebles-          #+#    #+#             */
+/*   Updated: 2023/03/20 11:57:29 by bfebles-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-unsigned long	ft_strlcpy(char *dst, const char *src, unsigned long n)
+void	ft_bzero(void *s, unsigned long n)
 {
-	unsigned int	i;
-	unsigned int	len;
+	unsigned long	i;
 
 	i = 0;
-	len = 0;
-	while (src[len] != '\0')
-		len++;
-	if (n == 0)
-		return (len);
-	while (i < n - 1 && src[i] != '\0')
+	while (i < n)
 	{
-		dst[i] = src[i];
+		((unsigned char *)s)[i] = (unsigned char) '\0';
 		i++;
 	}
-	dst[i] = '\0';
-	return (len);
 }
+
+/*int main()
+{
+	char str[50] = "esta es una string.h de esta libreria";
+	ft_bzero(str, 7);
+	printf("%s", str);
+	return (0);
+}
+*/

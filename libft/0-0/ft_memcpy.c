@@ -6,25 +6,25 @@
 /*   By: bfebles- <bfebles-@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 16:01:15 by bfebles-          #+#    #+#             */
-/*   Updated: 2023/03/15 09:58:00 by bfebles-         ###   ########.fr       */
+/*   Updated: 2023/03/14 11:07:12 by bfebles-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*ft_memcpy(void *dst, const void *src, unsigned int n) // copia n bytes de src a dst
+void	*ft_memcpy(void *dst, const void *src, unsigned int n)
 {
-	unsigned int	i; // variable para iterar
+	unsigned int	i;
 
-	if (!dst && !src) // si dst y src son nulos
-		return (0); // devuelve 0
-	i = 0; //`inicializo i a 0
-	while (i < n) // mientras i sea menor que n
+	if (!dst && !src)
+		return (0);
+	i = 0;
+	while (i < n)
 	{
-		((char *)dst)[i] = ((char *)src)[i]; // copia el valor de src en dst
-		i++; // incrementa i
+		((char *)dst)[i] = ((char *)src)[i];
+		i++;
 	}
-	return (dst); // devuelve dst
+	return (dst);
 }
 
 /*#include <stdio.h>
@@ -37,4 +37,3 @@ int main (void)
     printf("%s", memcpy(str1, str2, n));
     return (0);
 }*/
- // la funcion memcpy lo que hace es copiar n bytes de src a dst y devuelve dst

@@ -6,32 +6,32 @@
 /*   By: bfebles- <bfebles-@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 17:31:35 by bfebles-          #+#    #+#             */
-/*   Updated: 2023/03/15 10:01:47 by bfebles-         ###   ########.fr       */
+/*   Updated: 2023/03/14 11:15:37 by bfebles-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-void	*ft_memmove(void *dst, const void *src, unsigned int len) // la funcion devuelve un puntero a la memoria de destino
+void	*ft_memmove(void *dst, const void *src, unsigned int len)
 {
-	unsigned int	i; // variable i de tipo entero sin signo negativo 
+	unsigned int	i;
 
-	if (!dst && !src) // si dst y src son nulos
-		return (0); // devuelve 0
-	i = 0; // inicializo i a 0
-	if (dst < src) // si dst es menor que src
+	if (!dst && !src)
+		return (0);
+	i = 0;
+	if (dst < src)
 	{
-		while (i < len) // mientras i sea menor que len
+		while (i < len)
 		{
-			((unsigned char *)dst)[i] = ((unsigned char *)src)[i]; // copia el valor de src en dst
-			i++; // incrementa i
+			((unsigned char *)dst)[i] = ((unsigned char *)src)[i];
+			i++;
 		}
 	}
-	else // si no
+	else
 	{
-		while (len > 0) // mientras len sea mayor que 0
+		while (len > 0)
 		{
-			((unsigned char *)dst)[len - 1] = ((unsigned char *)src)[len - 1]; // copia el valor de src en dst
-			len--; // decrementa len
+			((unsigned char *)dst)[len - 1] = ((unsigned char *)src)[len - 1];
+			len--;
 		}
 	}
-	return (dst); // devuelve dst
+	return (dst);
 }
