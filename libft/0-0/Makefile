@@ -6,14 +6,14 @@
 #    By: bfebles- <bfebles-@student.42madrid.com>   +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/07 12:03:12 by bfebles-          #+#    #+#              #
-#    Updated: 2023/03/20 09:58:22 by bfebles-         ###   ########.fr        #
+#    Updated: 2023/03/22 16:57:02 by bfebles-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = libft.a
 LIB = libft.h
 CC	= gcc
-CFLAGS	= -Wall -Wextra -Werror 
+CFLAGS	= -Wall -Wextra -Werror
 RM = rm -f
 AR = ar -rcs
 SRCS =  ft_isalpha.c \

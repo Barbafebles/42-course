@@ -6,7 +6,7 @@
 /*   By: bfebles- <bfebles-@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 09:26:54 by bfebles-          #+#    #+#             */
-/*   Updated: 2023/03/20 10:07:40 by bfebles-         ###   ########.fr       */
+/*   Updated: 2023/03/22 10:34:06 by bfebles-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,8 @@ char	*ft_strnstr(const char *hs, const char *needlen, unsigned long len)
 	unsigned long	i;
 	unsigned long	j;
 
+	if ((!hs || !needlen) && len == 0)
+		return (0);
 	i = 0;
 	if (needlen[0] == '\0')
 		return ((char *)hs);

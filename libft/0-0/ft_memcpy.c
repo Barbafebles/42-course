@@ -6,7 +6,7 @@
 /*   By: bfebles- <bfebles-@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 16:01:15 by bfebles-          #+#    #+#             */
-/*   Updated: 2023/03/14 11:07:12 by bfebles-         ###   ########.fr       */
+/*   Updated: 2023/03/20 15:38:43 by bfebles-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	*ft_memcpy(void *dst, const void *src, unsigned int n)
 {
 	unsigned int	i;
 
-	if (!dst && !src)
+	if (!dst && !src) 
 		return (0);
 	i = 0;
 	while (i < n)
