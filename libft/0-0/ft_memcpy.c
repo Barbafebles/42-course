@@ -6,7 +6,7 @@
 /*   By: bfebles- <bfebles-@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 16:01:15 by bfebles-          #+#    #+#             */
-/*   Updated: 2023/03/20 15:38:43 by bfebles-         ###   ########.fr       */
+/*   Updated: 2023/03/25 13:46:23 by bfebles-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	*ft_memcpy(void *dst, const void *src, unsigned int n)
 {
 	unsigned int	i;
 
-	if (!dst && !src) 
+	if (!dst && !src)
 		return (0);
 	i = 0;
 	while (i < n)
@@ -26,14 +26,19 @@ void	*ft_memcpy(void *dst, const void *src, unsigned int n)
 	}
 	return (dst);
 }
+/*
+#include <stdio.h>
 
-/*#include <stdio.h>
 int main (void)
 {
-    char str1[50] = "Hola";
-    char str2[50] = "Adios";
-    unsigned long n = 5;
+	char			str1[50];
+	char			str2[50];
+	unsigned long	n;
 
-    printf("%s", memcpy(str1, str2, n));
+    str1[50] = "Hola";
+    str2[50] = "Adios";
+    n = 3;
+    printf("%s", ft_memcpy(str1, str2, n));
     return (0);
-}*/
+}
+*/

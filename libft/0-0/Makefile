@@ -6,7 +6,7 @@
 #    By: bfebles- <bfebles-@student.42madrid.com>   +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/07 12:03:12 by bfebles-          #+#    #+#              #
-#    Updated: 2023/03/22 16:57:02 by bfebles-         ###   ########.fr        #
+#    Updated: 2023/03/29 12:21:31 by bfebles-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -39,6 +39,17 @@ SRCS =  ft_isalpha.c \
 		ft_atoi.c \
 		ft_calloc.c \
 		ft_strdup.c \
+		ft_substr.c \
+		ft_strjoin.c \
+		ft_strtrim.c \
+		ft_itoa.c \
+		ft_strmapi.c \
+		ft_striteri.c \
+		ft_putchar_fd.c \
+		ft_putstr_fd.c \
+		ft_putendl_fd.c \
+		ft_putnbr_fd.c \
+		ft_split.c \
 
 OBJS = $(SRCS:.c=.o)
 

@@ -6,13 +6,16 @@
 /*   By: bfebles- <bfebles-@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/10 12:05:10 by bfebles-          #+#    #+#             */
-/*   Updated: 2023/03/20 10:16:06 by bfebles-         ###   ########.fr       */
+/*   Updated: 2023/03/29 12:22:05 by bfebles-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LIBFT_H
 # define LIBFT_H
 # include <ctype.h>
+# include <stdio.h>
+# include <stdlib.h>
+# include <unistd.h>
 
 int				ft_isalpha(int c);
 int				ft_isdigit(int arg);
@@ -39,4 +42,16 @@ char			*ft_strnstr(const char *hs, const char *needlen,
 int				ft_atoi(const char *str);
 void			*ft_calloc(unsigned long num, unsigned long size);
 char			*ft_strdup(const char *str);
+char			*ft_substr(char const *s, unsigned int start,
+					unsigned long len);
+char			*ft_strjoin(char const *s1, char const *s2);
+char			*ft_strtrim(char const *s1, char const *set);
+char			*ft_itoa(int n);
+char			*ft_strmapi(char const *s, char (*f)(unsigned int, char));
+void			ft_striteri(char *s, void (*f)(unsigned int, char *));
+void			ft_putchar_fd(char c, int fd);
+void			ft_putstr_fd(char *s, int fd);
+void			ft_putendl_fd(char *s, int fd);
+void			ft_putnbr_fd(int n, int fd);
+char			**ft_split(char const *s, char c);
 #endif

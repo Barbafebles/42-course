@@ -6,11 +6,12 @@
 /*   By: bfebles- <bfebles-@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 09:58:48 by bfebles-          #+#    #+#             */
-/*   Updated: 2023/03/20 10:15:48 by bfebles-         ###   ########.fr       */
+/*   Updated: 2023/03/27 15:22:03 by bfebles-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
+
 char	*ft_strdup(const char *str)
 {
 	int		i;

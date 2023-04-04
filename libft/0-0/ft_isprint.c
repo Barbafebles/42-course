@@ -6,7 +6,7 @@
 /*   By: bfebles- <bfebles-@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/10 11:38:51 by bfebles-          #+#    #+#             */
-/*   Updated: 2023/03/16 10:26:36 by bfebles-         ###   ########.fr       */
+/*   Updated: 2023/03/30 17:48:10 by bfebles-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,14 @@ int	ft_isprint(int c)
 	return (0);
 }
 
-/*int main()
+/*
+#include <stdio.h>
+int	main(void)
 {
-	int c = '0';
+	int	c;
+
+	c = 0;
 	printf("%d", ft_isprint(c));
 	return (0);
-}*/
+}
+*/
