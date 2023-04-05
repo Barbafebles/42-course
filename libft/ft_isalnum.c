@@ -1,30 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_calloc.c                                        :+:      :+:    :+:   */
+/*   ft_isalnum.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bfebles- <bfebles-@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/20 09:38:33 by bfebles-          #+#    #+#             */
-/*   Updated: 2023/03/30 18:41:31 by bfebles-         ###   ########.fr       */
+/*   Created: 2023/03/13 14:57:49 by bfebles-          #+#    #+#             */
+/*   Updated: 2023/04/05 12:42:10 by bfebles-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
-
-void	*ft_calloc(unsigned long num, unsigned long size)
+int	ft_isalnum(int c)
 {
-	unsigned long	i;
-	void			*ptr;
-
-	i = 0;
-	ptr = malloc(num * size);
-	if (!ptr)
-		return (0);
-	while (i < num * size)
-	{
-		((unsigned char *)ptr)[i] = 0;
-		i++;
-	}
-	return (ptr);
+	if ((c >= 'A' && c <= 'Z') || (c >= 'a' && c <= 'z') || (c >= '0'
+			&& c <= '9'))
+		return (1);
+	return (0);
 }
+
+/* #include <stdio.h>
+int	main(void)
+{
+    printf("%d", ft_isalnum('a'));
+    return (0);
+}  */
+// Esta función indica si es un carácter numérico o alfabetico.

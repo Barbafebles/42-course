@@ -1,37 +1,45 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memmove.c                                       :+:      :+:    :+:   */
+/*   ft_memcpy.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bfebles- <bfebles-@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/13 17:31:35 by bfebles-          #+#    #+#             */
-/*   Updated: 2023/03/25 13:26:34 by bfebles-         ###   ########.fr       */
+/*   Created: 2023/03/13 16:01:15 by bfebles-          #+#    #+#             */
+/*   Updated: 2023/04/05 19:19:45 by bfebles-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-void	*ft_memmove(void *dst, const void *src, unsigned int len)
+#include "libft.h"
+
+void	*ft_memcpy(void *dst, const void *src, unsigned int n)
 {
 	unsigned int	i;
 
 	if (!dst && !src)
-		return (0);
+		return (NULL);
 	i = 0;
-	if (dst < src)
+	while (i < n)
 	{
-		while (i < len)
-		{
-			((unsigned char *)dst)[i] = ((unsigned char *)src)[i];
-			i++;
-		}
-	}
-	else
-	{
-		while (len > 0)
-		{
-			((unsigned char *)dst)[len - 1] = ((unsigned char *)src)[len - 1];
-			len--;
-		}
+		((char *)dst)[i] = ((char *)src)[i];
+		i++;
 	}
 	return (dst);
 }
+
+/*
+#include <stdio.h>
+#include <string.h>
+
+int main (void)
+{
+	char	*str;
+	char	*dst;
+
+	str = "Hola";
+	dst = "Adio";
+	
+	printf("%s", ft_memcpy(dst, , 4));
+    return (0);
+}
+*/

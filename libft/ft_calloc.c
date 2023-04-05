@@ -1,24 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isascii.c                                       :+:      :+:    :+:   */
+/*   ft_calloc.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bfebles- <bfebles-@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/08 15:37:06 by bfebles-          #+#    #+#             */
-/*   Updated: 2023/03/28 08:42:20 by bfebles-         ###   ########.fr       */
+/*   Created: 2023/03/20 09:38:33 by bfebles-          #+#    #+#             */
+/*   Updated: 2023/04/04 12:19:56 by bfebles-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_isascii(int c)
-{
-	if (c >= 0 && c <= 127)
-		return (1);
-	return (0);
-}
+#include <stdlib.h>
 
-/*int main()
+void	*ft_calloc(unsigned long num, unsigned long size)
 {
-	printf("%d", ft_isascii('a'));
-	return (0);
-}*/
+	unsigned long	i;
+	void			*ptr;
+
+	i = 0;
+	ptr = malloc(num * size);
+	if (!ptr)
+		return (0);
+	while (i < num * size)
+	{
+		((unsigned char *)ptr)[i] = 0;
+		i++;
+	}
+	return (ptr);
+}

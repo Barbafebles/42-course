@@ -1,26 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isalnum.c                                       :+:      :+:    :+:   */
+/*   ft_isalpha.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bfebles- <bfebles-@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/13 14:57:49 by bfebles-          #+#    #+#             */
-/*   Updated: 2023/03/28 08:42:24 by bfebles-         ###   ########.fr       */
+/*   Created: 2023/03/08 11:51:35 by bfebles-          #+#    #+#             */
+/*   Updated: 2023/04/04 12:33:42 by bfebles-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_isalnum(int c)
+int	ft_isalpha(int c)
 {
-	if ((c >= 'A' && c <= 'Z') || (c >= 'a' && c <= 'z') || (c >= '0'
-			&& c <= '9'))
+	if ((c >= 97 && c <= 122) || (c >= 65 && c <= 90))
 		return (1);
 	return (0);
 }
 
-/* #include <stdio.h>
+/*
+#include <stdio.h>
+
 int	main(void)
 {
-    printf("%d", ft_isalnum('a'));
-    return (0);
-}  */
+	printf("%d", ft_isalpha('a'));
+	return (0);
+}
+*/
+// comprueba si el caracter es alfabetico

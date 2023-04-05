@@ -1,44 +1,51 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memcpy.c                                        :+:      :+:    :+:   */
+/*   ft_memmove.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bfebles- <bfebles-@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/13 16:01:15 by bfebles-          #+#    #+#             */
-/*   Updated: 2023/03/25 13:46:23 by bfebles-         ###   ########.fr       */
+/*   Created: 2023/03/13 17:31:35 by bfebles-          #+#    #+#             */
+/*   Updated: 2023/04/05 19:09:02 by bfebles-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-
-void	*ft_memcpy(void *dst, const void *src, unsigned int n)
+void	*ft_memmove(void *dst, const void *src, unsigned int len)
 {
 	unsigned int	i;
 
 	if (!dst && !src)
 		return (0);
 	i = 0;
-	while (i < n)
+	if (dst < src)
 	{
-		((char *)dst)[i] = ((char *)src)[i];
-		i++;
+		while (i < len)
+		{
+			((unsigned char *)dst)[i] = ((unsigned char *)src)[i];
+			i++;
+		}
+	}
+	else
+	{
+		while (len > 0)
+		{
+			((unsigned char *)dst)[len - 1] = ((unsigned char *)src)[len - 1];
+			len--;
+		}
 	}
 	return (dst);
 }
 /*
 #include <stdio.h>
-
-int main (void)
+int main()
 {
-	char			str1[50];
-	char			str2[50];
-	unsigned long	n;
+	char src[] = "hola";
+	char dst[20];
+	ft_memmove(dst, src, sizeof(src));
 
-    str1[50] = "Hola";
-    str2[50] = "Adios";
-    n = 3;
-    printf("%s", ft_memcpy(str1, str2, n));
-    return (0);
+	printf("source: %s\n", src);
+	printf("destination %s\n", dst);
+	
+	return (0);
 }
 */

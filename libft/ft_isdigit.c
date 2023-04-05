@@ -6,7 +6,7 @@
 /*   By: bfebles- <bfebles-@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/10 11:47:29 by bfebles-          #+#    #+#             */
-/*   Updated: 2023/03/30 17:43:23 by bfebles-         ###   ########.fr       */
+/*   Updated: 2023/04/04 12:34:01 by bfebles-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,3 +26,4 @@ int main()
 	printf("%d", ft_isdigit('0'));
 	return(0);
 }*/
+// comprueba si el caracter es numerico 

@@ -1,30 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isprint.c                                       :+:      :+:    :+:   */
+/*   ft_bzero.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bfebles- <bfebles-@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/10 11:38:51 by bfebles-          #+#    #+#             */
-/*   Updated: 2023/03/30 17:48:10 by bfebles-         ###   ########.fr       */
+/*   Created: 2023/03/15 17:37:08 by bfebles-          #+#    #+#             */
+/*   Updated: 2023/04/05 18:58:20 by bfebles-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_isprint(int c)
-{
-	if (c >= 32 && c <= 126)
-		return (1);
-	return (0);
-}
+#include "libft.h"
 
+void	ft_bzero(void *s, unsigned long n)
+{
+	ft_memset(s, 0, n);
+}
 /*
-#include <stdio.h>
 int	main(void)
 {
-	int	c;
+	int		i;
+	char	str[50];
 
-	c = 0;
-	printf("%d", ft_isprint(c));
+	i = 0;
+	str[50] = "Paco";
+	ft_bzero(str, 3);
+	printf("Este es el contenido de la str %s\n", str);
+	while (i < 6)
+	{
+		write(1, &str[i], 1);
+		i++;
+	}
+	write(1, "\n", 1);
 	return (0);
 }
 */
