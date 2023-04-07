@@ -6,7 +6,7 @@
 /*   By: bfebles- <bfebles-@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/25 10:37:22 by bfebles-          #+#    #+#             */
-/*   Updated: 2023/03/28 09:04:32 by bfebles-         ###   ########.fr       */
+/*   Updated: 2023/04/07 14:16:16 by bfebles-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,3 +31,13 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	result[len_s1 + len_s2] = '\0';
 	return (result);
 }
+/*
+int main()
+{
+	char *s1 = "hola";
+	char *s2 = "adios";
+	char *result = ft_strjoin(s1, s2);
+	printf("%s", result);
+	return (0);
+}
+*/

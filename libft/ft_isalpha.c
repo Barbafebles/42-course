@@ -6,7 +6,7 @@
 /*   By: bfebles- <bfebles-@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 11:51:35 by bfebles-          #+#    #+#             */
-/*   Updated: 2023/04/04 12:33:42 by bfebles-         ###   ########.fr       */
+/*   Updated: 2023/04/06 09:48:02 by bfebles-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,4 +26,3 @@ int	main(void)
 	return (0);
 }
 */
-// comprueba si el caracter es alfabetico

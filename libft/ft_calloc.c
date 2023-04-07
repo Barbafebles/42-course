@@ -6,11 +6,11 @@
 /*   By: bfebles- <bfebles-@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 09:38:33 by bfebles-          #+#    #+#             */
-/*   Updated: 2023/04/04 12:19:56 by bfebles-         ###   ########.fr       */
+/*   Updated: 2023/04/07 11:31:03 by bfebles-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
+#include "libft.h"
 
 void	*ft_calloc(unsigned long num, unsigned long size)
 {
@@ -28,3 +28,17 @@ void	*ft_calloc(unsigned long num, unsigned long size)
 	}
 	return (ptr);
 }
+/*
+int main()
+{
+	unsigned long count;
+	unsigned long size;
+	char *text;
+	
+	count = 5;
+	size = sizeof(char);
+	text = ft_calloc(count, size);
+	printf("%s", text);
+	return(0);
+}
+*/

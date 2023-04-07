@@ -6,9 +6,11 @@
 /*   By: bfebles- <bfebles-@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 09:32:57 by bfebles-          #+#    #+#             */
-/*   Updated: 2023/03/30 18:35:44 by bfebles-         ###   ########.fr       */
+/*   Updated: 2023/04/07 15:51:33 by bfebles-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include "libft.h"
 
 int	ft_atoi(const char *str)
 {
@@ -35,11 +37,11 @@ int	ft_atoi(const char *str)
 }
 
 /*
-#include <stdio.h>
-
-int	main(void)
+int main()
 {
-	printf("%d", ft_atoi("  -123"));
-	return (0);
+char str[] = "4654546456465";
+int num = ft_atoi(str);
+printf("El número es: %d\n", num);
+return (0);
 }
 */

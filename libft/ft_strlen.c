@@ -6,7 +6,7 @@
 /*   By: bfebles- <bfebles-@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 16:07:12 by bfebles-          #+#    #+#             */
-/*   Updated: 2023/04/05 12:41:54 by bfebles-         ###   ########.fr       */
+/*   Updated: 2023/04/06 11:11:34 by bfebles-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ unsigned int	ft_strlen(const char *s)
 	}
 	return (m);
 }
+
 /*
 #include <stdio.h>
 
@@ -35,4 +36,3 @@ int main()
 	return 0;
 }
 */
-// calcula el numero de caracteres de la cadena apuntada por s 

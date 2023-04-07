@@ -6,7 +6,7 @@
 /*   By: bfebles- <bfebles-@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/15 16:31:46 by bfebles-          #+#    #+#             */
-/*   Updated: 2023/03/16 10:27:55 by bfebles-         ###   ########.fr       */
+/*   Updated: 2023/04/06 12:30:19 by bfebles-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,12 @@ int	ft_tolower(int c)
 		return (c + 32);
 	return (c);
 }
-
-/*int main()
+/*
+#include <stdio.h>
+int main()
 {
-	int m = 'A';
-	printf("%d", ft_tolowe(m));
+	int m = 'B';
+	printf("%d", ft_tolower(m));
 	return(0);
-}*/
+}
+*/

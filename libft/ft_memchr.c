@@ -6,9 +6,11 @@
 /*   By: bfebles- <bfebles-@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 16:10:43 by bfebles-          #+#    #+#             */
-/*   Updated: 2023/04/03 17:00:57 by bfebles-         ###   ########.fr       */
+/*   Updated: 2023/04/07 17:04:30 by bfebles-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include "libft.h"
 
 void	*ft_memchr(const void *str, int c, unsigned long n)
 {
@@ -23,3 +25,18 @@ void	*ft_memchr(const void *str, int c, unsigned long n)
 	}
 	return (0);
 }
+/*
+int	main(void)
+{
+	char			str[];
+	char			c;
+	unsigned long	n;
+
+	str[] = "hola";
+	c = 'o';
+	n = 4;
+	ft_memchr(str, c, n);
+	printf("%s\n", str);
+	return (0);
+}
+*/

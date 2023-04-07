@@ -6,7 +6,7 @@
 /*   By: bfebles- <bfebles-@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 08:36:37 by bfebles-          #+#    #+#             */
-/*   Updated: 2023/03/28 09:00:13 by bfebles-         ###   ########.fr       */
+/*   Updated: 2023/04/07 14:15:11 by bfebles-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,3 +28,13 @@ void	ft_putnbr_fd(int n, int fd)
 		ft_putnbr_fd(n / 10, fd);
 	ft_putchar_fd(n % 10 + '0', fd);
 }
+
+/*
+int main()
+{
+	int n = -2147483648;
+	int fd = 1;
+	ft_putnbr_fd(n, fd);
+	return (0);
+}
+*/
