@@ -6,7 +6,7 @@
 /*   By: bfebles- <bfebles-@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 09:32:57 by bfebles-          #+#    #+#             */
-/*   Updated: 2023/04/07 15:51:33 by bfebles-         ###   ########.fr       */
+/*   Updated: 2023/04/08 17:38:29 by bfebles-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ int	ft_atoi(const char *str)
 /*
 int main()
 {
-char str[] = "4654546456465";
+char str[] = "1223";
 int num = ft_atoi(str);
 printf("El número es: %d\n", num);
 return (0);
