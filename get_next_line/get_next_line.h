@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bfebles- <bfebles-@student.42madrid.com>   +#+  +:+       +#+        */
+/*   By: bfebles- <bfebles-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/13 16:36:03 by bfebles-          #+#    #+#             */
-/*   Updated: 2023/04/13 16:37:40 by bfebles-         ###   ########.fr       */
+/*   Created: 2023/04/12 11:42:44 by bfebles-          #+#    #+#             */
+/*   Updated: 2023/04/19 18:26:50 by bfebles-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,19 +14,20 @@
 # define GET_NEXT_LINE_H
 
 # include <ctype.h>
+# include <fcntl.h>
 # include <stdio.h>
 # include <stdlib.h>
 # include <unistd.h>
+# include <limits.h>
 
 # ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 42
+#  define BUFFER_SIZE 1042
 # endif
 
 char	*get_next_line(int fd);
-char	*ft_strchr(const char *s, int c);
+int		ft_strchr(const char *s, int c);
 char	*ft_strdup(const char *str);
-char	*ft_strjoin(char const *s1, char const *s2);
-size_t	ft_strlen(const char *s);
-void	*ft_memcpy(void *dst, const void *src, size_t n);
+char	*ft_strjoin(char *stash, char *buff);
+int ft_strlen(const char *s);
 
 #endif
