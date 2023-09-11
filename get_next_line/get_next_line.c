@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bfebles- <bfebles-@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: barbarafebles <barbarafebles@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/12 12:10:32 by bfebles-          #+#    #+#             */
-/*   Updated: 2023/04/19 19:06:17 by bfebles-         ###   ########.fr       */
+/*   Updated: 2023/09/11 18:34:53 by barbarafebl      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,23 +18,23 @@ static char	*get_line(char *str)
 	char	*line;
 
 	i = 0;
-	if (!str || str[0] == '\0')
-		return (NULL);
-	while (str[i] != 10 && str[i] != '\0')
+	if (!str || str[0] == '\0') 
+		return (NULL); 
+	while (str[i] != '\n' && str[i] != '\0')  
 		i++;
-	line = (char *)malloc(sizeof(char) * (i + 2));
+	line = (char *)malloc(sizeof(char) * (i + 2));  
 	if (!line)
 		return (NULL);
 	i = 0;
-	while (str[i] != 10 && str[i] != '\0')
+	while (str[i] != '\n' && str[i] != '\0')  
 	{
-		line[i] = str[i];
-		++i;
+		line[i] = str[i];  
+		++i;  
 	}
-	if (str[i] == '\n')
-		line[i++] = '\n';
-	line[i] = '\0';
-	return (line);
+	if (str[i] == '\n')  
+		line[i++] = '\n';  
+	line[i] = '\0'; 
+	return (line); 
 }
 
 /*
@@ -51,16 +51,17 @@ char	*read_line(int fd, char *rest)
 	int		bytes_read;
 	char	*buffer;
 
-	buffer = (char *)malloc(BUFFER_SIZE + 1 * sizeof(char));
+	buffer = (char *)malloc(BUFFER_SIZE + 1 * sizeof(char)); 
 	if (!buffer)
 		return (NULL);
-	bytes_read = 1;
-	while (!(ft_strchr(rest, 10)) && bytes_read != 0)
+	bytes_read = 1; 
+	while (!(ft_strchr(rest,'\n')) && bytes_read != 0) 
 	{
 		bytes_read = read(fd, buffer, BUFFER_SIZE);
 		if (bytes_read < 0)
 		{
 			free(buffer);
+			free(rest);
 			return (NULL);
 		}
 		buffer[bytes_read] = '\0';
@@ -88,14 +89,14 @@ int	main(void)
 
 char	*newrest(char *rest)
 {
-	int		i;
+	int		i; 
 	int		k;
-	char	*rest_caract;
+	char	*rest_caract; 
 
 	i = 0;
 	while (rest[i] != '\0' && rest[i] != '\n')
 		i++;
-	if (!rest[i])
+	if (!rest[i]) 
 	{
 		free(rest);
 		return (NULL);
@@ -103,7 +104,7 @@ char	*newrest(char *rest)
 	rest_caract = malloc(sizeof(char) * (ft_strlen(rest) - i + 1));
 	if (!rest_caract)
 		return (NULL);
-	k = 0;
+	k = 0; 
 	++i;
 	while (rest[i])
 		rest_caract[k++] = rest[i++];
@@ -143,22 +144,22 @@ int	main(void)
 }
 */
 
+/*
+int	main(void)
+{
+    char    fd;
+    char    *line;
 
-// int	main(void)
-// {
-//     char    fd;
-//     char    *line;
-
-//     fd = open("prueba.txt", O_RDWR);
-// 	if (fd == -1)
-// 		return (0);
-// 	line = "";
-//     while (line)
-//     {
-// 		line = get_next_line(fd);
-// 		printf("%s", line);
-//     }
-//     close(fd);
-// 	return (0);
-// }
-
+    fd = open("prueba.txt", O_RDWR);
+	if (fd == -1)
+		return (0);
+	line = "";
+    while (line)
+    {
+		line = get_next_line(fd);
+		printf("%s", line);
+    }
+    close(fd);
+	return (0);
+}
+*/
