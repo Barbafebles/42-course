@@ -15,10 +15,10 @@
 // // # include "ft_printf.h"
 // # include "get_next_line.h"
 // # include "libft.h"
-# include <fcntl.h>
-# include <limits.h> // limite de numeros INT_MAX INT_MIN
-# include <mlx.h>    // interfaz grafica MiniLibX
-# include <stdlib.h>
+# include <fcntl.h> // file control ( entrada/ salida)
+# include <limits.h> // limite de numeros INT_MAX INT_MIN (compromaciones de desbordamiento)
+# include <mlx.h>    // interfaz grafica MiniLibX 
+# include <stdlib.h> // Standar library memoria dinamica 
 #endif
 
 typedef struct s_player

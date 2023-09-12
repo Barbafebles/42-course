@@ -1,22 +1,43 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putchar_pf.c                                    :+:      :+:    :+:   */
+/*   ft_putptr_pf.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bfebles- <bfebles-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/18 16:48:37 by bfebles-          #+#    #+#             */
-/*   Updated: 2023/05/24 12:27:30 by bfebles-         ###   ########.fr       */
+/*   Created: 2023/05/22 16:01:58 by bfebles-          #+#    #+#             */
+/*   Updated: 2023/05/24 13:05:22 by bfebles-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	ft_putchar_pf(char c)
+int	ft_puthexa_ptr(unsigned long long hexa)
 {
 	int	counter;
 
 	counter = 0;
-	counter += write(1, &c, 1);
+	if (hexa >= 16)
+	{
+		counter += ft_puthexa_ptr(hexa / 16);
+		counter += ft_puthexa_ptr(hexa % 16);
+	}
+	else
+	{
+		if (hexa <= 9)
+			counter += ft_putchar_pf((hexa + 48));
+		else
+			counter += ft_putchar_pf(hexa - 10 + 'a');
+	}
+	return (counter);
+}
+
+int	ft_putptr_pf(unsigned long long ptr)
+{
+	int	counter;
+
+	counter = 0;
+	counter += write(1, "0x", 2);
+	counter += ft_puthexa_ptr(ptr);
 	return (counter);
 }

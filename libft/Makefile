@@ -63,7 +63,7 @@ $(NAME): $(OBJS) $(LIB)
 
 clean:
 	$(RM) $(OBJS)
-
+SRCS:
 fclean: clean
 	$(RM) $(NAME)
 

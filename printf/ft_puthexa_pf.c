@@ -6,7 +6,7 @@
 /*   By: bfebles- <bfebles-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/19 16:12:38 by bfebles-          #+#    #+#             */
-/*   Updated: 2023/05/24 12:28:10 by bfebles-         ###   ########.fr       */
+/*   Updated: 2023/08/24 17:34:21 by bfebles-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,3 +36,16 @@ int	ft_puthexa_pf(unsigned int hexa, char form)
 	}
 	return (counter);
 }
+
+/*
+int	main(void)
+{
+    unsigned int num;
+    char form;
+
+    num = 12;
+    form = 'X';
+	printf("Este es el numero hexa: %X\n", num);
+    return(0);
+}
+*/

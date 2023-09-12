@@ -1,32 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   so_longex.h                                        :+:      :+:    :+:   */
+/*   ft_putstr_pf.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bfebles- <bfebles-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/03 18:23:55 by bfebles-          #+#    #+#             */
-/*   Updated: 2023/06/14 15:37:54 by bfebles-         ###   ########.fr       */
+/*   Created: 2023/05/20 21:07:19 by bfebles-          #+#    #+#             */
+/*   Updated: 2023/05/24 13:01:08 by bfebles-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-typedef struct s_player
-{
-    int x;
-    int y;
-    void *img;
-}              t_player;
+#include "ft_printf.h"
 
-typedef struct s_win
+int	ft_putstr_pf(char *str)
 {
-    int wi;
-    int height;
-    void *ptr_win;
-}              t_win;
+	int	counter;
 
-typedef struct s_data
-{
-    void *mlx;
-    t_player player;
-    t_win    win;
-}              t_data;
+	counter = 0;
+	if (!str)
+	{
+		str = "(null)";
+	}
+	while (*str)
+	{
+		counter += ft_putchar_pf(*str);
+		str++;
+	}
+	return (counter);
+}

@@ -40,7 +40,7 @@ int main(void)
 
     data->win.width = 10 * 64;
     data->win.height = 10 * 64;
-    data->win.window = mlx_new_window(data->mlx, data->win.width, data->win.height, "nueva ventana");
+    data->win.window = mlx_new_window(data->mlx, data->win.width, data->win.height, "pepe");
 
     char *image_dog = "xpmd/suelo.xpm";
 	data->imgsuelo = mlx_xpm_file_to_image(data->mlx, image_dog, &width, &height);
