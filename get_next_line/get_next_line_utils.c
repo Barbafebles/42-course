@@ -6,12 +6,12 @@
 /*   By: barbarafebles <barbarafebles@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/12 12:10:17 by bfebles-          #+#    #+#             */
-/*   Updated: 2023/09/11 18:33:46 by barbarafebl      ###   ########.fr       */
+/*   Updated: 2023/09/12 11:12:21 by barbarafebl      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
- 
+
 int	ft_strchr(const char *s, int c)
 {
 	int	i;
@@ -19,13 +19,13 @@ int	ft_strchr(const char *s, int c)
 	i = 0;
 	if (!s)
 		return (0);
-	while (s[i]) 
+	while (s[i])
 	{
-		if (s[i] == (char)c)  
-			return (1); 
+		if (s[i] == (char)c)
+			return (1);
 		++i;
 	}
-	return (0); 
+	return (0);
 }
 
 char	*ft_strdup(const char *str)
@@ -50,28 +50,28 @@ char	*ft_strdup(const char *str)
 
 char	*ft_strjoin(char *stash, char *buff)
 {
-	int	i;
-	int	j;
+	int		i;
+	int		j;
 	char	*str;
 
 	if (!stash)
 	{
-		stash = malloc (sizeof(char));
+		stash = malloc(sizeof(char));
 		stash[0] = '\0';
 	}
 	if (!stash || !buff)
 		return (NULL);
-	str = malloc (sizeof(char) * (ft_strlen(stash) + ft_strlen(buff) + 1));
+	str = malloc(sizeof(char) * (ft_strlen(stash) + ft_strlen(buff) + 1));
 	if (!str)
 		return (NULL);
-	i = -1; 
+	i = -1;
 	j = 0;
-	while (stash[++i]) 
+	while (stash[++i])
 		str[i] = stash[i];
 	while (buff[j])
-		str[i++] = buff[j++]; 
+		str[i++] = buff[j++];
 	str[i] = '\0';
-	free (stash);
+	free(stash);
 	return (str);
 }
 
