@@ -6,7 +6,7 @@
 /*   By: barbarafebles <barbarafebles@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/12 12:10:32 by bfebles-          #+#    #+#             */
-/*   Updated: 2023/09/12 12:00:50 by barbarafebl      ###   ########.fr       */
+/*   Updated: 2023/09/14 14:54:10 by barbarafebl      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -132,21 +132,3 @@ int	main(void)
 	printf("El tiempo de ejecucion: %f segundos\n", cpu_time_used);
 	return (0);
 }
-
-/*
-int	main(void)
-{
-	int		fd;
-	char	*line;
-
-	fd = open("prueba.txt", O_RDONLY);
-	while (line)
-	{
-		line = get_next_line(fd);
-		printf("La linea: %s\n", line);
-		free(line);
-	}
-	close(fd);
-	return (0);
-}
-*/

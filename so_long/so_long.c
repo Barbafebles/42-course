@@ -10,7 +10,6 @@ int	main(void)
 	int alto;
     void *img;
 	int *close;
-
 	mlx = mlx_init();
 	windows = mlx_new_window(mlx, 1000, 1000, "nueva ventana");
 	img = mlx_xpm_file_to_image(mlx, "/Users/bfebles-/Desktop/github/so_long/xpmd", &ancho, &alto);
@@ -20,7 +19,6 @@ int	main(void)
 	mlx_loop(mlx);
 }
 */
-
 
 #include "so_long.h"
 
@@ -56,7 +54,7 @@ int main(void)
 		++i;
 	}
 	data->player.img = mlx_xpm_file_to_image(data->mlx, "xpmd/perro.xpm", &width, &height);
-	mlx_put_image_to_window(data->mlx, data->win.window, data->player.img, 0, 0);
+	mlx_put_image_to_window(data->mlx, data->win.window, data->player.img, 64, 64);
 
 	data->galleta = mlx_xpm_file_to_image(data->mlx, "xpmd/Galleta.xpm", &width, &height);
 	mlx_put_image_to_window(data->mlx, data->win.window, data->galleta, 210, 0);

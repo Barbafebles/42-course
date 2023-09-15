@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bfebles- <bfebles-@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: barbarafebles <barbarafebles@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 15:51:10 by bfebles-          #+#    #+#             */
-/*   Updated: 2023/05/24 12:57:05 by bfebles-         ###   ########.fr       */
+/*   Updated: 2023/09/14 18:06:52 by barbarafebl      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ int	ft_format(char *format, va_list arguments)
 	return (counter);
 }
 
-int	ft_printf(char const *format, ...)
+int	ft_printf(char const *format,...)
 {
 	int		counter;
 	va_list	arguments;

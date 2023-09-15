@@ -3,33 +3,13 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bfebles- <bfebles-@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: barbarafebles <barbarafebles@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/03 08:46:09 by bfebles-          #+#    #+#             */
-/*   Updated: 2023/06/03 18:24:32 by bfebles-         ###   ########.fr       */
+/*   Updated: 2023/09/14 18:52:29 by barbarafebl      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-/*
-#include "so_long.h"
-
-char	**ft_readmaps(int fd)
-{
-	char	line;
-	char	strmaps;
-	char	map;
-
-	while (1) // verdadero. No para el bucle hasta que se cumpla
-	{
-		line = get_next_line(fd);
-		if (!(ft_strncmp(line, "(null)", ft_strlen(line))));
-			break;
-		strmaps = ft_strjoin(strmaps, line);
-		free(line);
-	}
-	map = ft_split(strmaps, '\n');
-	return (map);
-}
 
 int	ft_validmap(const char *filename)
 {
