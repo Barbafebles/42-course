@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include <stdio.h>
+#include <limits.h>
 
 int ft_isnumber(char *str)
 {
@@ -62,8 +63,7 @@ int valid_int(const char *str)
 	if(str[i] == '\0')
 		return 0;
 
-	if((str[i] = '-') || (str[i] = '+'))
-		if(str[i] = '-')
+	if(str[i] == '-')
 		signo = -1;
 		i++;;
 	
@@ -73,12 +73,28 @@ int valid_int(const char *str)
 	{
 		if(str[i] < 0 || str[i] > 9)
 			return 0;
-		int number = number * 10 (str[i] - '0');
+		number = number * 10 + (str[i] - '0');
 	if(number * signo > INT_MAX || number * signo < INT_MIN)
 		return 0;
 	i++;
 	}
 	return 1;
+}
+
+int main(int argc, char *argv[])
+{
+	const char *cadena = argv[1];
+
+	if (valid_int(cadena)) 
+	{
+        printf("\"%s\" es un valor válido de int.\n", cadena);
+    	} 
+	else 
+	{
+        printf("\"%s\" no es un valor válido de int.\n", cadena);
+    	}
+
+    return 0;
 }
 
 /*
@@ -95,30 +111,3 @@ int main(int argc, char **argv)
     return(0);
 }
 */
-
-int main(char argc, char *argv)
-{
-	int i = 1;
-
-    	if (argc != 2) 
-	{
-        	printf("Uso: %d <cadena>\n", argv[0]);
-        	return 1;
-    	}
-	
-	const char *cadena;
-	cadena = argv[i];
-	
-	if(valid_int(cadena))
-	{
-		int numero = atoi(cadena);
-		printf("El numero entero es: %d\n", numero);
-	}
-	else 
-	{
-		printf("La cadena no es un valor valido de int.\n");
-	}
-	return 0;
-}
-
-
