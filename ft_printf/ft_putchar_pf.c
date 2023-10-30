@@ -20,3 +20,18 @@ int	ft_putchar_pf(char c)
 	counter += write(1, &c, 1);
 	return (counter);
 }
+
+/*
+int	main(void)
+{
+    char c;
+
+    c = 'A';
+    //int num_chars = ft_putchar_pf(c);
+    if(c == 'A')
+    {
+        printf("\nImpresion: '%c'. Número de caracteres impresos: %d\n", c, 1);
+    }
+    return(0);
+}
+*/
