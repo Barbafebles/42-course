@@ -80,7 +80,7 @@ int valid_int(const char *str)
 	}
 	return 1;
 }
-
+/*
 int main(int argc, char *argv[])
 {
 	const char *cadena = argv[1];
@@ -96,7 +96,7 @@ int main(int argc, char *argv[])
 
     return 0;
 }
-
+*/
 /*
 int main(int argc, char **argv)
 {

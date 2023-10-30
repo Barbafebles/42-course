@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_memchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bfebles- <bfebles-@student.42madrid.com>   +#+  +:+       +#+        */
+/*   By: barbarafebles <barbarafebles@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 16:10:43 by bfebles-          #+#    #+#             */
-/*   Updated: 2023/04/07 17:04:30 by bfebles-         ###   ########.fr       */
+/*   Updated: 2023/10/04 17:43:58 by barbarafebl      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,15 +28,24 @@ void	*ft_memchr(const void *str, int c, unsigned long n)
 /*
 int	main(void)
 {
-	char			str[];
+	char			*str;
 	char			c;
 	unsigned long	n;
+	void	*result;
+	
 
-	str[] = "hola";
+	str = "hola";
 	c = 'o';
 	n = 4;
-	ft_memchr(str, c, n);
-	printf("%s\n", str);
+	result = ft_memchr(str, c, n);
+    if (result != NULL)
+    {
+        printf("El carácter '%c' se encontró en la posición %ld.\n", c, (unsigned long)(result - (void *)str));
+    }
+    else
+    {
+        printf("El carácter '%c' no se encontró en los primeros %ld caracteres.\n", c, n);
+    }
 	return (0);
 }
 */

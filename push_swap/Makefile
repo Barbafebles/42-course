@@ -5,7 +5,7 @@ CFLAGS = -Wall -Wextra -Werror
 RM = rm -f
 
 SRCS = 
-
+	
 
 %.o:%.c
 	$(CC) $(CFLAGS) -c $< -o $@	

@@ -10,6 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <string.h>
 #include "libft.h"
 
 int	ft_atoi(const char *str)
@@ -35,12 +36,11 @@ int	ft_atoi(const char *str)
 	}
 	return (j * k);
 }
-
 /*
 int main()
 {
-char str[] = "1223";
-int num = ft_atoi(str);
+char str[] = "95807";
+int num = atoi(str);
 printf("El número es: %d\n", num);
 return (0);
 }
