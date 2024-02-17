@@ -6,7 +6,7 @@
 /*   By: barbarafebles <barbarafebles@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/12 12:10:32 by bfebles-          #+#    #+#             */
-/*   Updated: 2023/09/14 14:54:10 by barbarafebl      ###   ########.fr       */
+/*   Updated: 2024/02/17 20:35:41 by barbarafebl      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,7 +94,7 @@ char	*get_next_line(int fd)
 	static char	*str;
 	char		*line;
 
-	if (fd < 0 || BUFFER_SIZE <= 0 || fd > OPEN_MAX)
+	if (fd < 0 || BUFFER_SIZE <= 0)
 	{
 		free(str);
 		str = NULL;
@@ -107,28 +107,29 @@ char	*get_next_line(int fd)
 	str = newrest(str);
 	return (line);
 }
-
-
-int	main(void)
+/*
+void leaks(void)
 {
-	clock_t	start, end;
-	double	cpu_time_used;
-	char	fd;
-	char	*line;
+	system("leaks a.out");
+}
+*/
 
-	start = clock();
-	fd = open("prueba.txt", O_RDWR);
-	if (fd == -1)
-		return (0);
-	line = "";
-	while (line)
+int main()
+{
+	char fd;
+	char *line;
+
+	// atexit(leaks);
+	printf("Tamaño del buffer ----> %d\n", BUFFER_SIZE);
+	fd = open("hola.txt", O_RDWR);
+	if(fd < 0)
+	return 0;
+	while(line)
 	{
 		line = get_next_line(fd);
-		printf("%s\n", line);
+		printf("%s\n",line);
+		free(line);
 	}
-	close(fd);
-	end = clock();
-	cpu_time_used = ((double) (end - start)) / CLOCKS_PER_SEC;
-	printf("El tiempo de ejecucion: %f segundos\n", cpu_time_used);
-	return (0);
+	return 0;
 }
+
