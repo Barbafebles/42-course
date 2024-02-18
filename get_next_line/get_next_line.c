@@ -6,7 +6,7 @@
 /*   By: barbarafebles <barbarafebles@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/12 12:10:32 by bfebles-          #+#    #+#             */
-/*   Updated: 2024/02/17 20:35:41 by barbarafebl      ###   ########.fr       */
+/*   Updated: 2024/02/18 11:21:28 by barbarafebl      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,22 +114,24 @@ void leaks(void)
 }
 */
 
-int main()
+int  main()
 {
-	char fd;
+	int fd;
 	char *line;
 
-	// atexit(leaks);
-	printf("Tamaño del buffer ----> %d\n", BUFFER_SIZE);
-	fd = open("hola.txt", O_RDWR);
+	fd = open("hola.txt", O_RDONLY);
 	if(fd < 0)
-	return 0;
-	while(line)
+		return 0;
+	while(1)
 	{
 		line = get_next_line(fd);
-		printf("%s\n",line);
+		if (line == NULL)
+			break ;
+		printf("%s", line);
 		free(line);
 	}
+	close(fd);
 	return 0;
 }
+
 
