@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: barbarafebles <barbarafebles@student.42    +#+  +:+       +#+        */
+/*   By: bfebles- <bfebles-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/12 12:10:32 by bfebles-          #+#    #+#             */
-/*   Updated: 2024/02/18 12:38:37 by barbarafebl      ###   ########.fr       */
+/*   Updated: 2023/04/20 18:47:43 by bfebles-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,13 +20,13 @@ static char	*get_line(char *str)
 	i = 0;
 	if (!str || str[0] == '\0')
 		return (NULL);
-	while (str[i] != '\n' && str[i] != '\0')
+	while (str[i] != 10 && str[i] != '\0')
 		i++;
 	line = (char *)malloc(sizeof(char) * (i + 2));
 	if (!line)
 		return (NULL);
 	i = 0;
-	while (str[i] != '\n' && str[i] != '\0')
+	while (str[i] != 10 && str[i] != '\0')
 	{
 		line[i] = str[i];
 		++i;
@@ -37,6 +37,15 @@ static char	*get_line(char *str)
 	return (line);
 }
 
+/*
+int	main(void)
+{
+    printf("La primera linea es: %s\n",
+		get_line("A ver si funciona esto que acabo de hacer"));
+	return(0);  ge
+}
+*/
+
 char	*read_line(int fd, char *rest)
 {
 	int		bytes_read;
@@ -46,13 +55,12 @@ char	*read_line(int fd, char *rest)
 	if (!buffer)
 		return (NULL);
 	bytes_read = 1;
-	while (!(ft_strchr(rest, '\n')) && bytes_read != 0)
+	while (!(ft_strchr(rest, 10)) && bytes_read != 0)
 	{
 		bytes_read = read(fd, buffer, BUFFER_SIZE);
 		if (bytes_read < 0)
 		{
 			free(buffer);
-			free(rest);
 			return (NULL);
 		}
 		buffer[bytes_read] = '\0';
@@ -61,6 +69,22 @@ char	*read_line(int fd, char *rest)
 	free(buffer);
 	return (rest);
 }
+
+/*
+int	main(void)
+{
+	char	*buffer;
+	int		fd;
+
+	fd = open("prueba.txt", O_RDWR);
+	if (fd == -1)
+		return (0);
+	buffer = read_line(fd, buffer);
+	printf("Esto es lo que tiene buffer %s\n", buffer);
+	close(fd);
+	return (0);
+}
+*/
 
 char	*newrest(char *rest)
 {
@@ -92,9 +116,9 @@ char	*get_next_line(int fd)
 
 {
 	static char	*str;
-	char		*line;
+	char	*line;
 
-	if (fd < 0 || BUFFER_SIZE <= 0)
+	if (fd < 0 || BUFFER_SIZE <= 0 || fd > OPEN_MAX || read(fd, 0, 0) < 0)
 	{
 		free(str);
 		str = NULL;
@@ -106,31 +130,35 @@ char	*get_next_line(int fd)
 	line = get_line(str);
 	str = newrest(str);
 	return (line);
-}
-/*
-void leaks(void)
-{
-	system("leaks a.out");
-}
-*/
-/*
-int  main()
-{
-	int fd;
-	char *line;
+} 
 
-	fd = open("hola.txt", O_RDONLY);
-	if(fd < 0)
-		return 0;
-	while(1)
-	{
-		line = get_next_line(fd);
-		if (line == NULL)
-			break ;
-		printf("%s", line);
-		free(line);
-	}
-	close(fd);
-	return 0;
+/*
+int	main(void)
+{
+	char	fd;
+
+	fd = open("prueba.txt", O_RDWR);
+	printf("%s", get_next_line(fd));
+	free(get_next_line(fd));
 }
 */
+
+
+// int	main(void)
+// {
+//     char    fd;
+//     char    *line;
+
+//     fd = open("prueba.txt", O_RDWR);
+// 	if (fd == -1)
+// 		return (0);
+// 	line = "";
+//     while (line)
+//     {
+// 		line = get_next_line(fd);
+// 		printf("%s", line);
+//     }
+//     close(fd);
+// 	return (0);
+// }
+

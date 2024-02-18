@@ -3,18 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   ft_memchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: barbarafebles <barbarafebles@student.42    +#+  +:+       +#+        */
+/*   By: bfebles- <bfebles-@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 16:10:43 by bfebles-          #+#    #+#             */
-/*   Updated: 2024/02/18 12:36:53 by barbarafebl      ###   ########.fr       */
+/*   Updated: 2023/04/10 19:37:00 by bfebles-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*ft_memchr(const void *str, int c, unsigned long n)
+void	*ft_memchr(const void *str, int c, size_t n)
 {
-	unsigned long	i;
+	size_t	i;
 
 	i = 0;
 	while (i < n)
@@ -23,30 +23,20 @@ void	*ft_memchr(const void *str, int c, unsigned long n)
 			return ((void *)str + i);
 		i++;
 	}
-	return (0);
+	return (NULL);
 }
 
 /*
 int	main(void)
 {
-	char			*str;
-	char			c;
-	unsigned long	n;
-	void	*result;
-	
+	char	*str;
+	char	c;
+	size_t	n;
 
-	str = "hola";
+	str = "paco estaba en la cocina";
 	c = 'o';
-	n = 4;
-	result = ft_memchr(str, c, n);
-    if (result != NULL)
-    {
-        printf("El carácter '%c' se encontró en la posición %ld.\n", c, (unsigned long)(result - (void *)str));
-    }
-    else
-    {
-        printf("El carácter '%c' no se encontró en los primeros %ld caracteres.\n", c, n);
-    }
+	n = ft_strlen(str);
+	printf("%s\n", ft_memchr(str, c, n));
 	return (0);
 }
 */
