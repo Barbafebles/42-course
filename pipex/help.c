@@ -21,4 +21,4 @@ void    execute(char *cmd, int in, int out)
     }
     close (in); // cierra el fd que no necesito
 
-}
+}                                      
