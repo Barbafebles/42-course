@@ -125,8 +125,8 @@ int  main()
 	while(1)
 	{
 		line = get_next_line(fd);
-		if (line == NULL)
-			break ;
+		//if (line == NULL)
+		//	break ;
 		printf("%s", line);
 		free(line);
 	}
