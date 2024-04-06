@@ -1,18 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pipex.c                                            :+:      :+:    :+:   */
+/*   ft_toupper.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: barbafebles <barbafebles@student.42.fr>    +#+  +:+       +#+        */
+/*   By: bfebles- <bfebles-@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/20 16:49:14 by barbarafebl       #+#    #+#             */
-/*   Updated: 2024/04/03 17:14:25 by barbafebles      ###   ########.fr       */
+/*   Created: 2023/03/15 15:44:56 by bfebles-          #+#    #+#             */
+/*   Updated: 2023/04/06 11:52:07 by bfebles-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-// crear el primer hijo 
-
-
-
-
-// crear el segundo hijo 
+int	ft_toupper(int c)
+{
+	if (c >= 'a' && c <= 'z')
+		return (c - 32);
+	return (c);
+}
+/*
+#include <stdio.h>
+int main() 
+{ 
+	int c = 'd'; 
+	printf("%c", ft_toupper(c)); 
+	return (0);
+}
+*/

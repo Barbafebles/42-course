@@ -1,6 +1,6 @@
 
 
-#include <mlx.h>
+#include "so_long.h"
 
 int	main(void)
 {
@@ -12,7 +12,7 @@ int	main(void)
 	int *close;
 	mlx = mlx_init();
 	windows = mlx_new_window(mlx, 1000, 1000, "nueva ventana");
-	img = mlx_xpm_file_to_image(mlx, "/Users/bfebles-/Desktop/github/so_long/xpmd", &ancho, &alto);
+	img = mlx_xpm_file_to_image(mlx, "/home/barbafebles/Desktop/42-course/so_long/xpmd", &ancho, &alto);
 
 	//mlx_put_image_to_window(mlx, windows,img, 0, 0);
 	//close = mlx_destroy_window(mlx, windows);
@@ -71,3 +71,5 @@ int main(void)
     return 0;
 }
 */
+
+

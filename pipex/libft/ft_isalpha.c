@@ -1,18 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pipex.c                                            :+:      :+:    :+:   */
+/*   ft_isalpha.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: barbafebles <barbafebles@student.42.fr>    +#+  +:+       +#+        */
+/*   By: bfebles- <bfebles-@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/20 16:49:14 by barbarafebl       #+#    #+#             */
-/*   Updated: 2024/04/03 17:14:25 by barbafebles      ###   ########.fr       */
+/*   Created: 2023/03/08 11:51:35 by bfebles-          #+#    #+#             */
+/*   Updated: 2023/04/06 09:48:02 by bfebles-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-// crear el primer hijo 
+int	ft_isalpha(int c)
+{
+	if ((c >= 97 && c <= 122) || (c >= 65 && c <= 90))
+		return (1);
+	return (0);
+}
 
+/*
+#include <stdio.h>
 
-
-
-// crear el segundo hijo 
+int	main(void)
+{
+	printf("%d", ft_isalpha('a'));
+	return (0);
+}
+*/

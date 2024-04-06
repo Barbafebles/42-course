@@ -1,18 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pipex.c                                            :+:      :+:    :+:   */
+/*   ft_isdigit.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: barbafebles <barbafebles@student.42.fr>    +#+  +:+       +#+        */
+/*   By: bfebles- <bfebles-@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/20 16:49:14 by barbarafebl       #+#    #+#             */
-/*   Updated: 2024/04/03 17:14:25 by barbafebles      ###   ########.fr       */
+/*   Created: 2023/03/10 11:47:29 by bfebles-          #+#    #+#             */
+/*   Updated: 2023/04/07 15:57:42 by bfebles-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-// crear el primer hijo 
+int	ft_isdigit(int m)
+{
+	if (m >= '0' && m <= '9')
+		return (1);
+	return (0);
+}
 
-
-
-
-// crear el segundo hijo 
+/*
+#include <stdio.h>
+int main()
+{
+	int m;
+	m = '0';
+	printf("%d", ft_isdigit('0'));
+	return(0);
+}*/

@@ -1,18 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pipex.c                                            :+:      :+:    :+:   */
+/*   ft_isascii.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: barbafebles <barbafebles@student.42.fr>    +#+  +:+       +#+        */
+/*   By: bfebles- <bfebles-@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/20 16:49:14 by barbarafebl       #+#    #+#             */
-/*   Updated: 2024/04/03 17:14:25 by barbafebles      ###   ########.fr       */
+/*   Created: 2023/03/08 15:37:06 by bfebles-          #+#    #+#             */
+/*   Updated: 2023/04/06 11:11:52 by bfebles-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-// crear el primer hijo 
+int	ft_isascii(int c)
+{
+	if (c >= 0 && c <= 127)
+		return (1);
+	return (0);
+}
 
-
-
-
-// crear el segundo hijo 
+/*
+int main()
+{
+	printf("%d", ft_isascii('a'));
+	return (0);
+}
+*/

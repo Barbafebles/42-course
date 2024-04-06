@@ -1,18 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pipex.c                                            :+:      :+:    :+:   */
+/*   ft_isprint.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: barbafebles <barbafebles@student.42.fr>    +#+  +:+       +#+        */
+/*   By: bfebles- <bfebles-@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/20 16:49:14 by barbarafebl       #+#    #+#             */
-/*   Updated: 2024/04/03 17:14:25 by barbafebles      ###   ########.fr       */
+/*   Created: 2023/03/10 11:38:51 by bfebles-          #+#    #+#             */
+/*   Updated: 2023/04/06 09:57:56 by bfebles-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-// crear el primer hijo 
+int	ft_isprint(int c)
+{
+	if (c >= 32 && c <= 126)
+		return (1);
+	return (0);
+}
 
+/*
+#include <stdio.h>
+int	main(void)
+{
+	int	c;
 
-
-
-// crear el segundo hijo 
+	c = 0;
+	printf("%d", ft_isprint('c'));
+	return (0);
+}
+*/

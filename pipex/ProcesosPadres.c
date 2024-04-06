@@ -3,8 +3,9 @@
 #include <fcntl.h>
 #include <stdio.h>
 #include <unistd.h>
-#include <stdlib.h>
+#include <stdlib.h> 
 #include "pipex.h"
+
 
 //-----------------------------------------------------------------------------------------------------------------
 // como se crea un proceso padre e hijo 
@@ -130,7 +131,7 @@ el pid[1] es final de escritura
 si da fallo devuelve -1 
 */
 
-int ft_strlen(const char *s)
+int ft_strlen(char *s)
 {
     int i = 0;
     while(s[i] != '\0')

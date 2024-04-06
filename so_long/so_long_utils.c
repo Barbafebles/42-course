@@ -1,3 +1,6 @@
+
+#include "so_long.h"
+
 // una función que lea el mapa 
 char	**ft_readmaps(int fd)
 {

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipex.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: barbarafebles <barbarafebles@student.42    +#+  +:+       +#+        */
+/*   By: barbafebles <barbafebles@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 16:49:17 by barbarafebl       #+#    #+#             */
-/*   Updated: 2024/03/25 15:37:53 by barbarafebl      ###   ########.fr       */
+/*   Updated: 2024/04/05 19:37:59 by barbafebles      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,10 @@
 #include <stdio.h> // para perror
 #include <stdlib.h> // para malloc, free, exit
 #include <sys/wait.h> // para wait, waitpid
+#include <errno.h> //errno 
+# include "libft/libft.h"
+#include <string.h> //strerror
+
 # define BUFFER_SIZE 1042
 
 int ft_open(const char *file, int flags);

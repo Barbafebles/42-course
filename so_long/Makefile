@@ -1,7 +1,7 @@
 NAME = so_long
 CC = cc
 CCFLAGS = -Wall -Wextra -Werror
-MLX_MAC = -lmlx -framework OpenGL -framework AppKit
+MLX_LINUX = -lmlx -lXext -lX11 -lm
 RM = rm -rf
 
 LIBFT_DIR = libft/
@@ -17,7 +17,7 @@ all: $(NAME)
 lib: $(LIBFT)
 
 $(NAME): $(OBJS) $(LIBFT)
-	$(CC) $(CCFLAGS) $(MLX_MAC) $(SRCS) $(LIBFT) -o $(NAME)
+	$(CC) $(CCFLAGS) $(MLX_LINUX) $(SRCS) $(LIBFT) -o $(NAME)
 
 $(LIBFT):
 	make -C $(LIBFT_DIR)

@@ -5,7 +5,7 @@ void execute(char *cmd[], int in, int out, char **envp)
     pid_t pid;
     pid = fork();
 
-    if (pid == -1) 
+    if (pid == -1)
     {
         // Si falla el fork
         ft_error("Error en el fork");
@@ -55,3 +55,4 @@ int main()
 
     return 0;
 }
+
