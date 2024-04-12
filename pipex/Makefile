@@ -1,25 +1,27 @@
-NAME = pipex // nombre de mi archivo 
+NAME = pipex
 
-CC = gcc // compilador 
+CC = gcc
 
-CFLAGS = -Wall -Werror -Wextra // flags para compilar 
+CFLAGS = -Wall -Werror -Wextra
 
-SOURCE = pipex.c utils.c protect.c // funciones 
-OBJ = $(SOURCE:.c=.o) // regla para establecer los .o
+SOURCE = pipex.c utils.c protect.c
+OBJ = $(SOURCE:.c=.o)
+#cambiarle la ruta de linux o macOS
+LIBFT_DIREC = /Users/barbarafebles/Desktop/42/42-course/pipex/libft
+LIBFT = $(LIBFT_DIREC)/libft.a
 
-LIBFT_DIREC = /home/barbafebles/Desktop/42-course/pipex/libft // la ruta de libft
-LIBFT = $(LIBFT_DIREC)/libft.a // la ejecucion del .a 
-
-all: $(NAME) 
+all: $(LIBFT) $(NAME)
 
 $(NAME): $(OBJ)
-	$(CC) $(CFLAGS) -o $(NAME) $(OBJ) -l./libft 
+	$(CC) $(CFLAGS) $(OBJ) -o $(NAME) -L$(LIBFT_DIREC) -lft
+
+#	$(CC) $(CFLAGS) -o $(NAME) $(OBJ) -l./libft 
 
 %.o:%.c
 	$(CC) $(CFLAGS) -c $< -o $@
 
 $(LIBFT):
-	make -C libft
+	make -C $(LIBFT_DIREC)
 
 clean: 
 	@rm -f $(OBJ)
@@ -27,7 +29,7 @@ clean:
 
 fclean: clean
 	@rm -f $(NAME)
-	make -C libft fclean
+	make -C $(LIBFT_DIREC) fclean
 
 re:	fclean all
 .PHONY: all clean fclean re

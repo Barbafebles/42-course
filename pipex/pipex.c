@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipex.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: barbafebles <barbafebles@student.42.fr>    +#+  +:+       +#+        */
+/*   By: barbarafebles <barbarafebles@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/10 14:45:23 by barbafebles       #+#    #+#             */
-/*   Updated: 2024/04/12 15:06:25 by barbafebles      ###   ########.fr       */
+/*   Updated: 2024/04/12 20:06:33 by barbarafebl      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,8 @@ int main(int argc, char *argv[])
     printf("Comando 1: %s\n", cmd1[0]); // Solo imprime el primer elemento para prueba
 }
 */
+
+
 /*
     Crear una tubería con pipe.
     Usar fork para crear un proceso hijo que ejecute el primer comando.
@@ -53,21 +55,34 @@ int main(int argc, char *argv[])
     Repetir un proceso similar para el segundo comando.
 */
 
-/*
+
 void    exec_comd1(int *pipefd, int infile_fd, char **cmd, char **envp)
 {
     pid_t pipe;
     pipe = fork();
-    while(pipe == -1)
+    if (pipe == -1)
     {
-        ft_error("Error abriendo el archivo");
+        ft_error("Error creando el fork");
     }
-    while(pipe == 0)
+    if (pipe == 0)
     {
-        if(dup2(infile_fd, STDIN_FILENO) == -1)
+        int outfile_fd;
+        outfile_fd = open("outfile.txt", O_WRONLY | O_CREAT, 0644);
+        if (outfile_fd == -1)
         {
-            ft_error("Error al duplicar")            
+            ft_error("Error");
         }
+        if (dup2(outfile_fd, STDIN_FILENO) == -1)
+        {
+            ft_error("Error");
+        }
+        close (outfile_fd);
+        if (execv(cmd[0], cmd, envp) == -1)
+        {
+            ft_error("Error");
+        }
+        close(infile_fd);
+        close(pipefd[0]);
+        close(pipefd[1]);
     }
 }
-*/

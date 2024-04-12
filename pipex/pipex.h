@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipex.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: barbafebles <barbafebles@student.42.fr>    +#+  +:+       +#+        */
+/*   By: barbarafebles <barbarafebles@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 16:49:17 by barbarafebl       #+#    #+#             */
-/*   Updated: 2024/04/12 15:24:55 by barbafebles      ###   ########.fr       */
+/*   Updated: 2024/04/12 16:37:17 by barbarafebl      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 #include <stdlib.h> // para malloc, free, exit
 #include <sys/wait.h> // para wait, waitpid
 #include <errno.h> //errno 
-# include "/home/barbafebles/Desktop/42-course/pipex/libft"
+#include "../libft/libft.h"
 #include <string.h> //strerror
 
 
