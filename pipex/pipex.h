@@ -6,7 +6,7 @@
 /*   By: barbafebles <barbafebles@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 16:49:17 by barbarafebl       #+#    #+#             */
-/*   Updated: 2024/04/05 19:37:59 by barbafebles      ###   ########.fr       */
+/*   Updated: 2024/04/12 15:24:55 by barbafebles      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,11 @@
 #include <stdlib.h> // para malloc, free, exit
 #include <sys/wait.h> // para wait, waitpid
 #include <errno.h> //errno 
-# include "libft/libft.h"
+# include "/home/barbafebles/Desktop/42-course/pipex/libft"
 #include <string.h> //strerror
 
-# define BUFFER_SIZE 1042
 
+/*  pruebas    */
 int ft_open(const char *file, int flags);
 int ft_read(int fd, char *buffer, size_t buffer_size);
 void ft_error(char *e);

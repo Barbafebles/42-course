@@ -6,35 +6,9 @@
 /*   By: barbafebles <barbafebles@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/24 13:42:35 by barbarafebl       #+#    #+#             */
-/*   Updated: 2024/04/03 21:41:23 by barbafebles      ###   ########.fr       */
+/*   Updated: 2024/04/11 19:12:42 by barbafebles      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
-// Funcion open manejando errores
-int ft_open(const char *file, int flags)
-{
-    int fd;
-
-    fd = open(file, flags);
-    if(fd == -1)
-        ft_error("error");
-    return fd;
-}
-
-int ft_read(int fd, char *buffer, size_t buffer_size)
-{
-    ssize_t bytes_read;
-    
-    bytes_read = read(fd, buffer, buffer_size);
-    if(bytes_read == -1)
-        ft_error("error reading file");
-    return (bytes_read);
-}
-//Funcion para manejar errores
-void ft_error(char *e)
-{
-    perror(e);
-    exit(EXIT_FAILURE); // EXIT... constante definida en la biblioteca stdlib.h vale 1 | EXIT_SUCESS vale 0 
-}

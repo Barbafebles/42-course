@@ -1,0 +1,95 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   pipex.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: barbafebles <barbafebles@student.42.fr>    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/02/20 16:49:14 by barbarafebl       #+#    #+#             */
+/*   Updated: 2024/04/10 14:23:41 by barbafebles      ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "pipex.h"
+// crear el primer hijo 
+void child(int pipefd[2], int infilefd, char *cmd[], char **envp)
+{
+    pid_t pid; 
+    pid = fork();
+
+    if (pid == -1)
+    {
+        ft_error("Error al crear al hijo");
+    }
+    else if (pid == 0)
+    {
+        if(infilefd != -1)
+        {
+            if (dup2(infilefd, STDIN_FILENO) == -1)
+            {
+                ft_error("Fallo en dup2");
+            }
+            close(infilefd);
+        }
+        if (dup2(pipefd[1], STDOUT_FILENO) == -1)
+        {
+            ft_error("Fallo en el dup2");
+        }            
+            close(pipefd[0]); // extremo de lectura que el hijo no usa 
+            close(pipefd[1]); //extremo de escritura ya que esta duplicado
+        if (execve(cmd[0], cmd, envp) == -1)
+        {
+            ft_error("fallo en el execve"); 
+        }
+        exit(EXIT_FAILURE);
+    }
+    else
+    {
+        close(pipefd[1]);
+    }
+}
+
+void 
+
+void    (char **argv, )
+
+// crear el segundo hijo 
+void father(int pipefd[2], int outfile, char *cmd[], char **envp)
+{
+    pid_t pid;
+    pid = fork();
+
+    if (pid == -1)
+    {
+        ft_error("Error en el hijo");
+    }
+    else if (pid == 0) // child
+    {
+        if (dup2(pipefd[0], STDIN_FILENO) == -1)
+        {
+            ft_error("Error en dup2");
+        }
+        close(pipefd[0]); // extremo de lectura ya que esta duplicado
+
+        if (outfile != -1)
+        {
+            if (dup2(outfile, STDOUT_FILENO) == -1)
+            {
+                ft_error("Error en dup2");
+            }
+            close(outfile); // outfile ya que esta duplicado
+        }
+
+        close(pipefd[1]); // extremo de escritura que el hijo no usa 
+
+        if (execve(cmd[0], cmd, envp) == -1)
+        {
+            ft_error("fallo en el execve");
+        }
+        exit(EXIT_FAILURE);
+    }
+    else
+    {
+        close(pipefd[0]);
+    }
+}

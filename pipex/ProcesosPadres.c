@@ -130,7 +130,7 @@ el pid[1] es final de escritura
 
 si da fallo devuelve -1 
 */
-
+/*
 int ft_strlen(char *s)
 {
     int i = 0;
@@ -198,3 +198,4 @@ int main()
     }
 
 }
+*/
