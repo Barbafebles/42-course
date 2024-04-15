@@ -6,7 +6,7 @@
 /*   By: barbarafebles <barbarafebles@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/10 14:45:23 by barbafebles       #+#    #+#             */
-/*   Updated: 2024/04/12 20:06:33 by barbarafebl      ###   ########.fr       */
+/*   Updated: 2024/04/15 13:58:06 by barbarafebl      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ int main(int argc, char *argv[])
 */
 
 
-void    exec_comd1(int *pipefd, int infile_fd, char **cmd, char **envp)
+void exec_comd1(int *pipefd, int infile_fd, char **cmd, char **envp)
 {
     pid_t pipe;
     pipe = fork();
@@ -66,23 +66,19 @@ void    exec_comd1(int *pipefd, int infile_fd, char **cmd, char **envp)
     }
     if (pipe == 0)
     {
-        int outfile_fd;
-        outfile_fd = open("outfile.txt", O_WRONLY | O_CREAT, 0644);
-        if (outfile_fd == -1)
+        // Estamos en el proceso hijo
+        // Redirigir la salida estándar al extremo de escritura de la tubería
+        if (dup2(pipefd[1], STDOUT_FILENO) == -1)
         {
-            ft_error("Error");
+            ft_error("Error con dup2");
         }
-        if (dup2(outfile_fd, STDIN_FILENO) == -1)
-        {
-            ft_error("Error");
-        }
-        close (outfile_fd);
-        if (execv(cmd[0], cmd, envp) == -1)
-        {
-            ft_error("Error");
-        }
-        close(infile_fd);
+        // Cerrar los descriptores de archivo que ya no necesitamos
         close(pipefd[0]);
         close(pipefd[1]);
+        // Ejecutar el comando
+        if (execve(cmd[0], cmd, envp) == -1)
+        {
+            ft_error("Error con execve");
+        }
     }
 }
