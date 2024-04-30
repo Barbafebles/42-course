@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipex.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: barbarafebles <barbarafebles@student.42    +#+  +:+       +#+        */
+/*   By: barbafebles <barbafebles@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 16:49:17 by barbarafebl       #+#    #+#             */
-/*   Updated: 2024/04/12 16:37:17 by barbarafebl      ###   ########.fr       */
+/*   Updated: 2024/04/30 11:28:05 by barbafebles      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,9 @@
 
 
 /*  pruebas    */
+void exec_cmd2(int *pipefd, char **cmd, char **envp);
+void exec_comd1(int *pipefd, char **cmd, char **envp);
+void parse(int argc, char *argv[], char **cmd1, char **cmd2, char **infile, char **outfile);
 int ft_open(const char *file, int flags);
 int ft_read(int fd, char *buffer, size_t buffer_size);
 void ft_error(char *e);

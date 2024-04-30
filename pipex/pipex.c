@@ -6,11 +6,9 @@
 /*   By: barbafebles <barbafebles@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/10 14:45:23 by barbafebles       #+#    #+#             */
-/*   Updated: 2024/04/15 20:51:22 by barbafebles      ###   ########.fr       */
+/*   Updated: 2024/04/30 15:35:30 by barbafebles      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-#include "pipex.h"
 
 #include "pipex.h"
 
@@ -56,17 +54,17 @@ int main(int argc, char *argv[])
 */
 //--------------------------------------------------------------------------------------------------------------------------
 
+// Ejecutar el primer comando. Crea proceso fork 
 void exec_comd1(int *pipefd, char **cmd, char **envp)
 {
-    pid_t pipe;
-    pipe = fork();
-    if (pipe == -1)
+    pid_t piped;
+    piped = fork(); // copia del proceso actual 
+    if (piped == -1)
     {
         ft_error("Error creando el fork");
     }
-    if (pipe == 0)
+    if (piped == 0) // hijo 
     {
-        // Estamos en el proceso hijo
         // Redirigir la salida estándar al extremo de escritura de la tubería
         if (dup2(pipefd[1], STDOUT_FILENO) == -1)
         {
@@ -86,13 +84,14 @@ void exec_comd1(int *pipefd, char **cmd, char **envp)
 void exec_cmd2(int *pipefd, char **cmd, char **envp)
 {
     pid_t pipe;
-    pipe = fork();
+    pipe = fork();// copia proceso actual 
     if (pipe == -1)
     {
         ft_error("Error creando el fork");
     }
-    if (pipe == 0)
+    if (pipe == 0) // hijo 
     {
+        // extremo de de lectura 
         if (dup2(pipefd[0], STDIN_FILENO) == -1)
         {
             ft_error("Error con dup2");
@@ -105,4 +104,3 @@ void exec_cmd2(int *pipefd, char **cmd, char **envp)
         }
     }
 }
-
