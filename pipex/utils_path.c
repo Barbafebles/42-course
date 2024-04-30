@@ -32,3 +32,9 @@ char *find_path(char **envp)
     }
     return (NULL);
 }
+ 
+char add_path(char **envp)
+{
+  char *temp;
+
+}
