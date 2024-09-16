@@ -49,7 +49,7 @@ int main(int argc, char **argv)
         i++;
     }
 
-    // Enviar carácter nulo para indicar el fin del mensaje
+    // Enviar carácter nulo para indicar el fin del mensaje en la otra terminal
     send_char_as_signals('\0', server_pid);
 
     return 0;
