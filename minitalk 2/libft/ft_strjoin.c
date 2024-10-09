@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strjoin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bfebles- <bfebles-@student.42madrid.com>   +#+  +:+       +#+        */
+/*   By: barbarafebles <barbarafebles@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/25 10:37:22 by bfebles-          #+#    #+#             */
-/*   Updated: 2023/04/07 14:16:16 by bfebles-         ###   ########.fr       */
+/*   Updated: 2024/10/09 19:20:44 by barbarafebl      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,13 +31,3 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	result[len_s1 + len_s2] = '\0';
 	return (result);
 }
-/*
-int main()
-{
-	char *s1 = "hola";
-	char *s2 = "adios";
-	char *result = ft_strjoin(s1, s2);
-	printf("%s", result);
-	return (0);
-}
-*/

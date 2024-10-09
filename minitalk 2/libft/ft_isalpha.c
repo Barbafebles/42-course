@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_isalpha.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bfebles- <bfebles-@student.42madrid.com>   +#+  +:+       +#+        */
+/*   By: barbarafebles <barbarafebles@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 11:51:35 by bfebles-          #+#    #+#             */
-/*   Updated: 2023/04/06 09:48:02 by bfebles-         ###   ########.fr       */
+/*   Updated: 2024/10/09 18:53:53 by barbarafebl      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,13 +16,3 @@ int	ft_isalpha(int c)
 		return (1);
 	return (0);
 }
-
-/*
-#include <stdio.h>
-
-int	main(void)
-{
-	printf("%d", ft_isalpha('a'));
-	return (0);
-}
-*/

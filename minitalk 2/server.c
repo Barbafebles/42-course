@@ -2,8 +2,10 @@
 
 void	ft_error(const char *msg)
 {
-	perror(msg);
+    perror(msg);
+    exit(EXIT_FAILURE); // Salir si ocurre un error crítico
 }
+
 
 void	signal_handler(int signum)
 {

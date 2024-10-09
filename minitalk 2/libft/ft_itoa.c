@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_itoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bfebles- <bfebles-@student.42madrid.com>   +#+  +:+       +#+        */
+/*   By: barbarafebles <barbarafebles@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/24 19:38:52 by bfebles-          #+#    #+#             */
-/*   Updated: 2023/03/28 12:48:03 by bfebles-         ###   ########.fr       */
+/*   Updated: 2024/10/09 19:01:05 by barbarafebl      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,22 +29,6 @@ int	count_digits(int number)
 	}
 	return (count);
 }
-
-/*
-#include <stdio.h>
-
-int main (void)
-{
-	int	long	c;
-	int long	digits;
-
-    c = 1234567890;
-    digits = count_digits(c);
-    printf("El numero %ld, tiene %ld digitos\n", c, digits);
-    
-    return(0);
-}
-*/
 
 char	*ft_itoa(int n)
 {
@@ -74,15 +58,3 @@ char	*ft_itoa(int n)
 	}
 	return (num);
 }
-/*
-#include <stdio.h>
-
-int	main(void)
-{
-	int	n;
-
-	n = -125;
-	printf("int=%d\narr=%s\n", n, ft_itoa(n));
-	return (0);	
-}
-*/

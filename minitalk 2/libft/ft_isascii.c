@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_isascii.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bfebles- <bfebles-@student.42madrid.com>   +#+  +:+       +#+        */
+/*   By: barbarafebles <barbarafebles@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 15:37:06 by bfebles-          #+#    #+#             */
-/*   Updated: 2023/04/06 11:11:52 by bfebles-         ###   ########.fr       */
+/*   Updated: 2024/10/09 18:59:38 by barbarafebl      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,3 @@ int	ft_isascii(int c)
 		return (1);
 	return (0);
 }
-
-/*
-int main()
-{
-	printf("%d", ft_isascii('a'));
-	return (0);
-}
-*/

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_putendl_fd.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bfebles- <bfebles-@student.42madrid.com>   +#+  +:+       +#+        */
+/*   By: barbarafebles <barbarafebles@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 08:36:07 by bfebles-          #+#    #+#             */
-/*   Updated: 2023/04/07 14:15:04 by bfebles-         ###   ########.fr       */
+/*   Updated: 2024/10/09 19:19:03 by barbarafebl      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,12 +19,3 @@ void	ft_putendl_fd(char *s, int fd)
 	ft_putstr_fd(s, fd);
 	ft_putchar_fd('\n', fd);
 }
-/*
-int main()
-{
-	char *s = "hola";
-	int fd = 1;
-	ft_putendl_fd(s, fd);
-	return (0);
-}
-*/

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_substr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bfebles- <bfebles-@student.42madrid.com>   +#+  +:+       +#+        */
+/*   By: barbarafebles <barbarafebles@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 12:52:18 by bfebles-          #+#    #+#             */
-/*   Updated: 2023/04/07 14:12:42 by bfebles-         ###   ########.fr       */
+/*   Updated: 2024/10/09 19:21:38 by barbarafebl      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,14 +40,3 @@ char	*ft_substr(char const *s, unsigned int start, unsigned long len)
 	}
 	return (mem);
 }
-/*
-int main()
-{
-	char *s = "Hello World";
-	unsigned int start = 6;
-	unsigned long len = 5;
-	char *mem = ft_substr(s, start, len);
-	printf("%s", mem);
-	return (0);
-}
-*/

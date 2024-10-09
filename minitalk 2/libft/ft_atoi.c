@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bfebles- <bfebles-@student.42madrid.com>   +#+  +:+       +#+        */
+/*   By: barbarafebles <barbarafebles@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 09:32:57 by bfebles-          #+#    #+#             */
-/*   Updated: 2023/04/08 17:38:29 by bfebles-         ###   ########.fr       */
+/*   Updated: 2024/10/09 19:27:30 by barbarafebl      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,12 +36,3 @@ int	ft_atoi(const char *str)
 	}
 	return (j * k);
 }
-/*
-int main()
-{
-char str[] = "95807";
-int num = atoi(str);
-printf("El número es: %d\n", num);
-return (0);
-}
-*/

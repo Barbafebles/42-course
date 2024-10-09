@@ -6,8 +6,8 @@
 # include <unistd.h>
 # include <signal.h>
 # include <stdlib.h>
-#include "../ft_printf/ft_printf.h"
+#include "./ft_printf/ft_printf.h"
 # include "./libft/libft.h"
-#define SLEEP_DURATION 100
+#define SLEEP_DURATION 1000
 
 #endif /* MINITALK_H */
