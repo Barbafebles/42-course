@@ -32,3 +32,31 @@ void send_char_as_signals(char c, pid_t server_pid)
         usleep(SLEEP_DURATION);
     }
 }
+
+int main(int argc, char **argv)
+{
+    pid_t server_pid;
+    char *message;
+    int i;
+
+    if (argc != 3)
+    {
+        ft_error("Uso: ./client <PID_servidor> <mensaje>");
+        return (1);
+    }
+
+    server_pid = ft_atoi(argv[1]);
+    message = argv[2];
+
+    i = 0;
+    while (message[i])
+    {
+        send_char_as_signals(message[i], server_pid);
+        i++;
+    }
+
+    // Enviar carácter nulo para indicar el fin del mensaje
+    send_char_as_signals('\0', server_pid);
+
+    return (0);
+}
