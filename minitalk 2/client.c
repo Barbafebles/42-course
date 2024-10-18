@@ -9,7 +9,6 @@ void ft_error(const char *msg)
 void send_char_as_signals(char c, pid_t server_pid)
 {
     int i;
-
     i = 8;
     while (i--)
     {
