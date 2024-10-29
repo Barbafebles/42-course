@@ -6,13 +6,13 @@
 /*   By: bfebles- < bfebles-@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/30 20:46:54 by bfebles-          #+#    #+#             */
-/*   Updated: 2024/10/29 16:28:46 by bfebles-         ###   ########.fr       */
+/*   Updated: 2024/10/29 17:43:14 by bfebles-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minitalk.h"
 
-static int	response;
+static int	g_response;
 
 void	ft_error(const char *msg)
 {
@@ -26,7 +26,7 @@ void	ft_sig_handler(int signum, siginfo_t *info, void *context)
 
 	(void)context;
 	(void)info;
-	response = 1;
+	g_response = 1;
 	if (signum == SIGUSR1)
 		ft_printf("Bytes received: %d\n", i / 8);
 	else if (signum == SIGUSR2)
@@ -40,7 +40,7 @@ int	ft_char_to_bin(char c, int srv_pid)
 	bit_idx = 7;
 	while (bit_idx >= 0)
 	{
-		response = 0;
+		g_response = 0;
 		if ((c >> bit_idx) & 1)
 		{
 			if (kill(srv_pid, SIGUSR1) == -1)
