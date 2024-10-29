@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: barbarafebles <barbarafebles@student.42    +#+  +:+       +#+        */
+/*   By: bfebles- <bfebles-@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 16:07:12 by bfebles-          #+#    #+#             */
-/*   Updated: 2024/10/09 18:59:18 by barbarafebl      ###   ########.fr       */
+/*   Updated: 2023/04/06 11:11:34 by bfebles-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,3 +21,18 @@ unsigned int	ft_strlen(const char *s)
 	}
 	return (m);
 }
+
+/*
+#include <stdio.h>
+
+int main()
+{
+	char *str;
+	unsigned int l;
+
+	str = "hola patata";
+	l = ft_strlen(str);
+	printf("Esta es la longitud %u de la cadena %s", l, str);
+	return 0;
+}
+*/

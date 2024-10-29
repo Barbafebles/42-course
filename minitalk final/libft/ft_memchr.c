@@ -6,7 +6,7 @@
 /*   By: barbarafebles <barbarafebles@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 16:10:43 by bfebles-          #+#    #+#             */
-/*   Updated: 2024/10/09 19:01:12 by barbarafebl      ###   ########.fr       */
+/*   Updated: 2024/02/18 12:36:53 by barbarafebl      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,4 +25,3 @@ void	*ft_memchr(const void *str, int c, unsigned long n)
 	}
 	return (0);
 }
-

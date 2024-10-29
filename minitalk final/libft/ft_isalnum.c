@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_isalnum.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: barbarafebles <barbarafebles@student.42    +#+  +:+       +#+        */
+/*   By: bfebles- <bfebles-@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 14:57:49 by bfebles-          #+#    #+#             */
-/*   Updated: 2024/10/09 18:59:54 by barbarafebl      ###   ########.fr       */
+/*   Updated: 2023/04/08 18:03:33 by bfebles-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,3 +17,12 @@ int	ft_isalnum(int c)
 		return (1);
 	return (0);
 }
+/* 
+#include <stdio.h>
+int	main(void)
+{
+    printf("%d", ft_isalnum('g'));
+	printf("%")
+    return (0);
+} 
+*/

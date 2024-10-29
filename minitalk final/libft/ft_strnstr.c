@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strnstr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: barbarafebles <barbarafebles@student.42    +#+  +:+       +#+        */
+/*   By: bfebles- <bfebles-@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 09:26:54 by bfebles-          #+#    #+#             */
-/*   Updated: 2024/10/09 19:21:15 by barbarafebl      ###   ########.fr       */
+/*   Updated: 2023/04/06 18:01:39 by bfebles-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,3 +31,15 @@ char	*ft_strnstr(const char *hs, const char *needlen, unsigned long len)
 	}
 	return (0);
 }
+/*
+#include <stdio.h>
+int main ()
+{
+	char hs[] = "hola, paco";
+	char needlen[] = "paco";
+	unsigned long len = 10;
+
+	printf("La cadena encontrada es: %s\n", ft_strnstr(hs, needlen, len));
+	return (0);
+}
+*/

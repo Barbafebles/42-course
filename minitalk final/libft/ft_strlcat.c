@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strlcat.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: barbarafebles <barbarafebles@student.42    +#+  +:+       +#+        */
+/*   By: bfebles- <bfebles-@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/14 12:24:48 by bfebles-          #+#    #+#             */
-/*   Updated: 2024/10/09 19:20:48 by barbarafebl      ###   ########.fr       */
+/*   Updated: 2023/04/07 14:16:40 by bfebles-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,3 +38,14 @@ unsigned long	ft_strlcat(char *dest, const char *src, unsigned long size)
 	dest[j] = '\0';
 	return (len);
 }
+/*
+int main()
+{
+	char dest[20] = "hola";
+	char src[20] = "adios";
+	unsigned long size = 20;
+	unsigned long result = ft_strlcat(dest, src, size);
+	printf("%lu", result);
+	return (0);
+}
+*/

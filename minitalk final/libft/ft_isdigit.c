@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_isdigit.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: barbarafebles <barbarafebles@student.42    +#+  +:+       +#+        */
+/*   By: bfebles- <bfebles-@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/10 11:47:29 by bfebles-          #+#    #+#             */
-/*   Updated: 2024/10/09 18:54:21 by barbarafebl      ###   ########.fr       */
+/*   Updated: 2023/04/07 15:57:42 by bfebles-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,3 +16,13 @@ int	ft_isdigit(int m)
 		return (1);
 	return (0);
 }
+
+/*
+#include <stdio.h>
+int main()
+{
+	int m;
+	m = '0';
+	printf("%d", ft_isdigit('0'));
+	return(0);
+}*/

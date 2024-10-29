@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_tolower.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: barbarafebles <barbarafebles@student.42    +#+  +:+       +#+        */
+/*   By: bfebles- <bfebles-@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/15 16:31:46 by bfebles-          #+#    #+#             */
-/*   Updated: 2024/10/09 19:21:44 by barbarafebl      ###   ########.fr       */
+/*   Updated: 2023/04/06 12:30:19 by bfebles-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,3 +16,12 @@ int	ft_tolower(int c)
 		return (c + 32);
 	return (c);
 }
+/*
+#include <stdio.h>
+int main()
+{
+	int m = 'B';
+	printf("%d", ft_tolower(m));
+	return(0);
+}
+*/

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_memset.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: barbarafebles <barbarafebles@student.42    +#+  +:+       +#+        */
+/*   By: bfebles- <bfebles-@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 11:13:48 by bfebles-          #+#    #+#             */
-/*   Updated: 2024/10/09 19:18:53 by barbarafebl      ###   ########.fr       */
+/*   Updated: 2023/04/06 11:22:07 by bfebles-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,4 +24,16 @@ void	*ft_memset(void *b, int c, unsigned int len)
 	}
 	return (b);
 }
+/*
+int	main(void)
+{
+	char			*str;
+	unsigned int	n;
 
+	str = "Paco";
+	n = 1;
+	ft_memset(str, n, 0);
+	printf("%s", str);
+	return (0);
+}
+*/

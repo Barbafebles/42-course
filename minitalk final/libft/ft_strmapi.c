@@ -3,14 +3,20 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strmapi.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: barbarafebles <barbarafebles@student.42    +#+  +:+       +#+        */
+/*   By: bfebles- <bfebles-@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 08:33:15 by bfebles-          #+#    #+#             */
-/*   Updated: 2024/10/09 19:21:05 by barbarafebl      ###   ########.fr       */
+/*   Updated: 2023/03/28 10:48:13 by bfebles-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+/*
+char to_upper(unsigned int i, char c) 
+{
+    return toupper(c);
+}
+*/
 char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 {
 	unsigned int	i;
@@ -32,3 +38,22 @@ char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 	res[i] = '\0';
 	return (res);
 }
+/*
+#include <stdio.h>
+int main() 
+{
+    const char *input = "hola";
+    char *output = ft_strmapi(input, to_upper);
+    
+    if (output) 
+	{
+        printf("Entrada: %s\n", input);
+        printf("Salida: %s\n", output);
+        free(output);
+    } 
+	else 
+	{
+        printf("Error al aplicar ft_strmapi\n");
+    }
+    return 0;
+}*/

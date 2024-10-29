@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_isprint.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: barbarafebles <barbarafebles@student.42    +#+  +:+       +#+        */
+/*   By: bfebles- <bfebles-@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/10 11:38:51 by bfebles-          #+#    #+#             */
-/*   Updated: 2024/10/09 18:58:55 by barbarafebl      ###   ########.fr       */
+/*   Updated: 2023/04/06 09:57:56 by bfebles-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,3 +16,15 @@ int	ft_isprint(int c)
 		return (1);
 	return (0);
 }
+
+/*
+#include <stdio.h>
+int	main(void)
+{
+	int	c;
+
+	c = 0;
+	printf("%d", ft_isprint('c'));
+	return (0);
+}
+*/

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_memmove.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: barbarafebles <barbarafebles@student.42    +#+  +:+       +#+        */
+/*   By: bfebles- <bfebles-@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 17:31:35 by bfebles-          #+#    #+#             */
-/*   Updated: 2024/10/09 19:18:49 by barbarafebl      ###   ########.fr       */
+/*   Updated: 2023/04/06 16:56:55 by bfebles-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,4 +35,17 @@ void	*ft_memmove(void *dst, const void *src, unsigned int len)
 	}
 	return (dst);
 }
+/*
+#include <stdio.h>
+int main()
+{
+	char src[] = "hola";
+	char dst[20];
+	ft_memmove(dst, src, sizeof(src));
 
+	printf("source: %s\n", src);
+	printf("destination %s\n", dst);
+	
+	return (0);
+}
+*/
