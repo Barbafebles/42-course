@@ -6,7 +6,7 @@
 /*   By: bfebles- < bfebles-@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/30 20:46:54 by bfebles-          #+#    #+#             */
-/*   Updated: 2024/10/29 17:43:14 by bfebles-         ###   ########.fr       */
+/*   Updated: 2024/10/29 19:21:02 by bfebles-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ int	ft_char_to_bin(char c, int srv_pid)
 			if (kill(srv_pid, SIGUSR2) == -1)
 				ft_error("Error al enviar señal SIGUSR2");
 		}
-		while (!response)
+		while (!g_response)
 			usleep(100);
 		bit_idx--;
 	}
