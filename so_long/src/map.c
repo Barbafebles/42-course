@@ -16,9 +16,7 @@ int load_map(const char *filename, t_game *game)
     game->map = NULL;
     ssize_t n;
     while ((n = getline(&line, &cap, fdopen(fd, "r"))) != -1) {
-        // Quitar salto de línea al final si existe
         if (n > 0 && line[n-1] == '\n') line[n-1] = '\0';
-        // Si es la primera línea, obtener width
         if (game->height == 0) {
             game->width = ft_strlen(line);
             if (game->width == 0) {
@@ -33,16 +31,13 @@ int load_map(const char *filename, t_game *game)
                 return (0);
             }
         }
-        // Reservar espacio para una nueva fila en game->map
         game->map = realloc(game->map, sizeof(char*) * (game->height + 1));
         game->map[game->height] = line;
         line = NULL; cap = 0;
         game->height++;
     }
     close(fd);
-    // Validar bordes y elementos...
-    // ...
-    return (1); // éxito
+    return (1);
 }
 
 
