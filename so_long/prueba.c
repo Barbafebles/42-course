@@ -25,4 +25,3 @@ int main(void)
     init_game(&game);
     return (0);
 }
-

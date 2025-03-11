@@ -11,16 +11,16 @@ typedef struct s_player
 {
     int     x;
     int     y;
-    int     count;
-}   t_player;            // Faltaba el nombre del tipo y punto y coma
+    int     count; // movimientos 
+}   t_player;       
 
 typedef struct s_game 
 {
-    mlx_t   *mlx;       // Cambiado a mlx_t* para MLX42
-    char    **map;
-    char    *path;
-    int     window_width;
-    t_player player;    // Añadido el jugador a la estructura del juego
+    mlx_t   *mlx;  // instancia de MLX42
+    char    **map;  // matriz del mapa 
+    int      width; // ancho del mapa
+    int     height;
+    t_player player;  // alto del mapa
 }   t_game;
 
 #endif
