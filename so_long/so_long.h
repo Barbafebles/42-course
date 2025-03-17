@@ -23,4 +23,14 @@ typedef struct s_game
     t_player player;  // alto del mapa
 }   t_game;
 
+typedef struct s_map
+{
+    char **grip;
+    int player;
+    int exit;
+    int collectable;
+    size_t width;
+    size_t height;
+}   t_map;
+
 #endif
