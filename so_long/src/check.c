@@ -48,8 +48,28 @@ void check_map_char(t_map *map)
 {
     
     if (map->player != 1 || map->exit != 1 || map->collectable < 1)
-        ft_error("Map content is not valid");
+        ft_error("El contenido el mapa no es validp");
 }
 
+void check_wall(t_map *map)
+{
+    size_t x;
+    size_t y;
+    
+    x = 0;
+    while (x < map->width)
+    {
+        if (map->grid[0][x] != '1' || map->grid[map->height - 1][x] != '1')
+            ft_error("Error pared");
+        x++;
+    }
+    y = 0;
+    while (y < map->height)
+    {
+        if (map->grid[y][0] != '1' || map->grid[y][map->width - 1] != '1')
+            ft_error("Error pared");
+        y++;
+    }
+}
 // funcion que verifique si es rectangular 
 // funcion que verifique si si es horizontal o vertical
