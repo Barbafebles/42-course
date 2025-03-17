@@ -5,7 +5,7 @@ int load_map(const char *filename, t_game *game)
     size_t len;
     len = ft_strlen(filename);
     // en el .ber tengo que agregar el mapa .ber
-    if (len < 4 || ft_strcmp(filename + len - 4, ".ber") != 0)
+    if (len < 4 || ft_strcmp(filename + len - 4, "Maps/mapa1.ber") != 0)
     {
         printf("error\nEl archivo no tiene la extension .ber\n");
         return (0);
@@ -39,5 +39,3 @@ int load_map(const char *filename, t_game *game)
     close(fd);
     return (1);
 }
-
-
