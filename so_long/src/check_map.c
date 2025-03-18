@@ -1,17 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   check.c                                            :+:      :+:    :+:   */
+/*   check_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bfebles- <bfebles-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/18 17:49:34 by bfebles-          #+#    #+#             */
-/*   Updated: 2025/03/18 17:58:00 by bfebles-         ###   ########.fr       */
+/*   Updated: 2025/03/18 22:23:25 by bfebles-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
-
 /*
 0: Representa un espacio vacío en el mapa.
 1: Representa una pared en el mapa.
@@ -19,51 +18,47 @@ P: Representa la posición inicial del jugador.
 E: Representa la salida del mapa.
 C: Representa un coleccionable que el jugador debe recoger.
 */
-
-void check_invalid_char(int i)
+// Cada celdad sea uno de los validos 
+void check_char(int i)
 {
     if(!(ft_strchr("01PEC", i)))
         ft_error("caracter no existe\n");
 }
-
-// tiene 26 lineas, arreglar
-void	check_map(t_map *map)
+// recorro toda la matriz y llamo a check_char si encuentra algo que no es 0 y 1 
+void check_map(t_map *map)
 {
-	size_t	x;
-	size_t	y;
-	char	cell;
-
+	size_t x;
+	size_t y;
 	map->player = 0;
 	map->collectable = 0;
 	map->exit = 0;
-	x = 0;
+	x = 0; 
 	while (x < map->height)
 	{
 		y = 0;
 		while (y < map->width)
 		{
-			cell = map->grid[x][y];
-			if (cell == 'P')
+			if(map->grid[x][y] == 'P')
 				map->player++;
-			else if (cell == 'E')
+			else if(map->grid[x][y] == 'E')
 				map->exit++;
-			else if (cell == 'C')
+			else if(map->grid[x][y] == 'C')
 				map->collectable++;
-			else if (cell != '0' && cell != '1' && cell != '\n')
-				check_invalid_char(cell);
-			y++;
+			else if(map->grid[x][y] != 0 && map->grid[x][y] != '0' && map->grid[x][y] != '\0')
+				check_char(map->grid[x][y]);
+				y++;
 		}
 		x++;
 	}
 }
-
+// 
 void check_map_char(t_map *map)
 {
     
     if (map->player != 1 || map->exit != 1 || map->collectable < 1)
-        ft_error("El contenido el mapa no es validp");
+        ft_error("El contenido del mapa no es valido");
 }
-
+// Chequea que las paredes sean 1 (que el mapa este cerrado)
 void check_wall(t_map *map)
 {
     size_t x;
@@ -84,5 +79,19 @@ void check_wall(t_map *map)
         y++;
     }
 }
-// funcion que verifique si es rectangular 
-// funcion que verifique si si es horizontal o vertical
+// tamano del mapa 
+void	check_recta(t_map *map)
+{
+	size_t	i;
+	size_t	len;
+
+	i = 0;
+	len = ft_strlen(map->grid[0]);
+	while (map->grid[i])
+	{
+		if (ft_strlen(map->grid[i]) != len)
+			ft_error("El mapa no es rectangular");
+		i++;
+	}
+}
+
