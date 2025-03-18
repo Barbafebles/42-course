@@ -2,6 +2,8 @@
 # define SO_LONG_H
 
 # include "MLX42/MLX42.h"
+# include "libft/libft.h"
+# include "get_next_line/get_next_line.h"
 # include <fcntl.h>       // Para open()
 # include <unistd.h>      // Para read(), close()
 # include <stdlib.h>      // Para malloc(), free()

@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   check.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: bfebles- <bfebles-@student.42madrid.com    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/03/18 17:49:34 by bfebles-          #+#    #+#             */
+/*   Updated: 2025/03/18 17:58:00 by bfebles-         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "so_long.h"
 
 /*
@@ -10,10 +22,11 @@ C: Representa un coleccionable que el jugador debe recoger.
 
 void check_invalid_char(int i)
 {
-    if(!(ft_strchr("01PEC", c)))
-        ft_error("caracter no existe\n")
+    if(!(ft_strchr("01PEC", i)))
+        ft_error("caracter no existe\n");
 }
 
+// tiene 26 lineas, arreglar
 void	check_map(t_map *map)
 {
 	size_t	x;
