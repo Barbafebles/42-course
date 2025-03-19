@@ -6,7 +6,7 @@
 /*   By: bfebles- <bfebles-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/18 17:49:34 by bfebles-          #+#    #+#             */
-/*   Updated: 2025/03/18 22:23:25 by bfebles-         ###   ########.fr       */
+/*   Updated: 2025/03/19 18:58:37 by bfebles-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ void check_map(t_map *map)
 		x++;
 	}
 }
-// 
+// chequear que el mapa tiene los limites del mapa 
 void check_map_char(t_map *map)
 {
     
@@ -95,3 +95,13 @@ void	check_recta(t_map *map)
 	}
 }
 
+// validacion archivo del mapa .ber 
+void check_extension(char *filename)
+{
+	size_t len;
+	len = ft_strlen(filename)
+	if (len < 4 || ft_strncmp(&filename[len - 4], ".ber", 4) != 0)
+		ft_error("la extension del mapa no es la correcta.")
+}
+
+// funcion del camino del mapa
