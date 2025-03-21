@@ -104,4 +104,42 @@ void check_extension(char *filename)
 		ft_error("la extension del mapa no es la correcta.")
 }
 
-// funcion del camino del mapa
+// funcion para encontrar el jugador
+void find_player(t_map *map, int p_X, int p_y)
+{
+    int x,
+    int y; 
+    x = 0;
+    while ( x < map->height)
+    {
+        y = 0; 
+        while (y < map->width)
+        {
+            if (map->grid[x][y] == 'P')
+                *p_x = x;
+                *p_y = y; 
+                return; 
+        }
+        y++;
+    }
+    x++;
+}
+
+// Copia del mapa con flood fill
+char **copy_map(t_map *map)
+{
+    
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
