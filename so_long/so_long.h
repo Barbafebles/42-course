@@ -35,6 +35,16 @@ typedef struct s_map
     size_t height;
 }   t_map;
 
+typedef struct s_path_check
+{
+    char **temp_map;
+    int player_x;
+    int player_y;
+    size_t i;
+    size_t j;
+    int valid;
+} t_path_check;
+
 void check_char(int i);
 void check_map(t_map *map);
 void check_map_char(t_map *map);
