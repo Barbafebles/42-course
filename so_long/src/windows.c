@@ -26,18 +26,22 @@ int main(int argc, char **argv) {
 */
 
 int main(int argc, char **argv)
+
 {
     t_game game;
 
-    if (argc != 2) {
+    if (argc != 2) 
+    {
         printf("Uso: %s <mapa.ber>\n", argv[0]);
         return 1;
     }
     game.mlx = mlx_init(800, 600, "Formula 1", 0);
-    if (!game.mlx) {
+    if (!game.mlx) 
+    {
         ft_error("Error al inicializar MLX");
     }
-    if (!load_map(argv[1], &game.map)) {
+    if (!load_map(argv[1], &game.map)) 
+    {
         ft_error("Error al cargar el mapa");
     }
     print_map(&game);

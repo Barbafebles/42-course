@@ -24,6 +24,7 @@ static int load_map_lines(int fd, t_map *map)
 // Cargar mapa desde archivo
 int load_map(char *filename, t_map *map)
 {
+    printf("Abriendo archivo: %s\n", filename);
     int fd;
     map->height = count_lines(filename);
     if (map->height == 0)
@@ -51,6 +52,7 @@ int load_map(char *filename, t_map *map)
 // Cargar mapa desde archivo
 // Cargar mapa desde archivo
 // Función auxiliar para contar líneas en un archivo
+// Función auxiliar para contar líneas en un archivo
 size_t count_lines(char *filename)
 {
     int fd;
@@ -65,10 +67,12 @@ size_t count_lines(char *filename)
     
     while ((bytes_read = read(fd, buffer, sizeof(buffer))) > 0)
     {
-        for (i = 0; i < bytes_read; i++)
+        i = 0;
+        while (i < bytes_read)
         {
             if (buffer[i] == '\n')
                 count++;
+            i++;
         }
     }
     if (bytes_read > 0 && buffer[bytes_read - 1] != '\n')
@@ -79,6 +83,7 @@ size_t count_lines(char *filename)
 }
 
 // Función auxiliar para leer una línea
+
 char *read_line(int fd)
 {
     char buffer[4096];
@@ -91,7 +96,8 @@ char *read_line(int fd)
     if (bytes_read <= 0)
         return (NULL);
     
-    for (i = 0; i < bytes_read; i++)
+    i = 0;
+    while (i < bytes_read)
     {
         if (buffer[i] == '\n')
         {
@@ -100,6 +106,7 @@ char *read_line(int fd)
             lseek(fd, -(bytes_read - i - 1), SEEK_CUR);
             return (line);
         }
+        i++;
     }
     line = ft_strdup(buffer);
     return (line);

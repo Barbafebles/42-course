@@ -7,7 +7,7 @@
 # include <fcntl.h>       // Para open()
 # include <unistd.h>      // Para read(), close()
 # include <stdlib.h>      // Para malloc(), free()
-# include <stdio.h>       // Para perror(), printf()   
+# include <stdio.h>       // Para perror(), printf()
 
 # define TILE_SIZE 64
 
