@@ -35,8 +35,6 @@ void flood_fill(char **map, int x, int y, int height, int width)
     
     // 'F' marca casillas visitadas
     map[x][y] = 'F';
-    
-    // Explorar en 4 direcciones
     flood_fill(map, x + 1, y, height, width);
     flood_fill(map, x - 1, y, height, width);
     flood_fill(map, x, y + 1, height, width);

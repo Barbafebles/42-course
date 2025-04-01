@@ -1,31 +1,12 @@
 #include "../so_long.h"
 
 // Cargar mapa desde archivo
-int load_map(char *filename, t_map *map)
+// Función auxiliar para cargar las líneas del mapa
+static int load_map_lines(int fd, t_map *map)
 {
-    int fd;
-    size_t i;
-    
-    // Contar líneas
-    map->height = count_lines(filename);
-    if (map->height == 0)
-        return (0);
-    
-    // Abrir archivo
-    fd = open(filename, O_RDONLY);
-    if (fd < 0)
-        return (0);
-    
-    // Asignar memoria para la matriz
-    map->grid = (char **)malloc(sizeof(char *) * (map->height + 1));
-    if (!map->grid)
-    {
-        close(fd);
-        return (0);
-    }
-    
-    // Leer líneas
-    for (i = 0; i < map->height; i++)
+    size_t i = 0;
+
+    while (i < map->height)
     {
         map->grid[i] = read_line(fd);
         if (!map->grid[i])
@@ -33,16 +14,36 @@ int load_map(char *filename, t_map *map)
             while (i > 0)
                 free(map->grid[--i]);
             free(map->grid);
-            close(fd);
             return (0);
         }
+        i++;
     }
     map->grid[i] = NULL;
-    
-    // Establecer ancho
-    if (map->height > 0)
-        map->width = ft_strlen(map->grid[0]);
-    
+    return (1);
+}
+// Cargar mapa desde archivo
+int load_map(char *filename, t_map *map)
+{
+    int fd;
+    map->height = count_lines(filename);
+    if (map->height == 0)
+        return (0);
+    fd = open(filename, O_RDONLY);
+    printf("Pasa por open\n");
+    if (fd < 0)
+        return (0);
+    map->grid = (char **)malloc(sizeof(char *) * (map->height + 1));
+    if (!map->grid)
+    {
+        close(fd);
+        return (0);
+    }
+    if (!load_map_lines(fd, map))
+    {
+        close(fd);
+        return (0);
+    }
+    map->width = (map->height > 0) ? ft_strlen(map->grid[0]) : 0;
     close(fd);
     return (1);
 }
@@ -50,13 +51,13 @@ int load_map(char *filename, t_map *map)
 // Cargar mapa desde archivo
 // Cargar mapa desde archivo
 // Función auxiliar para contar líneas en un archivo
-static size_t count_lines(char *filename)
+size_t count_lines(char *filename)
 {
     int fd;
     char buffer[4096];
     ssize_t bytes_read;
     size_t count = 0;
-    ssize_t i; // Cambiado de size_t a ssize_t para coincidir con bytes_read
+    ssize_t i;
     
     fd = open(filename, O_RDONLY);
     if (fd < 0)
@@ -70,8 +71,6 @@ static size_t count_lines(char *filename)
                 count++;
         }
     }
-    
-    // Si el archivo no termina con nueva línea, añadir una línea más
     if (bytes_read > 0 && buffer[bytes_read - 1] != '\n')
         count++;
     
@@ -80,13 +79,12 @@ static size_t count_lines(char *filename)
 }
 
 // Función auxiliar para leer una línea
-static char *read_line(int fd)
+char *read_line(int fd)
 {
     char buffer[4096];
     char *line = NULL;
-    // Eliminada la variable temp que no se usa
     ssize_t bytes_read;
-    ssize_t i; // Cambiado de size_t a ssize_t
+    ssize_t i;
     size_t start = 0;
     
     bytes_read = read(fd, buffer, sizeof(buffer));
@@ -99,13 +97,10 @@ static char *read_line(int fd)
         {
             buffer[i] = '\0';
             line = ft_strdup(&buffer[start]);
-            // Mover el puntero del archivo
             lseek(fd, -(bytes_read - i - 1), SEEK_CUR);
             return (line);
         }
     }
-    
-    // Si no hay salto de línea, duplicar todo el buffer
     line = ft_strdup(buffer);
     return (line);
 }
@@ -127,26 +122,4 @@ void free_map(t_map *map)
     }
 }
 
-// funcion para encontrar el jugador
-void find_player(t_map *map, int *p_x, int *p_y)
-{
-    size_t x;
-    size_t y; 
-    x = 0;
-    while (x < map->height)
-    {
-        y = 0; 
-        while (y < map->width)
-        {
-            if (map->grid[x][y] == 'P')
-            {
-                *p_x = (int)x;
-                *p_y = (int)y; 
-                return; 
-            }
-            y++;
-        }
-        x++;
-    }
-}
 

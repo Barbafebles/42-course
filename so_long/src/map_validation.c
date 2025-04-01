@@ -78,12 +78,14 @@ void	check_recta(t_map *map)
 // Verificar si todos los elementos importantes son accesibles
 int check_path(t_map *map)
 {
+    size_t i;
+    size_t j;
     t_path_check path;
     path.temp_map = copy_map(map);
     if (!path.temp_map)
         ft_error("Error de memoria al verificar el camino");
-    find_player(map, &player_x, &player_y);
-    flood_fill(temp_map, player_x, player_y, map->height, map->width);
+    find_player(map, &path.player_x, &path.player_y);
+    flood_fill(path.temp_map, path.player_x, path.player_y, map->height, map->width);
     path.valid = 1; 
     i = 0; 
     while (i < map->height && path.valid)
@@ -91,7 +93,7 @@ int check_path(t_map *map)
         j = 0;
         while (j < map->width && path.valid)
         {
-            if((map->width[i][j] == 'C' || map->grid[i][j] == 'E' && temp_map[i][j] != 'F'))
+            if (map->grid[i][j] == 'C' || (map->grid[i][j] == 'E' && path.temp_map[i][j] != 'F'))
                 path.valid = 0;
             j++;
         }
@@ -99,9 +101,9 @@ int check_path(t_map *map)
     }
     i = 0; 
     while(i < map->height)
-        free(temp_map[i++]);
+        free(path.temp_map[i++]);
     free(path.temp_map);
     if(!path.valid)
-        ft_error("No hay un camino valido para completar el nivel")
+        ft_error("No hay un camino valido para completar el nivel");
     return (path.valid);
 }

@@ -1,16 +1,5 @@
 #include "../so_long.h"
 
-// Cada celda sea uno de los validos 
-void ft_error(const char *msg)
-{
-    if (msg)
-    {
-        perror(msg);
-    }
-    perror("Error");
-    exit(EXIT_FAILURE);
-}
-
 /*
 0: Representa un espacio vacío en el mapa.
 1: Representa una pared en el mapa.
@@ -49,5 +38,27 @@ void check_extension(char *filename)
     if (len < 4 || ft_strncmp(&filename[len - 4], ".ber", 4) != 0)
     {
         ft_error("la extension del mapa no es la correcta.");
+    }
+}
+// funcion para encontrar el jugador
+void find_player(t_map *map, int *p_x, int *p_y)
+{
+    size_t x;
+    size_t y; 
+    x = 0;
+    while (x < map->height)
+    {
+        y = 0; 
+        while (y < map->width)
+        {
+            if (map->grid[x][y] == 'P')
+            {
+                *p_x = (int)x;
+                *p_y = (int)y; 
+                return; 
+            }
+            y++;
+        }
+        x++;
     }
 }

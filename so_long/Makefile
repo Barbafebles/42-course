@@ -29,7 +29,13 @@ LIBFT_PATH = libft
 LIBFT_LIB = $(LIBFT_PATH)/libft.a
 LIBFT_INCLUDE = -I $(LIBFT_PATH)
 
-SRC = src/check_map.c \
+SRC = 	src/error_handling.c \
+		src/map_loading.c \
+		src/map_validation.c \
+		src/path_finding.c \
+		src/utils.c \
+		src/windows.c \
+		src/textures.c \
 
 OBJ = $(SRC:.c=.o) 
 
