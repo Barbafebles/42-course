@@ -6,7 +6,7 @@
 /*   By: bfebles- <bfebles-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/01 20:57:57 by bfebles-          #+#    #+#             */
-/*   Updated: 2025/04/01 20:57:59 by bfebles-         ###   ########.fr       */
+/*   Updated: 2025/04/02 17:28:55 by bfebles-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,15 +38,26 @@ char	**copy_map(t_map *map)
 	return (copy);
 }
 
-// Algoritmo de flood fill recursivo
-void	flood_fill(char **map, int x, int y, int height, int width)
+// Función de flood fill para validar caminos en el mapa
+void	flood_fill(t_map_info *map_info, int x, int y)
 {
-	if (x < 0 || y < 0 || x >= height || y >= width || map[x][y] == '1'
-		|| map[x][y] == 'F')
+	if (x < 0 || y < 0 || x >= map_info->height || y >= map_info->width
+		|| map_info->map[x][y] == '1' || map_info->map[x][y] == 'F')
 		return ;
-	map[x][y] = 'F';
-	flood_fill(map, x + 1, y, height, width);
-	flood_fill(map, x - 1, y, height, width);
-	flood_fill(map, x, y + 1, height, width);
-	flood_fill(map, x, y - 1, height, width);
+	map_info->map[x][y] = 'F';
+	flood_fill(map_info, x + 1, y);
+	flood_fill(map_info, x - 1, y);
+	flood_fill(map_info, x, y + 1);
+	flood_fill(map_info, x, y - 1);
+}
+
+// Ejecutar flood fill con la estructura t_map_info
+void	execute_flood_fill(t_path *path, t_map *map)
+{
+	t_map_info	map_info;
+
+	map_info.map = path->temp_map;
+	map_info.height = map->height;
+	map_info.width = map->width;
+	flood_fill(&map_info, path->player_x, path->player_y);
 }

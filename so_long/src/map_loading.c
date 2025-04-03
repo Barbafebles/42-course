@@ -6,15 +6,13 @@
 /*   By: bfebles- <bfebles-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/01 20:56:50 by bfebles-          #+#    #+#             */
-/*   Updated: 2025/04/01 21:04:48 by bfebles-         ###   ########.fr       */
+/*   Updated: 2025/04/02 17:30:18 by bfebles-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../so_long.h"
 
-// Cargar mapa desde archivo
-// Función auxiliar para cargar las líneas del mapa
-static int	load_map_lines(int fd, t_map *map)
+int	load_map_lines(int fd, t_map *map)
 {
 	size_t	i;
 
@@ -35,20 +33,35 @@ static int	load_map_lines(int fd, t_map *map)
 	return (1);
 }
 
+int	init_map(t_map *map, char *filename)
+{
+	map->height = count_lines(filename);
+	if (map->height == 0)
+		return (0);
+	map->grid = (char **)malloc(sizeof(char *) * (map->height + 1));
+	if (!map->grid)
+		return (0);
+	return (1);
+}
+
+int	open_map_file(char *filename)
+{
+	int	fd;
+
+	fd = open(filename, O_RDONLY);
+	if (fd < 0)
+		ft_error("Error al abrir el archivo del mapa");
+	return (fd);
+}
+
 int	load_map(char *filename, t_map *map)
 {
 	int	fd;
 
-	printf("Abriendo archivo: %s\n", filename);
-	map->height = count_lines(filename);
-	if (map->height == 0)
-		return (0);
-	fd = open(filename, O_RDONLY);
-	printf("Pasa por open\n");
+	fd = open_map_file(filename);
 	if (fd < 0)
 		return (0);
-	map->grid = (char **)malloc(sizeof(char *) * (map->height + 1));
-	if (!map->grid)
+	if (!init_map(map, filename))
 	{
 		close(fd);
 		return (0);
@@ -66,10 +79,7 @@ int	load_map(char *filename, t_map *map)
 	return (1);
 }
 
-// Cargar mapa desde archivo
-// Cargar mapa desde archivo
-// Función auxiliar para contar líneas en un archivo
-// Función auxiliar para contar líneas en un archivo
+/*------------- identificado -----------------------*/
 size_t	count_lines(char *filename)
 {
 	int		fd;
@@ -82,7 +92,8 @@ size_t	count_lines(char *filename)
 	fd = open(filename, O_RDONLY);
 	if (fd < 0)
 		return (0);
-	while ((bytes_read = read(fd, buffer, sizeof(buffer))) > 0)
+	bytes_read = read(fd, buffer, sizeof(buffer));
+	while (bytes_read > 0)
 	{
 		i = 0;
 		while (i < bytes_read)
@@ -91,14 +102,13 @@ size_t	count_lines(char *filename)
 				count++;
 			i++;
 		}
+		bytes_read = read(fd, buffer, sizeof(buffer));
 	}
 	if (bytes_read > 0 && buffer[bytes_read - 1] != '\n')
 		count++;
 	close(fd);
 	return (count);
 }
-
-// Función auxiliar para leer una línea
 
 char	*read_line(int fd)
 {
@@ -129,7 +139,6 @@ char	*read_line(int fd)
 	return (line);
 }
 
-// Liberar memoria del mapa
 void	free_map(t_map *map)
 {
 	size_t	i;

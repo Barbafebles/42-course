@@ -6,7 +6,7 @@
 /*   By: bfebles- <bfebles-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/01 20:57:27 by bfebles-          #+#    #+#             */
-/*   Updated: 2025/04/01 20:57:29 by bfebles-         ###   ########.fr       */
+/*   Updated: 2025/04/02 17:29:38 by bfebles-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,19 +89,21 @@ void	check_recta(t_map *map)
 	}
 }
 
-// Verificar si todos los elementos importantes son accesibles
 int	check_path(t_map *map)
 {
 	size_t			i;
 	size_t			j;
 	t_path_check	path;
+	t_map_info		map_info;
 
 	path.temp_map = copy_map(map);
 	if (!path.temp_map)
 		ft_error("Error de memoria al verificar el camino");
+	map_info.map = path.temp_map;
+	map_info.height = map->height;
+	map_info.width = map->width;
 	find_player(map, &path.player_x, &path.player_y);
-	flood_fill(path.temp_map, path.player_x, path.player_y, map->height,
-		map->width);
+	flood_fill(&map_info, path.player_x, path.player_y);
 	path.valid = 1;
 	i = 0;
 	while (i < map->height && path.valid)

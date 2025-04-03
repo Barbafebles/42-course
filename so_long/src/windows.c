@@ -6,16 +6,15 @@
 /*   By: bfebles- <bfebles-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/01 20:58:57 by bfebles-          #+#    #+#             */
-/*   Updated: 2025/04/01 21:01:25 by bfebles-         ###   ########.fr       */
+/*   Updated: 2025/04/02 17:12:21 by bfebles-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../so_long.h"
 
 int	main(int argc, char **argv)
-
 {
-	t_game game;
+	t_game	game;
 
 	if (argc != 2)
 	{
