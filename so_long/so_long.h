@@ -6,7 +6,7 @@
 /*   By: bfebles- <bfebles-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/02 11:12:50 by bfebles-          #+#    #+#             */
-/*   Updated: 2025/04/02 17:27:07 by bfebles-         ###   ########.fr       */
+/*   Updated: 2025/04/03 17:38:58 by bfebles-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@
 typedef struct s_images
 {
 	mlx_image_t	*asfalto_img;
-	mlx_image_t	*casco_img;
+	mlx_image_t	*casco_img; /*coleccionable*/
 	mlx_image_t	*cocheMax_img;
 	// mlx_image_t	*exit_img;
 	// mlx_image_t	*player_img;
