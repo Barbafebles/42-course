@@ -6,7 +6,7 @@
 /*   By: bfebles- <bfebles-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/01 20:58:21 by bfebles-          #+#    #+#             */
-/*   Updated: 2025/04/02 11:10:01 by bfebles-         ###   ########.fr       */
+/*   Updated: 2025/04/03 17:32:22 by bfebles-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,12 +39,16 @@ void	load_textures(t_game *game)
 	game->images.asfalto_img = load_xpm_image(game->mlx, "./xpm/asfalto.png");
 	if (!game->images.asfalto_img)
 		ft_error("Error al cargar asfalto.png");
+		// Esto tendria que ser la pared (abajo)
 	game->images.cocheMax_img = load_xpm_image(game->mlx, "./xpm/cocheMax.png");
 	if (!game->images.cocheMax_img)
 		ft_error("Error al cargar cocheMax.png");
+		// casco no aparece 
 	game->images.casco_img = load_xpm_image(game->mlx, "./xpm/cascoMax.png");
 	if (!game->images.casco_img)
 		ft_error("Error al cargar cascoMax.png");
+	// falta agregar la salida y el colecccionable 
+	
 }
 
 /*

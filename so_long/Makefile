@@ -5,8 +5,8 @@ CC = gcc
 CFLAGS = -Wall -Werror -Wextra
 
 # Descomentar la línea del sistema operativo que estés usando
-OS = MACOS
-#OS = LINUX
+#OS = MACOS
+OS = LINUX
 
 # Configuración para macOS
 ifeq ($(OS), MACOS)

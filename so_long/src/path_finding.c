@@ -6,37 +6,43 @@
 /*   By: bfebles- <bfebles-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/01 20:57:57 by bfebles-          #+#    #+#             */
-/*   Updated: 2025/04/02 17:28:55 by bfebles-         ###   ########.fr       */
+/*   Updated: 2025/04/03 17:28:56 by bfebles-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../so_long.h"
 
 // Crear una copia del mapa para flood fill
-char	**copy_map(t_map *map)
+char **copy_map(t_map *map)
 {
-	char	**copy;
-	size_t	i;
+    char    **copy;
+    size_t  i;
 
-	copy = (char **)malloc(sizeof(char *) * (map->height + 1));
-	if (!copy)
-		return (NULL);
-	i = 0;
-	while (i < map->height)
-	{
-		copy[i] = ft_strdup(map->grid[i]);
-		if (!copy[i])
-		{
-			while (--i >= 0)
-				free(copy[i]);
-			free(copy);
-			return (NULL);
-		}
-		i++;
-	}
-	copy[i] = NULL;
-	return (copy);
+    copy = (char **)malloc(sizeof(char *) * (map->height + 1));
+    if (!copy)
+        return (NULL);
+
+    i = 0;
+    while (i < (size_t)map->height)
+    {
+        copy[i] = ft_strdup(map->grid[i]);
+        if (!copy[i])
+        {
+            i--;
+            while (i != (size_t)-1) // Cambio aquí: compara contra (size_t)-1, ya que size_t no puede ser negativo
+            {
+                free(copy[i]);
+                i--;
+            }
+            free(copy);
+            return (NULL);
+        }
+        i++;
+    }
+    copy[i] = NULL;
+    return (copy);
 }
+
 
 // Función de flood fill para validar caminos en el mapa
 void	flood_fill(t_map_info *map_info, int x, int y)
