@@ -6,7 +6,7 @@
 /*   By: bfebles- <bfebles-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/02 11:12:50 by bfebles-          #+#    #+#             */
-/*   Updated: 2025/04/07 19:13:56 by bfebles-         ###   ########.fr       */
+/*   Updated: 2025/04/07 20:26:08 by bfebles-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,12 +63,13 @@ typedef struct s_map
 }				t_map;
 typedef struct s_game
 {
-	mlx_t *mlx; /* instancia de MLX42 */
-	t_map map;  /* estructura del mapa */
-	int width;  /* ancho del mapa */
-	int			height;
-	t_images	images;
-	t_player	player;
+    mlx_t		*mlx;      /* Instancia de MLX42 */
+    t_map		map;       /* Información del mapa (incluye grid, dimensions, etc.) */
+    t_images	images;
+    t_player	player;
+    int			moves;     /* Contador de movimientos */
+    // int			width;  
+    // int			height;
 }				t_game;
 
 // typedef struct s_game

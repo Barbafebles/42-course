@@ -6,7 +6,7 @@
 /*   By: bfebles- <bfebles-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/07 19:03:16 by bfebles-          #+#    #+#             */
-/*   Updated: 2025/04/07 19:27:06 by bfebles-         ###   ########.fr       */
+/*   Updated: 2025/04/07 20:26:58 by bfebles-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ static void	move_player(t_game *game, int dx, int dy)
 {
 	int x, y;
 	int new_x, new_y;
+	int moved = 0; // Flag para saber si se realizó el movimiento
 	y = 0;
 	while (game->map.grid[y])
 	{
@@ -34,12 +35,20 @@ static void	move_player(t_game *game, int dx, int dy)
 				{
 					game->map.grid[y][x] = '0';
 					game->map.grid[new_y][new_x] = 'P';
+					moved = 1;
 				}
-				return ;
+				break ;
 			}
 			x++;
 		}
+		if (moved)
+			break ;
 		y++;
+	}
+	if (moved)
+	{
+		game->moves++;
+		printf("Movimientos realizados: %d\n", game->moves);
 	}
 }
 
