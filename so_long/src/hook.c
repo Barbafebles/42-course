@@ -6,7 +6,7 @@
 /*   By: bfebles- <bfebles-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/07 19:03:16 by bfebles-          #+#    #+#             */
-/*   Updated: 2025/04/07 20:26:58 by bfebles-         ###   ########.fr       */
+/*   Updated: 2025/04/07 20:41:40 by bfebles-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ static void	move_player(t_game *game, int dx, int dy)
 	if (moved)
 	{
 		game->moves++;
+		// tengo que hacer que avise cuando coge un coleccionable 
 		printf("Movimientos realizados: %d\n", game->moves);
 	}
 }

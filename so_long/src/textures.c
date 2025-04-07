@@ -6,7 +6,7 @@
 /*   By: bfebles- <bfebles-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/01 20:58:21 by bfebles-          #+#    #+#             */
-/*   Updated: 2025/04/07 19:21:19 by bfebles-         ###   ########.fr       */
+/*   Updated: 2025/04/07 20:39:22 by bfebles-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ void	render_map(t_game *game)
 {
 	size_t	y;
 	size_t	x;
-
+	
 	y = 0;
 	if (!game->map.grid)
 		return ;
