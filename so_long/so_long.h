@@ -6,7 +6,7 @@
 /*   By: bfebles- <bfebles-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/02 11:12:50 by bfebles-          #+#    #+#             */
-/*   Updated: 2025/04/03 17:38:58 by bfebles-         ###   ########.fr       */
+/*   Updated: 2025/04/07 19:13:56 by bfebles-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,8 @@ typedef struct s_images
 	mlx_image_t	*asfalto_img;
 	mlx_image_t	*casco_img; /*coleccionable*/
 	mlx_image_t	*cocheMax_img;
+	mlx_image_t	*grada_img;
+
 	// mlx_image_t	*exit_img;
 	// mlx_image_t	*player_img;
 }				t_images;
@@ -117,4 +119,6 @@ void			print_map(t_game *game);
 int				open_map_file(char *filename);
 int				init_map(t_map *map, char *filename);
 int				load_map_lines(int fd, t_map *map);
+/* Hooks */
+void	key_hook(mlx_key_data_t keydata, void *param);
 #endif

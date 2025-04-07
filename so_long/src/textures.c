@@ -6,7 +6,7 @@
 /*   By: bfebles- <bfebles-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/01 20:58:21 by bfebles-          #+#    #+#             */
-/*   Updated: 2025/04/03 17:32:22 by bfebles-         ###   ########.fr       */
+/*   Updated: 2025/04/07 19:21:19 by bfebles-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,16 +39,15 @@ void	load_textures(t_game *game)
 	game->images.asfalto_img = load_xpm_image(game->mlx, "./xpm/asfalto.png");
 	if (!game->images.asfalto_img)
 		ft_error("Error al cargar asfalto.png");
-		// Esto tendria que ser la pared (abajo)
+	game->images.grada_img = load_xpm_image(game->mlx, "./xpm/grada.png");
+	if (!game->images.grada_img)
+		ft_error("Error al cargar grada.png");
+	game->images.casco_img = load_xpm_image(game->mlx, "./xpm/cascoMax_64.png");
+	if (!game->images.casco_img)
+		ft_error("Error al cargar cascoMax.png");
 	game->images.cocheMax_img = load_xpm_image(game->mlx, "./xpm/cocheMax.png");
 	if (!game->images.cocheMax_img)
 		ft_error("Error al cargar cocheMax.png");
-		// casco no aparece 
-	game->images.casco_img = load_xpm_image(game->mlx, "./xpm/cascoMax.png");
-	if (!game->images.casco_img)
-		ft_error("Error al cargar cascoMax.png");
-	// falta agregar la salida y el colecccionable 
-	
 }
 
 /*
@@ -78,7 +77,6 @@ void	print_map(t_game *game)
 		y++;
 	}
 }
-
 void	render_map(t_game *game)
 {
 	size_t	y;
@@ -95,9 +93,12 @@ void	render_map(t_game *game)
 			mlx_image_to_window(game->mlx, game->images.asfalto_img, x
 				* TILE_SIZE, y * TILE_SIZE);
 			if (game->map.grid[y][x] == '1')
+				mlx_image_to_window(game->mlx, game->images.grada_img, x
+					* TILE_SIZE, y * TILE_SIZE);
+			else if (game->map.grid[y][x] == 'P')
 				mlx_image_to_window(game->mlx, game->images.cocheMax_img, x
 					* TILE_SIZE, y * TILE_SIZE);
-			if (game->map.grid[y][x] == 'P')
+			else if (game->map.grid[y][x] == 'C')
 				mlx_image_to_window(game->mlx, game->images.casco_img, x
 					* TILE_SIZE, y * TILE_SIZE);
 			x++;
@@ -110,6 +111,8 @@ void	cleanup_images(t_game *game)
 {
 	if (game->images.asfalto_img)
 		mlx_delete_image(game->mlx, game->images.asfalto_img);
+	if (game->images.grada_img)
+		mlx_delete_image(game->mlx, game->images.grada_img);
 	if (game->images.cocheMax_img)
 		mlx_delete_image(game->mlx, game->images.cocheMax_img);
 	if (game->images.casco_img)

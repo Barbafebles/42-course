@@ -36,6 +36,7 @@ SRC = 	src/error_handling.c \
 		src/utils.c \
 		src/windows.c \
 		src/textures.c \
+		src/hook.c \
 
 OBJ = $(SRC:.c=.o) 
 
