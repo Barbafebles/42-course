@@ -6,7 +6,7 @@
 /*   By: bfebles- <bfebles-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/02 11:12:50 by bfebles-          #+#    #+#             */
-/*   Updated: 2025/04/07 20:26:08 by bfebles-         ###   ########.fr       */
+/*   Updated: 2025/04/15 15:41:28 by bfebles-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ typedef struct s_images
 	mlx_image_t	*casco_img; /*coleccionable*/
 	mlx_image_t	*cocheMax_img;
 	mlx_image_t	*grada_img;
+	mlx_image_t *player_img;
 
 	// mlx_image_t	*exit_img;
 	// mlx_image_t	*player_img;
@@ -66,6 +67,8 @@ typedef struct s_game
     mlx_t		*mlx;      /* Instancia de MLX42 */
     t_map		map;       /* Información del mapa (incluye grid, dimensions, etc.) */
     t_images	images;
+	int	player_x;
+	int player_y;
     t_player	player;
     int			moves;     /* Contador de movimientos */
     // int			width;  
@@ -113,9 +116,14 @@ size_t			count_lines(char *filename);
 /* texture */
 mlx_image_t		*load_xpm_image(mlx_t *mlx, const char *file_path);
 void			load_textures(t_game *game);
-void			render_map(t_game *game);
+// void			render_map(t_game *game);
+void	render_static_map(t_game *game);
+void	init_player_image(t_game *game);
+void	move_player(t_game *game, int dx, int dy);
 void			cleanup_images(t_game *game);
 void			print_map(t_game *game);
+void	check_collectible(t_game *game, int x, int y);
+
 /* vale esto es */
 int				open_map_file(char *filename);
 int				init_map(t_map *map, char *filename);

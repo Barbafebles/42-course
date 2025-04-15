@@ -6,7 +6,7 @@
 /*   By: bfebles- <bfebles-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/01 20:52:22 by bfebles-          #+#    #+#             */
-/*   Updated: 2025/04/01 21:02:20 by bfebles-         ###   ########.fr       */
+/*   Updated: 2025/04/15 14:48:27 by bfebles-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,6 @@ void	check_empty_map(t_map *map)
 		ft_error("El mapa está vacío");
 }
 
-// validacion archivo del mapa .ber
 void	check_extension(char *filename)
 {
 	size_t	len;

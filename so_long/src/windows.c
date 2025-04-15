@@ -6,7 +6,7 @@
 /*   By: bfebles- <bfebles-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/01 20:58:57 by bfebles-          #+#    #+#             */
-/*   Updated: 2025/04/07 19:21:27 by bfebles-         ###   ########.fr       */
+/*   Updated: 2025/04/15 15:05:38 by bfebles-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,8 @@ int	main(int argc, char **argv)
 		ft_error("Error al inicializar MLX");
 	print_map(&game);
 	load_textures(&game);
-	render_map(&game);
+	render_static_map(&game);
+	init_player_image(&game);
 	mlx_key_hook(game.mlx, key_hook, &game);
 	mlx_loop(game.mlx);
 	cleanup_images(&game);

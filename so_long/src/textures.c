@@ -6,7 +6,7 @@
 /*   By: bfebles- <bfebles-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/01 20:58:21 by bfebles-          #+#    #+#             */
-/*   Updated: 2025/04/07 20:39:22 by bfebles-         ###   ########.fr       */
+/*   Updated: 2025/04/15 15:09:55 by bfebles-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,8 @@ void	print_map(t_game *game)
 		y++;
 	}
 }
+
+/*
 void	render_map(t_game *game)
 {
 	size_t	y;
@@ -84,28 +86,78 @@ void	render_map(t_game *game)
 	
 	y = 0;
 	if (!game->map.grid)
-		return ;
+	return ;
 	while (game->map.grid[y])
 	{
 		x = 0;
 		while (game->map.grid[y][x])
 		{
 			mlx_image_to_window(game->mlx, game->images.asfalto_img, x
-				* TILE_SIZE, y * TILE_SIZE);
+			* TILE_SIZE, y * TILE_SIZE);
 			if (game->map.grid[y][x] == '1')
-				mlx_image_to_window(game->mlx, game->images.grada_img, x
-					* TILE_SIZE, y * TILE_SIZE);
+			mlx_image_to_window(game->mlx, game->images.grada_img, x
+			* TILE_SIZE, y * TILE_SIZE);
 			else if (game->map.grid[y][x] == 'P')
-				mlx_image_to_window(game->mlx, game->images.cocheMax_img, x
-					* TILE_SIZE, y * TILE_SIZE);
+			mlx_image_to_window(game->mlx, game->images.cocheMax_img, x
+			* TILE_SIZE, y * TILE_SIZE);
 			else if (game->map.grid[y][x] == 'C')
-				mlx_image_to_window(game->mlx, game->images.casco_img, x
-					* TILE_SIZE, y * TILE_SIZE);
+			mlx_image_to_window(game->mlx, game->images.casco_img, x
+			* TILE_SIZE, y * TILE_SIZE);
 			x++;
 		}
 		y++;
 	}
 }
+*/
+void	render_static_map(t_game *game)
+{
+	size_t	y;
+	size_t	x;
+
+	y = 0;
+	while (game->map.grid[y])
+	{
+		x = 0;
+		while (game->map.grid[y][x])
+		{
+			mlx_image_to_window(game->mlx, game->images.asfalto_img, x * TILE_SIZE, y * TILE_SIZE);
+			if (game->map.grid[y][x] == '1')
+				mlx_image_to_window(game->mlx, game->images.grada_img, x * TILE_SIZE, y * TILE_SIZE);
+			else if (game->map.grid[y][x] == 'C')
+				mlx_image_to_window(game->mlx, game->images.casco_img, x * TILE_SIZE, y * TILE_SIZE);
+			x++;
+		}
+		y++;
+	}
+}
+
+void	init_player_image(t_game *game)
+{
+	int	x;
+	int y;
+
+	y = 0;
+	while (game->map.grid[y])
+	{
+		x = 0;
+		while (game->map.grid[y][x])
+		{
+			if (game->map.grid[y][x] == 'P')
+			{
+				game->player_x = x;
+				game->player_y = y;
+				game->images.player_img = game->images.cocheMax_img;
+				mlx_image_to_window(game->mlx, game->images.player_img,
+					x * TILE_SIZE, y * TILE_SIZE);
+				return ;
+			}
+			x++;
+		}
+		y++;
+	}
+}
+
+
 
 void	cleanup_images(t_game *game)
 {
