@@ -6,7 +6,7 @@
 /*   By: bfebles- <bfebles-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/02 11:12:50 by bfebles-          #+#    #+#             */
-/*   Updated: 2025/04/16 17:10:26 by bfebles-         ###   ########.fr       */
+/*   Updated: 2025/04/16 18:29:20 by bfebles-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,13 +54,16 @@ typedef struct s_player
 
 typedef struct s_map
 {
-	char		**grid;
-	int			player;
-	int			exit;
-	int			collectable;
-	size_t		width;
-	size_t		height;
-}				t_map;
+    char    **grid;
+    int     player;
+    int     exit;
+    int     collectable;
+    size_t  width;
+    size_t  height;
+    int     exit_x;     // Añadir estas dos líneas
+    int     exit_y;     // para las coordenadas de salida
+}           t_map;
+
 typedef struct s_game
 {
     mlx_t		*mlx;      /* Instancia de MLX42 */
@@ -122,6 +125,9 @@ void	move_player(t_game *game, int dx, int dy);
 void			cleanup_images(t_game *game);
 void			print_map(t_game *game);
 void	check_collectible(t_game *game, int x, int y);
+void    save_exit_position(t_map *map);
+int check_reachable_objectives(t_map *map, char **temp_map);
+void    validate_complete_map(t_map *map);
 
 /* vale esto es */
 int				open_map_file(char *filename);
@@ -129,4 +135,6 @@ int				init_map(t_map *map, char *filename);
 int				load_map_lines(int fd, t_map *map);
 /* Hooks */
 void	key_hook(mlx_key_data_t keydata, void *param);
+void    check_map_size(t_map *map);
+void    free_temp_map(char **temp_map, size_t height);
 #endif

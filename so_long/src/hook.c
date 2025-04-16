@@ -6,11 +6,26 @@
 /*   By: bfebles- <bfebles-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/07 19:03:16 by bfebles-          #+#    #+#             */
-/*   Updated: 2025/04/16 17:12:50 by bfebles-         ###   ########.fr       */
+/*   Updated: 2025/04/16 20:01:32 by bfebles-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../so_long.h"
+
+void    check_exit(t_game *game, int x, int y)
+{
+    if (game->map.grid[y][x] == 'E')
+    {
+        if (game->map.collectable == 0)
+        {
+            printf("\n¡Felicidades! Has completado el nivel en %d movimientos\n", game->moves);
+            mlx_close_window(game->mlx);
+        }
+        else
+            printf("\nNecesitas recoger todos los cascos antes de salir (%d restantes)\n", 
+                   game->map.collectable);
+    }
+}
 
 void    move_player(t_game *game, int dx, int dy)
 {
@@ -41,29 +56,30 @@ void    move_player(t_game *game, int dx, int dy)
             ft_error("Error al cargar la imagen del jugador");
         mlx_image_to_window(game->mlx, game->images.player_img,
             new_x * TILE_SIZE, new_y * TILE_SIZE);
+        if (next_pos == 'E')
+        check_exit(game, new_x, new_y);
 
         game->moves++;
         printf("Movimientos realizados: %d\n", game->moves);
     }
 }
 
-void	key_hook(mlx_key_data_t keydata, void *param)
+void    key_hook(mlx_key_data_t keydata, void *param)
 {
-	t_game	*game;
+    t_game  *game;
 
-	game = (t_game *)param;
-	if (keydata.action == MLX_PRESS)
-	{
-		if (keydata.key == MLX_KEY_ESCAPE)
-			mlx_close_window(game->mlx);
-		else if (keydata.key == MLX_KEY_W)
-			move_player(game, 0, -1);
-		else if (keydata.key == MLX_KEY_S)
-			move_player(game, 0, 1);
-		else if (keydata.key == MLX_KEY_A)
-			move_player(game, -1, 0);
-		else if (keydata.key == MLX_KEY_D)
-			move_player(game, 1, 0);
-		//render_map(game);
-	}
+    game = (t_game *)param;
+    if (keydata.action == MLX_PRESS)
+    {
+        if (keydata.key == MLX_KEY_ESCAPE)
+            mlx_close_window(game->mlx);
+        else if (keydata.key == MLX_KEY_W || keydata.key == MLX_KEY_UP)
+            move_player(game, 0, -1);
+        else if (keydata.key == MLX_KEY_S || keydata.key == MLX_KEY_DOWN)
+            move_player(game, 0, 1);
+        else if (keydata.key == MLX_KEY_A || keydata.key == MLX_KEY_LEFT)
+            move_player(game, -1, 0);
+        else if (keydata.key == MLX_KEY_D || keydata.key == MLX_KEY_RIGHT)
+            move_player(game, 1, 0);
+    }
 }

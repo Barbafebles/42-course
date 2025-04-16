@@ -6,7 +6,7 @@
 /*   By: bfebles- <bfebles-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/01 20:56:50 by bfebles-          #+#    #+#             */
-/*   Updated: 2025/04/16 16:41:24 by bfebles-         ###   ########.fr       */
+/*   Updated: 2025/04/16 18:20:23 by bfebles-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,6 @@ int	load_map(char *filename, t_map *map)
 	return (1);
 }
 
-/*------------- identificado -----------------------*/
 size_t	count_lines(char *filename)
 {
 	int		fd;

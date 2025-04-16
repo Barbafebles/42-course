@@ -6,7 +6,7 @@
 /*   By: bfebles- <bfebles-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/01 20:58:34 by bfebles-          #+#    #+#             */
-/*   Updated: 2025/04/16 17:11:38 by bfebles-         ###   ########.fr       */
+/*   Updated: 2025/04/16 18:33:34 by bfebles-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void    check_collectible(t_game *game, int x, int y)
 {
     int i;
 
-    if (!game || !game->map.grid || !game->images.casco_imgs)
+    if (!game || !game->map.grid || !game->images.casco_imgs || !game->mlx)
         return;
 
     if (game->map.grid[y][x] == 'C')
@@ -40,16 +40,20 @@ void    check_collectible(t_game *game, int x, int y)
             {
                 mlx_delete_image(game->mlx, game->images.casco_imgs[i]);
                 game->images.casco_imgs[i] = NULL;
-                break;
+                
+                game->map.grid[y][x] = '0';
+                game->map.collectable--;
+                printf("¡Casco recogido! Quedan: %d\n", game->map.collectable);
+                
+                if (game->map.collectable == 0)
+                {
+                    printf("\n¡Has recogido todos los cascos! Dirígete a la salida.\n");
+                    // Opcional: Podrías cambiar la apariencia de la salida aquí
+                    // para indicar que está activa
+                }
+                return;
             }
             i++;
         }
-        
-        game->map.grid[y][x] = '0';
-        game->map.collectable--;
-        printf("¡Casco recogido! Quedan: %d\n", game->map.collectable);
-        
-        if (game->map.collectable == 0)
-            printf("¡Has recogido todos los cascos! Dirígete a la salida.\n");
     }
 }
