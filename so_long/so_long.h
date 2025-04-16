@@ -6,7 +6,7 @@
 /*   By: bfebles- <bfebles-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/02 11:12:50 by bfebles-          #+#    #+#             */
-/*   Updated: 2025/04/15 15:41:28 by bfebles-         ###   ########.fr       */
+/*   Updated: 2025/04/16 17:10:26 by bfebles-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,15 +25,14 @@
 
 typedef struct s_images
 {
-	mlx_image_t	*asfalto_img;
-	mlx_image_t	*casco_img; /*coleccionable*/
-	mlx_image_t	*cocheMax_img;
-	mlx_image_t	*grada_img;
-	mlx_image_t *player_img;
+    mlx_image_t	*asfalto_img;
+    mlx_image_t	**casco_imgs;  // Array de imágenes de coleccionables
+    mlx_image_t	*cocheMax_img;
+    mlx_image_t	*grada_img;
+    mlx_image_t  *player_img;
+    int         num_cascos;    // Número de cascos en el mapa
+}               t_images;
 
-	// mlx_image_t	*exit_img;
-	// mlx_image_t	*player_img;
-}				t_images;
 typedef struct s_path
 {
 	char		**temp_map;

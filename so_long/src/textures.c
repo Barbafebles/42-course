@@ -6,7 +6,7 @@
 /*   By: bfebles- <bfebles-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/01 20:58:21 by bfebles-          #+#    #+#             */
-/*   Updated: 2025/04/15 15:09:55 by bfebles-         ###   ########.fr       */
+/*   Updated: 2025/04/16 17:21:14 by bfebles-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,20 +34,18 @@ mlx_image_t	*load_xpm_image(mlx_t *mlx, const char *file_path)
 	return (img);
 }
 
-void	load_textures(t_game *game)
+void    load_textures(t_game *game)
 {
-	game->images.asfalto_img = load_xpm_image(game->mlx, "./xpm/asfalto.png");
-	if (!game->images.asfalto_img)
-		ft_error("Error al cargar asfalto.png");
-	game->images.grada_img = load_xpm_image(game->mlx, "./xpm/grada.png");
-	if (!game->images.grada_img)
-		ft_error("Error al cargar grada.png");
-	game->images.casco_img = load_xpm_image(game->mlx, "./xpm/cascoMax_64.png");
-	if (!game->images.casco_img)
-		ft_error("Error al cargar cascoMax.png");
-	game->images.cocheMax_img = load_xpm_image(game->mlx, "./xpm/cocheMax.png");
-	if (!game->images.cocheMax_img)
-		ft_error("Error al cargar cocheMax.png");
+    game->images.casco_imgs = NULL;
+    game->images.num_cascos = 0;
+
+    game->images.asfalto_img = load_xpm_image(game->mlx, "./xpm/asfalto.png");
+    game->images.grada_img = load_xpm_image(game->mlx, "./xpm/grada.png");
+    game->images.cocheMax_img = load_xpm_image(game->mlx, "./xpm/cocheMax.png");
+    
+    if (!game->images.asfalto_img || !game->images.grada_img || 
+        !game->images.cocheMax_img)
+        ft_error("Error al cargar las texturas");
 }
 
 /*
@@ -109,28 +107,74 @@ void	render_map(t_game *game)
 	}
 }
 */
-void	render_static_map(t_game *game)
+void    render_static_map(t_game *game)
 {
-	size_t	y;
-	size_t	x;
+    size_t  y;
+    size_t  x;
+    int     casco_index;
 
-	y = 0;
-	while (game->map.grid[y])
-	{
-		x = 0;
-		while (game->map.grid[y][x])
-		{
-			mlx_image_to_window(game->mlx, game->images.asfalto_img, x * TILE_SIZE, y * TILE_SIZE);
-			if (game->map.grid[y][x] == '1')
-				mlx_image_to_window(game->mlx, game->images.grada_img, x * TILE_SIZE, y * TILE_SIZE);
-			else if (game->map.grid[y][x] == 'C')
-				mlx_image_to_window(game->mlx, game->images.casco_img, x * TILE_SIZE, y * TILE_SIZE);
-			x++;
-		}
-		y++;
-	}
+    // Inicializar variables
+    game->images.num_cascos = 0;
+    casco_index = 0;
+
+    // Contar cascos
+    y = 0;
+    while (game->map.grid[y])
+    {
+        x = 0;
+        while (game->map.grid[y][x])
+        {
+            if (game->map.grid[y][x] == 'C')
+                game->images.num_cascos++;
+            x++;
+        }
+        y++;
+    }
+
+    // Crear nuevo array de cascos
+    game->images.casco_imgs = malloc(sizeof(mlx_image_t*) * (game->images.num_cascos + 1));
+    if (!game->images.casco_imgs)
+        ft_error("Error al asignar memoria para las imágenes de cascos");
+
+    // Renderizar el mapa
+    y = 0;
+    while (game->map.grid[y])
+    {
+        x = 0;
+        while (game->map.grid[y][x])
+        {
+            // Siempre poner el asfalto primero
+            mlx_image_to_window(game->mlx, game->images.asfalto_img, x * TILE_SIZE, y * TILE_SIZE);
+            
+            // Luego los otros elementos
+            if (game->map.grid[y][x] == '1')
+                mlx_image_to_window(game->mlx, game->images.grada_img, x * TILE_SIZE, y * TILE_SIZE);
+            else if (game->map.grid[y][x] == 'C')
+            {
+                // Intentar primero con cascoMax_64.png que parece ser el más adecuado para el tamaño
+                game->images.casco_imgs[casco_index] = load_xpm_image(game->mlx, "./xpm/cascoMax_64.png");
+                if (!game->images.casco_imgs[casco_index])
+                {
+                    // Si falla, intentar con cascoMax.png
+                    game->images.casco_imgs[casco_index] = load_xpm_image(game->mlx, "./xpm/cascoMax.png");
+                    if (!game->images.casco_imgs[casco_index])
+                        ft_error("Error al cargar imagen de casco");
+                }
+                
+                // Imprimir información de depuración
+                printf("Cargando casco en posición (%zu, %zu)\n", x, y);
+                
+                mlx_image_to_window(game->mlx, game->images.casco_imgs[casco_index], x * TILE_SIZE, y * TILE_SIZE);
+                casco_index++;
+            }
+            x++;
+        }
+        y++;
+    }
+    
+    // Imprimir información de depuración
+    printf("Total de cascos cargados: %d\n", casco_index);
 }
-
 void	init_player_image(t_game *game)
 {
 	int	x;
@@ -146,7 +190,9 @@ void	init_player_image(t_game *game)
 			{
 				game->player_x = x;
 				game->player_y = y;
-				game->images.player_img = game->images.cocheMax_img;
+				game->images.player_img = load_xpm_image(game->mlx, "./xpm/cocheMax.png");
+				if (!game->images.player_img)
+					ft_error("Error al cargar la imagen del jugador");
 				mlx_image_to_window(game->mlx, game->images.player_img,
 					x * TILE_SIZE, y * TILE_SIZE);
 				return ;
@@ -157,16 +203,28 @@ void	init_player_image(t_game *game)
 	}
 }
 
-
-
-void	cleanup_images(t_game *game)
+void    cleanup_images(t_game *game)
 {
-	if (game->images.asfalto_img)
-		mlx_delete_image(game->mlx, game->images.asfalto_img);
-	if (game->images.grada_img)
-		mlx_delete_image(game->mlx, game->images.grada_img);
-	if (game->images.cocheMax_img)
-		mlx_delete_image(game->mlx, game->images.cocheMax_img);
-	if (game->images.casco_img)
-		mlx_delete_image(game->mlx, game->images.casco_img);
+    int i;
+    
+    if (game->images.asfalto_img)
+        mlx_delete_image(game->mlx, game->images.asfalto_img);
+    if (game->images.grada_img)
+        mlx_delete_image(game->mlx, game->images.grada_img);
+    if (game->images.cocheMax_img)
+        mlx_delete_image(game->mlx, game->images.cocheMax_img);
+    if (game->images.player_img)
+        mlx_delete_image(game->mlx, game->images.player_img);
+    if (game->images.casco_imgs)
+    {
+        i = 0;
+        while (i < game->images.num_cascos)
+        {
+            if (game->images.casco_imgs[i])
+                mlx_delete_image(game->mlx, game->images.casco_imgs[i]);
+            i++;
+        }
+        free(game->images.casco_imgs);
+        game->images.casco_imgs = NULL;
+    }
 }

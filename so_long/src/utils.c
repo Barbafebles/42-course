@@ -6,7 +6,7 @@
 /*   By: bfebles- <bfebles-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/01 20:58:34 by bfebles-          #+#    #+#             */
-/*   Updated: 2025/04/15 15:42:28 by bfebles-         ###   ########.fr       */
+/*   Updated: 2025/04/16 17:11:38 by bfebles-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,14 +21,35 @@ void	ft_error(const char *msg)
 	perror("Error");
 	exit(EXIT_FAILURE);
 }
-void	check_collectible(t_game *game, int x, int y)
+void    check_collectible(t_game *game, int x, int y)
 {
-	if (game->map.grid[y][x] == 'C')
-	{
-		game->map.grid[y][x] = '0'; // Lo borro del mapa lógico
-		game->map.collectable--;    // Disminuye el contador
-		printf("¡Casco recogido! Quedan: %d\n", game->map.collectable);
+    int i;
 
-		//si ya no quedan, desbloquear la salida (todavia no he agregado la salida)
-	}
+    if (!game || !game->map.grid || !game->images.casco_imgs)
+        return;
+
+    if (game->map.grid[y][x] == 'C')
+    {
+        i = 0;
+        while (i < game->images.num_cascos)
+        {
+            if (game->images.casco_imgs[i] && 
+                game->images.casco_imgs[i]->instances &&
+                game->images.casco_imgs[i]->instances[0].x == x * TILE_SIZE &&
+                game->images.casco_imgs[i]->instances[0].y == y * TILE_SIZE)
+            {
+                mlx_delete_image(game->mlx, game->images.casco_imgs[i]);
+                game->images.casco_imgs[i] = NULL;
+                break;
+            }
+            i++;
+        }
+        
+        game->map.grid[y][x] = '0';
+        game->map.collectable--;
+        printf("¡Casco recogido! Quedan: %d\n", game->map.collectable);
+        
+        if (game->map.collectable == 0)
+            printf("¡Has recogido todos los cascos! Dirígete a la salida.\n");
+    }
 }
