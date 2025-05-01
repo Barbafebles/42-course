@@ -6,7 +6,7 @@
 /*   By: bfebles- <bfebles-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/01 20:58:34 by bfebles-          #+#    #+#             */
-/*   Updated: 2025/04/16 18:33:34 by bfebles-         ###   ########.fr       */
+/*   Updated: 2025/05/01 20:17:59 by bfebles-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,10 +24,8 @@ void	ft_error(const char *msg)
 void    check_collectible(t_game *game, int x, int y)
 {
     int i;
-
     if (!game || !game->map.grid || !game->images.casco_imgs || !game->mlx)
         return;
-
     if (game->map.grid[y][x] == 'C')
     {
         i = 0;
@@ -48,8 +46,6 @@ void    check_collectible(t_game *game, int x, int y)
                 if (game->map.collectable == 0)
                 {
                     printf("\n¡Has recogido todos los cascos! Dirígete a la salida.\n");
-                    // Opcional: Podrías cambiar la apariencia de la salida aquí
-                    // para indicar que está activa
                 }
                 return;
             }

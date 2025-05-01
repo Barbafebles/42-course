@@ -6,7 +6,7 @@
 /*   By: bfebles- <bfebles-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/01 20:58:21 by bfebles-          #+#    #+#             */
-/*   Updated: 2025/04/16 18:20:46 by bfebles-         ###   ########.fr       */
+/*   Updated: 2025/05/01 21:14:53 by bfebles-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,11 +113,9 @@ void    render_static_map(t_game *game)
     size_t  x;
     int     casco_index;
 
-    // Inicializar variables
     game->images.num_cascos = 0;
     casco_index = 0;
 
-    // Contar cascos
     y = 0;
     while (game->map.grid[y])
     {
@@ -130,38 +128,29 @@ void    render_static_map(t_game *game)
         }
         y++;
     }
-
-    // Crear nuevo array de cascos
     game->images.casco_imgs = malloc(sizeof(mlx_image_t*) * (game->images.num_cascos + 1));
     if (!game->images.casco_imgs)
         ft_error("Error al asignar memoria para las imágenes de cascos");
 
-    // Renderizar el mapa
     y = 0;
     while (game->map.grid[y])
     {
         x = 0;
         while (game->map.grid[y][x])
         {
-            // Siempre poner el asfalto primero
             mlx_image_to_window(game->mlx, game->images.asfalto_img, x * TILE_SIZE, y * TILE_SIZE);
-            
-            // Luego los otros elementos
+
             if (game->map.grid[y][x] == '1')
                 mlx_image_to_window(game->mlx, game->images.grada_img, x * TILE_SIZE, y * TILE_SIZE);
             else if (game->map.grid[y][x] == 'C')
             {
-                // Intentar primero con cascoMax_64.png que parece ser el más adecuado para el tamaño
                 game->images.casco_imgs[casco_index] = load_xpm_image(game->mlx, "./xpm/cascoMax_64.png");
                 if (!game->images.casco_imgs[casco_index])
                 {
-                    // Si falla, intentar con cascoMax.png
                     game->images.casco_imgs[casco_index] = load_xpm_image(game->mlx, "./xpm/cascoMax.png");
                     if (!game->images.casco_imgs[casco_index])
                         ft_error("Error al cargar imagen de casco");
                 }
-                
-                // Imprimir información de depuración
                 printf("Cargando casco en posición (%zu, %zu)\n", x, y);
                 
                 mlx_image_to_window(game->mlx, game->images.casco_imgs[casco_index], x * TILE_SIZE, y * TILE_SIZE);
@@ -171,8 +160,6 @@ void    render_static_map(t_game *game)
         }
         y++;
     }
-    
-    // Imprimir información de depuración
     printf("Total de cascos cargados: %d\n", casco_index);
 }
 void	init_player_image(t_game *game)

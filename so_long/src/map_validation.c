@@ -6,7 +6,7 @@
 /*   By: bfebles- <bfebles-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/01 20:57:27 by bfebles-          #+#    #+#             */
-/*   Updated: 2025/04/16 18:33:37 by bfebles-         ###   ########.fr       */
+/*   Updated: 2025/05/01 20:15:41 by bfebles-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,37 +93,36 @@ void	check_recta(t_map *map)
 		i++;
 	}
 }
-
+// verifica si existe un camino válido para que el jugador alcance todos los objetivos.
+// Se realiza creando una copia temporal del mapa y aplicando un algoritmo de 'flood fill' para marcar 
+// las casillas alcanzables.
 int check_path(t_map *map)
 {
     t_path_check    path;
     t_map_info      map_info;
 
-    // Inicializar y verificar la copia del mapa
     path.temp_map = copy_map(map);
     if (!path.temp_map)
         ft_error("Error de memoria al verificar el camino");
 
-    // Preparar la información del mapa
     map_info.map = path.temp_map;
     map_info.height = map->height;
     map_info.width = map->width;
 
-    // Encontrar jugador y ejecutar flood fill
     find_player(map, &path.player_x, &path.player_y);
     flood_fill(&map_info, path.player_x, path.player_y);
 
-    // Verificar que se pueden alcanzar todos los objetivos
     path.valid = check_reachable_objectives(map, path.temp_map);
 
-    // Limpiar memoria
     free_temp_map(path.temp_map, map->height);
 
     if (!path.valid)
         ft_error("No hay un camino válido para completar el nivel");
     return (path.valid);
 }
-
+// check_reachable_objectives recorre el mapa original y verifica en la copia temporal (tras el flood fill)
+// que cada objetivo (coleccionable 'C' o salida 'E') haya sido visitado (marcado con 'F').
+// Si alguno no fue visitado, significa que no es alcanzable y retorna 0.
 int check_reachable_objectives(t_map *map, char **temp_map)
 {
     size_t  i;
@@ -144,6 +143,8 @@ int check_reachable_objectives(t_map *map, char **temp_map)
     }
     return (1);
 }
+// Guarda la posición de la salida ('E') en el mapa.
+// Recorre cada casilla y, al encontrar la salida, almacena sus coordenadas en map->exit_x y map->exit_y.
 void    save_exit_position(t_map *map)
 {
     size_t  x;
@@ -166,6 +167,8 @@ void    save_exit_position(t_map *map)
         y++;
     }
 }
+// Libera la memoria utilizada por la copia temporal del mapa.
+// Recorre cada línea asignada en temp_map y la libera, luego libera el arreglo de punteros.
 void    free_temp_map(char **temp_map, size_t height)
 {
     size_t i;
@@ -181,6 +184,9 @@ void    free_temp_map(char **temp_map, size_t height)
     }
     free(temp_map);
 }
+// Verifica que el tamaño del mapa cumpla ciertos criterios mínimos y máximos.
+// Se asegura de que el mapa no sea demasiado pequeño ni demasiado grande, y que tenga el espacio
+// suficiente para los elementos necesarios.
 void    check_map_size(t_map *map)
 {
     if (!map || !map->grid)

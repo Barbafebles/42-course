@@ -6,7 +6,7 @@
 /*   By: bfebles- <bfebles-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/01 20:57:57 by bfebles-          #+#    #+#             */
-/*   Updated: 2025/04/16 18:29:03 by bfebles-         ###   ########.fr       */
+/*   Updated: 2025/05/01 21:46:26 by bfebles-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,7 @@ void	flood_fill(t_map_info *map_info, int x, int y)
 	flood_fill(map_info, x - 1, y);
 	flood_fill(map_info, x, y + 1);
 	flood_fill(map_info, x, y - 1);
+	printf("floodfill\n");
 }
 
 // Ejecutar flood fill con la estructura t_map_info
