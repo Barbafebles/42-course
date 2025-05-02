@@ -39,6 +39,7 @@ void    check_map(t_map *map)
         }
         x++;
     }
+    printf("Collectables: %d\n", map->collectable);
 }
 
 // chequear que el mapa tiene los limites del mapa
@@ -98,27 +99,43 @@ void	check_recta(t_map *map)
 // las casillas alcanzables.
 int check_path(t_map *map)
 {
-    t_path_check    path;
-    t_map_info      map_info;
+    t_path  path;
+    int     result;
+    size_t  i;
+    size_t  j;
 
-    path.temp_map = copy_map(map);
+    // Inicializar el mapa temporal
+    path.temp_map = (char **)malloc(sizeof(char *) * (map->height));
     if (!path.temp_map)
-        ft_error("Error de memoria al verificar el camino");
+        return (0);
+    
+    // Copiar el mapa y encontrar la posición del jugador
+    i = 0;
+    while (i < map->height)
+    {
+        path.temp_map[i] = ft_strdup(map->grid[i]);
+        j = 0;
+        while (j < map->width)
+        {
+            // Guardar las coordenadas del jugador correctamente
+            if (map->grid[i][j] == 'P')
+            {
+                path.player_x = i;  // Coordenada Y (fila)
+                path.player_y = j;  // Coordenada X (columna)
+            }
+            j++;
+        }
+        i++;
+    }
 
-    map_info.map = path.temp_map;
-    map_info.height = map->height;
-    map_info.width = map->width;
+    // Ejecutar flood fill y verificar objetivos
+    execute_flood_fill(&path, map);
+    result = check_reachable_objectives(map, path.temp_map);
 
-    find_player(map, &path.player_x, &path.player_y);
-    flood_fill(&map_info, path.player_x, path.player_y);
-
-    path.valid = check_reachable_objectives(map, path.temp_map);
-
+    // Liberar memoria
     free_temp_map(path.temp_map, map->height);
 
-    if (!path.valid)
-        ft_error("No hay un camino válido para completar el nivel");
-    return (path.valid);
+    return (result);
 }
 // check_reachable_objectives recorre el mapa original y verifica en la copia temporal (tras el flood fill)
 // que cada objetivo (coleccionable 'C' o salida 'E') haya sido visitado (marcado con 'F').
@@ -203,13 +220,14 @@ void    check_map_size(t_map *map)
 }
 
 void	validate_map_complete(t_map *map)
-{
+{  // Verifica la extensión del archivo
 	check_empty_map(map);     // Verifica que el mapa no esté vacío
 	check_map_size(map);      // Verifica dimensiones mínimas y máximas
 	check_recta(map);         // Verifica que sea rectangular
 	check_wall(map);          // Verifica las paredes
 	check_map(map);           // Cuenta elementos (P, E, C)
-	check_map_char(map);      // Verifica cantidad correcta de elementos
+	check_map_char(map); 
+    save_exit_position(map);    // Verifica cantidad correcta de elementos
 	if (!check_path(map))     // Verifica que exista un camino válido
 		ft_error("No hay un camino válido para completar el nivel");
 }

@@ -30,6 +30,7 @@ typedef struct s_images
     mlx_image_t	*cocheMax_img;
     mlx_image_t	*grada_img;
     mlx_image_t  *player_img;
+    mlx_image_t  *exit_img;    // Imagen de la salida
     int         num_cascos;    // Número de cascos en el mapa
 }               t_images;
 
@@ -106,6 +107,7 @@ void			check_recta(t_map *map);
 void			check_extension(char *filename);
 void			find_player(t_map *map, int *p_x, int *p_y);
 char			**copy_map(t_map *map);
+void	        execute_flood_fill(t_path *path, t_map *map);
 void			flood_fill(t_map_info *map_info, int x, int y);
 int				check_path(t_map *map);
 void			check_file(char *filename);
@@ -126,8 +128,8 @@ void			cleanup_images(t_game *game);
 void			print_map(t_game *game);
 void	check_collectible(t_game *game, int x, int y);
 void    save_exit_position(t_map *map);
-int check_reachable_objectives(t_map *map, char **temp_map);
-void    validate_complete_map(t_map *map);
+int     check_reachable_objectives(t_map *map, char **temp_map);
+void	validate_map_complete(t_map *map);
 
 /* vale esto es */
 int				open_map_file(char *filename);

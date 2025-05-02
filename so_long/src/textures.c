@@ -17,7 +17,6 @@ mlx_image_t	*load_xpm_image(mlx_t *mlx, const char *file_path)
 	mlx_texture_t	*texture;
 	mlx_image_t		*img;
 
-	printf("Cargando imagen: %s\n", file_path);
 	texture = mlx_load_png(file_path);
 	if (!texture)
 	{
@@ -42,26 +41,16 @@ void    load_textures(t_game *game)
     game->images.asfalto_img = load_xpm_image(game->mlx, "./xpm/asfalto.png");
     game->images.grada_img = load_xpm_image(game->mlx, "./xpm/grada.png");
     game->images.cocheMax_img = load_xpm_image(game->mlx, "./xpm/cocheMax.png");
+	game->images.exit_img = load_xpm_image(game->mlx, "./xpm/salida.png");
+    if (!game->images.exit_img)
+        ft_error("No se pudo cargar la textura de la salida");
     
     if (!game->images.asfalto_img || !game->images.grada_img || 
         !game->images.cocheMax_img)
         ft_error("Error al cargar las texturas");
 }
 
-/*
-void	load_textures(t_game *game)
-{
-	game->images.asfalto_img = load_xpm_image(game->mlx, "xpm/asfalto.xpm");
-	if (!game->images.asfalto_img)
-	ft_error("Error al cargar asfalto.xpm");
-	game->images.cocheMax_img = load_xpm_image(game->mlx, "xpm/cocheMax.xpm");
-	if (!game->images.cocheMax_img)
-	ft_error("Error al cargar cocheMax.xpm");
-	game->images.casco_img = load_xpm_image(game->mlx, "xpm/cascoMax.xpm");
-	if (!game->images.casco_img)
-	ft_error("Error al cargar cascoMax.xpm");
-}
-*/
+
 
 void	print_map(t_game *game)
 {
@@ -76,37 +65,6 @@ void	print_map(t_game *game)
 	}
 }
 
-/*
-void	render_map(t_game *game)
-{
-	size_t	y;
-	size_t	x;
-	
-	y = 0;
-	if (!game->map.grid)
-	return ;
-	while (game->map.grid[y])
-	{
-		x = 0;
-		while (game->map.grid[y][x])
-		{
-			mlx_image_to_window(game->mlx, game->images.asfalto_img, x
-			* TILE_SIZE, y * TILE_SIZE);
-			if (game->map.grid[y][x] == '1')
-			mlx_image_to_window(game->mlx, game->images.grada_img, x
-			* TILE_SIZE, y * TILE_SIZE);
-			else if (game->map.grid[y][x] == 'P')
-			mlx_image_to_window(game->mlx, game->images.cocheMax_img, x
-			* TILE_SIZE, y * TILE_SIZE);
-			else if (game->map.grid[y][x] == 'C')
-			mlx_image_to_window(game->mlx, game->images.casco_img, x
-			* TILE_SIZE, y * TILE_SIZE);
-			x++;
-		}
-		y++;
-	}
-}
-*/
 void    render_static_map(t_game *game)
 {
     size_t  y;
@@ -151,11 +109,12 @@ void    render_static_map(t_game *game)
                     if (!game->images.casco_imgs[casco_index])
                         ft_error("Error al cargar imagen de casco");
                 }
-                printf("Cargando casco en posición (%zu, %zu)\n", x, y);
                 
                 mlx_image_to_window(game->mlx, game->images.casco_imgs[casco_index], x * TILE_SIZE, y * TILE_SIZE);
                 casco_index++;
             }
+			else if (game->map.grid[y][x] == 'E')
+			mlx_image_to_window(game->mlx, game->images.exit_img, x * TILE_SIZE, y * TILE_SIZE);
             x++;
         }
         y++;

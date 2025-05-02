@@ -43,26 +43,34 @@ char	**copy_map(t_map *map)
 }
 
 // Función de flood fill para validar caminos en el mapa
-void	flood_fill(t_map_info *map_info, int x, int y)
+// Función de flood fill para validar caminos en el mapa
+void flood_fill(t_map_info *map_info, int y, int x)
 {
-	if (x < 0 || y < 0 || x >= map_info->height || y >= map_info->width
-		|| map_info->map[x][y] == '1' || map_info->map[x][y] == 'F')
-		return ;
-	map_info->map[x][y] = 'F';
-	flood_fill(map_info, x + 1, y);
-	flood_fill(map_info, x - 1, y);
-	flood_fill(map_info, x, y + 1);
-	flood_fill(map_info, x, y - 1);
-	printf("floodfill\n");
+    // Verificar límites y obstáculos
+    if (y < 0 || x < 0 || y >= map_info->height || x >= map_info->width
+        || map_info->map[y][x] == '1' || map_info->map[y][x] == 'F')
+        return;
+    
+    // Marcar la casilla como visitada
+    map_info->map[y][x] = 'F';
+    
+    // Explorar en las cuatro direcciones
+    flood_fill(map_info, y + 1, x);  // Abajo
+    flood_fill(map_info, y - 1, x);  // Arriba
+    flood_fill(map_info, y, x + 1);  // Derecha
+    flood_fill(map_info, y, x - 1);  // Izquierda
 }
 
 // Ejecutar flood fill con la estructura t_map_info
-void	execute_flood_fill(t_path *path, t_map *map)
+// Ejecutar flood fill con la estructura t_map_info
+void execute_flood_fill(t_path *path, t_map *map)
 {
-	t_map_info	map_info;
+    t_map_info map_info;
 
-	map_info.map = path->temp_map;
-	map_info.height = map->height;
-	map_info.width = map->width;
-	flood_fill(&map_info, path->player_x, path->player_y);
+    map_info.map = path->temp_map;
+    map_info.height = map->height;
+    map_info.width = map->width;
+    
+    // Asegurarse de que las coordenadas se pasen correctamente
+    flood_fill(&map_info, path->player_x, path->player_y);
 }

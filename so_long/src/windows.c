@@ -30,6 +30,8 @@ int	main(int argc, char **argv)
 	game.mlx = mlx_init(window_width, window_height, "Formula 1", 0);
 	if (!game.mlx)
 		ft_error("Error al inicializar MLX");
+	check_extension(argv[1]);
+	validate_map_complete(&game.map);
 	print_map(&game);
 	load_textures(&game);
 	render_static_map(&game);

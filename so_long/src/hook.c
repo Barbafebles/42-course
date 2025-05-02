@@ -17,8 +17,12 @@
 // Se acabam los coleccionables y mensaje de victoria
 void    check_exit(t_game *game, int x, int y)
 {
-    if (game->map.grid[y][x] == 'E')
-    {
+    printf("posicion x y del exit: %d %d\n", game->map.exit_x, game->map.exit_y);
+    printf("contenido de la posicion: %c\n", game->map.grid[y][x]);
+    if (x == game->map.exit_x && y == game->map.exit_y)
+    { 
+        printf("funcion exit ALCANZADO\n");
+    printf("coleccionables: %d\n", game->map.collectable);
         if (game->map.collectable == 0)
         {
             printf("\n¡Felicidades! Has completado el nivel en %d movimientos\n", game->moves);
@@ -37,6 +41,7 @@ void    move_player(t_game *game, int dx, int dy)
 {
     int new_x = game->player_x + dx;
     int new_y = game->player_y + dy;
+
     if (new_y >= 0 && new_y < (int)game->map.height
         && new_x >= 0 && new_x < (int)game->map.width
         && (game->map.grid[new_y][new_x] == '0'
@@ -46,8 +51,12 @@ void    move_player(t_game *game, int dx, int dy)
         char next_pos = game->map.grid[new_y][new_x];
         if (next_pos == 'C')
             check_collectible(game, new_x, new_y);
-        game->map.grid[game->player_y][game->player_x] = '0';
-        game->map.grid[new_y][new_x] = 'P';
+         // Restaurar la posición anterior del jugador
+        if (game->player_x == game->map.exit_x && game->player_y == game->map.exit_y)
+         game->map.grid[game->player_y][game->player_x] = 'E';
+        else
+         game->map.grid[game->player_y][game->player_x] = '0';
+        game->map.grid[new_y][new_x] = 'P'; // esto no estoy segura si es necesario
         game->player_x = new_x;
         game->player_y = new_y;
         if (game->images.player_img)
@@ -58,9 +67,10 @@ void    move_player(t_game *game, int dx, int dy)
         mlx_image_to_window(game->mlx, game->images.player_img,
             new_x * TILE_SIZE, new_y * TILE_SIZE);
         if (next_pos == 'E')
-        check_exit(game, new_x, new_y);
-        game->moves++;
+        {
+            check_exit(game, new_x, new_y);}
         printf("Movimientos realizados: %d\n", game->moves);
+        game->moves++;
     }
 }
 

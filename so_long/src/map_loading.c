@@ -44,6 +44,7 @@ int	init_map(t_map *map, char *filename)
 	map->grid = (char **)malloc(sizeof(char *) * (map->height + 1));
 	if (!map->grid)
 		return (0);
+    map->collectable = 0; // Inicializar collectable a cero
 	return (1);
 }
 
