@@ -6,14 +6,12 @@
 /*   By: bfebles- <bfebles-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/01 20:56:50 by bfebles-          #+#    #+#             */
-/*   Updated: 2025/05/01 20:12:48 by bfebles-         ###   ########.fr       */
+/*   Updated: 2025/05/02 17:29:00 by bfebles-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../so_long.h"
 
-// Lee cada línea del mapa desde el descriptor de archivo y la almacena en map->grid.
-// Si falla la lectura de alguna línea, libera las líneas ya leídas y retorna 0.
 int	load_map_lines(int fd, t_map *map)
 {
 	size_t	i;
@@ -35,7 +33,6 @@ int	load_map_lines(int fd, t_map *map)
 	return (1);
 }
 
-// Inicializa el mapa contando las líneas del archivo y reservando memoria para el grid.
 int	init_map(t_map *map, char *filename)
 {
 	map->height = count_lines(filename);
@@ -44,12 +41,10 @@ int	init_map(t_map *map, char *filename)
 	map->grid = (char **)malloc(sizeof(char *) * (map->height + 1));
 	if (!map->grid)
 		return (0);
-    map->collectable = 0; // Inicializar collectable a cero
+	map->collectable = 0;
 	return (1);
 }
 
-// Abre el archivo del mapa en modo lectura.
-// Si ocurre un error, se muestra un mensaje de error.
 int	open_map_file(char *filename)
 {
 	int	fd;
@@ -60,9 +55,6 @@ int	open_map_file(char *filename)
 	return (fd);
 }
 
-// Carga el mapa completo:
-// Abre el archivo, inicializa la estructura y lee línea a línea el contenido.
-// Finalmente, establece el ancho del mapa basado en la primera línea.
 int	load_map(char *filename, t_map *map)
 {
 	int	fd;
@@ -87,8 +79,7 @@ int	load_map(char *filename, t_map *map)
 	close(fd);
 	return (1);
 }
-// Cuenta la cantidad de líneas en el archivo del mapa leyendo bloques de datos.
-// Cada salto de línea incrementa el contador.
+
 size_t	count_lines(char *filename)
 {
 	int		fd;
@@ -119,8 +110,6 @@ size_t	count_lines(char *filename)
 	return (count);
 }
 
-// Lee una línea del archivo utilizando un buffer y retorna una cadena duplicada.
-// Si encuentra un salto de línea, marca el final de la línea y ajusta la posición del descriptor.
 char	*read_line(int fd)
 {
 	char	buffer[4096];
@@ -149,7 +138,7 @@ char	*read_line(int fd)
 	line = ft_strdup(buffer);
 	return (line);
 }
-// Libera la memoria reservada para el mapa, incluyendo cada línea almacenada.
+
 void	free_map(t_map *map)
 {
 	size_t	i;

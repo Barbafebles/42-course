@@ -6,7 +6,7 @@
 /*   By: bfebles- <bfebles-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/01 20:58:21 by bfebles-          #+#    #+#             */
-/*   Updated: 2025/05/01 21:14:53 by bfebles-         ###   ########.fr       */
+/*   Updated: 2025/05/02 20:09:09 by bfebles-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,8 +49,6 @@ void    load_textures(t_game *game)
         !game->images.cocheMax_img)
         ft_error("Error al cargar las texturas");
 }
-
-
 
 void	print_map(t_game *game)
 {

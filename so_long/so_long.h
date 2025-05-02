@@ -6,7 +6,7 @@
 /*   By: bfebles- <bfebles-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/02 11:12:50 by bfebles-          #+#    #+#             */
-/*   Updated: 2025/04/16 18:29:20 by bfebles-         ###   ########.fr       */
+/*   Updated: 2025/05/02 20:09:29 by bfebles-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,24 +15,23 @@
 
 # include "MLX42/MLX42.h"
 # include "libft/libft.h"
-// # include "get_next_line/get_next_line.h"
-# include <fcntl.h>  // Para open()
-# include <stdio.h>  // Para perror(), printf()
-# include <stdlib.h> // Para malloc(), free()
-# include <unistd.h> // Para read(), close()
+# include <fcntl.h>
+# include <stdio.h>
+# include <stdlib.h>
+# include <unistd.h>
 
 # define TILE_SIZE 64
 
 typedef struct s_images
 {
-    mlx_image_t	*asfalto_img;
-    mlx_image_t	**casco_imgs;  // Array de imágenes de coleccionables
-    mlx_image_t	*cocheMax_img;
-    mlx_image_t	*grada_img;
-    mlx_image_t  *player_img;
-    mlx_image_t  *exit_img;    // Imagen de la salida
-    int         num_cascos;    // Número de cascos en el mapa
-}               t_images;
+	mlx_image_t	*asfalto_img;
+	mlx_image_t	**casco_imgs;
+	mlx_image_t	*cocheMax_img;
+	mlx_image_t	*grada_img;
+	mlx_image_t	*player_img;
+	mlx_image_t	*exit_img;
+	int			num_cascos;
+}				t_images;
 
 typedef struct s_path
 {
@@ -55,38 +54,26 @@ typedef struct s_player
 
 typedef struct s_map
 {
-    char    **grid;
-    int     player;
-    int     exit;
-    int     collectable;
-    size_t  width;
-    size_t  height;
-    int     exit_x;     // Añadir estas dos líneas
-    int     exit_y;     // para las coordenadas de salida
-}           t_map;
+	char		**grid;
+	int			player;
+	int			exit;
+	int			collectable;
+	size_t		width;
+	size_t		height;
+	int			exit_x;
+	int			exit_y;
+}				t_map;
 
 typedef struct s_game
 {
-    mlx_t		*mlx;      /* Instancia de MLX42 */
-    t_map		map;       /* Información del mapa (incluye grid, dimensions, etc.) */
-    t_images	images;
-	int	player_x;
-	int player_y;
-    t_player	player;
-    int			moves;     /* Contador de movimientos */
-    // int			width;  
-    // int			height;
+	mlx_t		*mlx;
+	t_map		map;
+	t_images	images;
+	int			player_x;
+	int			player_y;
+	t_player	player;
+	int			moves;
 }				t_game;
-
-// typedef struct s_game
-// {
-// 	mlx_t		*mlx;   /* instancia de MLX42 */
-// 	char		**map;  /* matriz del mapa */
-// 	int			width;  /* ancho del mapa */
-// 	int			height;
-// 	t_images	images;
-// 	t_player	player;
-// }	t_game;
 
 typedef struct s_path_check
 {
@@ -98,45 +85,54 @@ typedef struct s_path_check
 	int			valid;
 }				t_path_check;
 
-// acomodar por archivos para no perderme
+/* error_handling */
 void			check_char(int i);
+void			check_file(char *filename);
+void			check_empty_map(t_map *map);
+void			check_extension(char *filename);
+void			find_player(t_map *map, int *p_x, int *p_y);
+
+/* hook */
+void			check_exit(t_game *game, int x, int y);
+void			move_player(t_game *game, int dx, int dy); // 25
+void			key_hook(mlx_key_data_t keydata, void *param);
+
+/* map_loading */
+int				load_map_lines(int fd, t_map *map);
+int				init_map(t_map *map, char *filename);
+int				open_map_file(char *filename);
+int				load_map(char *filename, t_map *map);
+size_t			count_lines(char *filename); // 25 
+char			*read_line(int fd);
+void			free_map(t_map *map);
+
+/* map_validation */
 void			check_map(t_map *map);
 void			check_map_char(t_map *map);
 void			check_wall(t_map *map);
 void			check_recta(t_map *map);
-void			check_extension(char *filename);
-void			find_player(t_map *map, int *p_x, int *p_y);
+int				check_path(t_map *map); // 25 
+int				check_reachable_objectives(t_map *map, char **temp_map);
+void			save_exit_position(t_map *map);
+void			free_temp_map(char **temp_map, size_t height);
+void			check_map_size(t_map *map);
+void			validate_map_complete(t_map *map);
+
+/* path_finding */
 char			**copy_map(t_map *map);
-void	        execute_flood_fill(t_path *path, t_map *map);
 void			flood_fill(t_map_info *map_info, int x, int y);
-int				check_path(t_map *map);
-void			check_file(char *filename);
-void			check_empty_map(t_map *map);
-int				load_map(char *filename, t_map *map);
-void			free_map(t_map *map);
-void			ft_error(const char *msg);
-char			*read_line(int fd);
-size_t			count_lines(char *filename);
-/* texture */
+void			execute_flood_fill(t_path *path, t_map *map);
+
+/* textures */
 mlx_image_t		*load_xpm_image(mlx_t *mlx, const char *file_path);
 void			load_textures(t_game *game);
-// void			render_map(t_game *game);
-void	render_static_map(t_game *game);
-void	init_player_image(t_game *game);
-void	move_player(t_game *game, int dx, int dy);
-void			cleanup_images(t_game *game);
 void			print_map(t_game *game);
-void	check_collectible(t_game *game, int x, int y);
-void    save_exit_position(t_map *map);
-int     check_reachable_objectives(t_map *map, char **temp_map);
-void	validate_map_complete(t_map *map);
+void	render_static_map(t_game *game); // 25
+void			init_player_image(t_game *game);
+void			cleanup_images(t_game *game);
 
-/* vale esto es */
-int				open_map_file(char *filename);
-int				init_map(t_map *map, char *filename);
-int				load_map_lines(int fd, t_map *map);
-/* Hooks */
-void	key_hook(mlx_key_data_t keydata, void *param);
-void    check_map_size(t_map *map);
-void    free_temp_map(char **temp_map, size_t height);
+/* utils */
+void			ft_error(const char *msg);
+void			check_collectible(t_game *game, int x, int y); // 25 
+
 #endif
