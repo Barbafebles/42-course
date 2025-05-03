@@ -6,7 +6,7 @@
 /*   By: bfebles- <bfebles-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/01 20:58:57 by bfebles-          #+#    #+#             */
-/*   Updated: 2025/04/16 18:20:28 by bfebles-         ###   ########.fr       */
+/*   Updated: 2025/05/03 12:24:52 by bfebles-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,5 @@ int	main(int argc, char **argv)
 	init_player_image(&game);
 	mlx_key_hook(game.mlx, key_hook, &game);
 	mlx_loop(game.mlx);
-	cleanup_images(&game);
 	return (0);
 }

@@ -30,13 +30,22 @@ LIBFT_LIB = $(LIBFT_PATH)/libft.a
 LIBFT_INCLUDE = -I $(LIBFT_PATH)
 
 SRC = 	src/error_handling.c \
-		src/map_loading.c \
-		src/map_validation.c \
+		src/map_load.c \
+		src/map_file.c \
+		src/map_count.c \
+		src/map_validate_basic.c \
+		src/map_validate_path.c \
+		src/map_validate_size.c \
+		src/validate_map_complete.c \
 		src/path_finding.c \
 		src/utils.c \
 		src/windows.c \
 		src/textures.c \
+		src/render_map.c \
+		src/render_utils.c \
 		src/hook.c \
+		src/movement.c\
+
 
 OBJ = $(SRC:.c=.o) 
 

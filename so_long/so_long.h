@@ -6,7 +6,7 @@
 /*   By: bfebles- <bfebles-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/02 11:12:50 by bfebles-          #+#    #+#             */
-/*   Updated: 2025/05/02 20:09:29 by bfebles-         ###   ########.fr       */
+/*   Updated: 2025/05/03 12:29:59 by bfebles-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ typedef struct s_images
 {
 	mlx_image_t	*asfalto_img;
 	mlx_image_t	**casco_imgs;
-	mlx_image_t	*cocheMax_img;
+	mlx_image_t	*cochemax_img;
 	mlx_image_t	*grada_img;
 	mlx_image_t	*player_img;
 	mlx_image_t	*exit_img;
@@ -49,7 +49,7 @@ typedef struct s_player
 {
 	int			x;
 	int			y;
-	int count; /* movimientos */
+	int			count;
 }				t_player;
 
 typedef struct s_map
@@ -85,54 +85,68 @@ typedef struct s_path_check
 	int			valid;
 }				t_path_check;
 
-/* error_handling */
+/* error_handling OK */
 void			check_char(int i);
 void			check_file(char *filename);
 void			check_empty_map(t_map *map);
 void			check_extension(char *filename);
 void			find_player(t_map *map, int *p_x, int *p_y);
 
-/* hook */
+/* hook OK */
 void			check_exit(t_game *game, int x, int y);
-void			move_player(t_game *game, int dx, int dy); // 25
 void			key_hook(mlx_key_data_t keydata, void *param);
 
-/* map_loading */
+/* map_load OK*/
 int				load_map_lines(int fd, t_map *map);
 int				init_map(t_map *map, char *filename);
-int				open_map_file(char *filename);
 int				load_map(char *filename, t_map *map);
-size_t			count_lines(char *filename); // 25 
+
+/* map_count OK*/
+size_t			count_lines(char *filename);
+
+/* map_file OK*/
+int				open_map_file(char *filename);
 char			*read_line(int fd);
 void			free_map(t_map *map);
 
-/* map_validation */
+/* map_validate_basic OK*/
 void			check_map(t_map *map);
 void			check_map_char(t_map *map);
 void			check_wall(t_map *map);
 void			check_recta(t_map *map);
-int				check_path(t_map *map); // 25 
-int				check_reachable_objectives(t_map *map, char **temp_map);
-void			save_exit_position(t_map *map);
-void			free_temp_map(char **temp_map, size_t height);
+
+/* map_validate_size OK*/
 void			check_map_size(t_map *map);
+void			save_exit_position(t_map *map);
+
+/* map_validate_path OK*/
+int				check_path(t_map *map);
+
+/* map_validate_complete OK*/
 void			validate_map_complete(t_map *map);
 
-/* path_finding */
+/* movement OK*/
+void			move_player(t_game *game, int dx, int dy);
+
+/* path_finding OK*/
 char			**copy_map(t_map *map);
 void			flood_fill(t_map_info *map_info, int x, int y);
 void			execute_flood_fill(t_path *path, t_map *map);
 
-/* textures */
+/* textures OK*/
 mlx_image_t		*load_xpm_image(mlx_t *mlx, const char *file_path);
 void			load_textures(t_game *game);
-void			print_map(t_game *game);
-void	render_static_map(t_game *game); // 25
-void			init_player_image(t_game *game);
 void			cleanup_images(t_game *game);
+
+/* render_utils OK*/
+void			print_map(t_game *game);
+void			init_player_image(t_game *game);
+
+/* render map OK*/
+void			render_static_map(t_game *game);
 
 /* utils */
 void			ft_error(const char *msg);
-void			check_collectible(t_game *game, int x, int y); // 25 
+void			check_collectible(t_game *game, int x, int y);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: bfebles- <bfebles-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/01 20:57:57 by bfebles-          #+#    #+#             */
-/*   Updated: 2025/05/02 17:35:59 by bfebles-         ###   ########.fr       */
+/*   Updated: 2025/05/03 12:05:22 by bfebles-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ char	**copy_map(t_map *map)
 		if (!copy[i])
 		{
 			i--;
-			while (i != (size_t)-1)
+			while (i != (size_t) - 1)
 			{
 				free(copy[i]);
 				i--;
