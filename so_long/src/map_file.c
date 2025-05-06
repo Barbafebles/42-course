@@ -6,7 +6,7 @@
 /*   By: bfebles- <bfebles-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/02 20:58:17 by bfebles-          #+#    #+#             */
-/*   Updated: 2025/05/02 22:07:48 by bfebles-         ###   ########.fr       */
+/*   Updated: 2025/05/05 20:38:18 by bfebles-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,17 +62,20 @@ char	*read_line(int fd)
 	return (line);
 }
 
-void	free_map(t_map *map)
+void free_map(t_map *map)
 {
-	size_t	i;
+    size_t i;
 
-	if (!map->grid)
-		return ;
-	i = 0;
-	while (i < map->height)
-	{
-		free(map->grid[i]);
-		i++;
-	}
-	free(map->grid);
+    if (map->grid == NULL)
+        return ;
+    i = 0;
+    while (i < map->height)
+    {
+        free(map->grid[i]);
+        i++;
+    }
+    free(map->grid);
+    map->grid = NULL;
+    map->height = 0;
+    map->width  = 0;
 }

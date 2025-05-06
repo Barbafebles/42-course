@@ -16,11 +16,11 @@ void	print_map(t_game *game)
 {
 	size_t	y;
 
-	printf("Mapa:\n");
+	ft_printf("Mapa:\n");
 	y = 0;
 	while (game->map.grid[y] != NULL)
 	{
-		printf("%s\n", game->map.grid[y]);
+		ft_printf("%s\n", game->map.grid[y]);
 		y++;
 	}
 }

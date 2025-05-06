@@ -89,5 +89,5 @@ void	render_static_map(t_game *game)
 {
 	prepare_casco_array(game);
 	draw_tiles(game);
-	printf("Total de cascos cargados: %d\n", game->images.num_cascos);
+	ft_printf("Total de cascos cargados: %d\n", game->images.num_cascos);
 }

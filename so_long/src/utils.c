@@ -34,9 +34,9 @@ static void	handle_collectible_at_index(t_game *game, int idx, int y, int x)
 	game->images.casco_imgs[idx] = NULL;
 	game->map.grid[y][x] = '0';
 	game->map.collectable--;
-	printf("¡Casco recogido! Quedan: %d\n", game->map.collectable);
+	ft_printf("¡Casco recogido! Quedan: %d\n", game->map.collectable);
 	if (game->map.collectable == 0)
-		printf("\n¡Has recogido todos los cascos! Dirígete a la salida.\n");
+		ft_printf("\n¡Has recogido todos los cascos! Dirígete a la salida.\n");
 }
 
 void	check_collectible(t_game *game, int x, int y)

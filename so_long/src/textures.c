@@ -20,7 +20,7 @@ mlx_image_t	*load_xpm_image(mlx_t *mlx, const char *file_path)
 	texture = mlx_load_png(file_path);
 	if (texture == NULL)
 	{
-		printf("Error: No se pudo cargar %s\n", file_path);
+		ft_printf("Error: No se pudo cargar %s\n", file_path);
 		ft_error("Error al cargar imagen");
 	}
 	img = mlx_texture_to_image(mlx, texture);

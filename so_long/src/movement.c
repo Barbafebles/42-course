@@ -46,7 +46,7 @@ static void	finish_move(t_game *g, int x, int y, char next)
 {
 	if (next == 'E')
 		check_exit(g, x, y);
-	printf("Movimientos realizados: %d\n", g->moves);
+	ft_printf("Movimientos realizados: %d\n", g->moves);
 	g->moves++;
 }
 

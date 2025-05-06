@@ -43,7 +43,7 @@ void	check_map(t_map *map)
 	map->collectable = 0;
 	map->exit = 0;
 	count_elements(map);
-	printf("Collectables: %d\n", map->collectable);
+	ft_printf("Collectables: %d\n", map->collectable);
 }
 
 void	check_map_char(t_map *map)
