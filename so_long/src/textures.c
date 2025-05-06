@@ -6,7 +6,7 @@
 /*   By: bfebles- <bfebles-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/01 20:58:21 by bfebles-          #+#    #+#             */
-/*   Updated: 2025/05/03 12:32:12 by bfebles-         ###   ########.fr       */
+/*   Updated: 2025/05/06 18:48:38 by bfebles-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,14 +20,14 @@ mlx_image_t	*load_xpm_image(mlx_t *mlx, const char *file_path)
 	texture = mlx_load_png(file_path);
 	if (texture == NULL)
 	{
-		ft_printf("Error: No se pudo cargar %s\n", file_path);
-		ft_error("Error al cargar imagen");
+		ft_printf("Error: Could not load %s\n", file_path);
+		ft_error("Error loading image");
 	}
 	img = mlx_texture_to_image(mlx, texture);
 	if (img == NULL)
 	{
 		mlx_delete_texture(texture);
-		ft_error("Error al convertir textura a imagen");
+		ft_error("Error converting texture to image");
 	}
 	mlx_delete_texture(texture);
 	return (img);
@@ -43,7 +43,7 @@ void	load_textures(t_game *game)
 	game->images.exit_img = load_xpm_image(game->mlx, "./xpm/salida.png");
 	if (game->images.asfalto_img == NULL || game->images.grada_img == NULL
 		|| game->images.cochemax_img == NULL)
-		ft_error("Error al cargar las texturas");
+		ft_error("Error loading textures");
 }
 
 void	cleanup_images(t_game *game)

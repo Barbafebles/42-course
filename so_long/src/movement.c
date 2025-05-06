@@ -6,7 +6,7 @@
 /*   By: bfebles- <bfebles-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/02 20:28:19 by bfebles-          #+#    #+#             */
-/*   Updated: 2025/05/03 12:30:17 by bfebles-         ###   ########.fr       */
+/*   Updated: 2025/05/06 17:50:05 by bfebles-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ static void	update_grid_and_image(t_game *g, int x, int y, char next)
 		mlx_delete_image(g->mlx, g->images.player_img);
 	g->images.player_img = load_xpm_image(g->mlx, "./xpm/cochemax.png");
 	if (!g->images.player_img)
-		ft_error("Error al cargar la imagen del jugador");
+		ft_error("Error loading player image");
 	mlx_image_to_window(g->mlx, g->images.player_img, x * TILE_SIZE, y
 		* TILE_SIZE);
 }
@@ -46,7 +46,7 @@ static void	finish_move(t_game *g, int x, int y, char next)
 {
 	if (next == 'E')
 		check_exit(g, x, y);
-	ft_printf("Movimientos realizados: %d\n", g->moves);
+	ft_printf("Movements made: %d\n", g->moves);
 	g->moves++;
 }
 

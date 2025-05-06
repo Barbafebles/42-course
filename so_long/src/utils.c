@@ -6,7 +6,7 @@
 /*   By: bfebles- <bfebles-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/01 20:58:34 by bfebles-          #+#    #+#             */
-/*   Updated: 2025/05/03 12:23:01 by bfebles-         ###   ########.fr       */
+/*   Updated: 2025/05/06 18:49:14 by bfebles-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,9 +34,9 @@ static void	handle_collectible_at_index(t_game *game, int idx, int y, int x)
 	game->images.casco_imgs[idx] = NULL;
 	game->map.grid[y][x] = '0';
 	game->map.collectable--;
-	ft_printf("¡Casco recogido! Quedan: %d\n", game->map.collectable);
+	ft_printf("¡Helmet collected! Remaining: %d\n", game->map.collectable);
 	if (game->map.collectable == 0)
-		ft_printf("\n¡Has recogido todos los cascos! Dirígete a la salida.\n");
+		ft_printf("\nYou have collected all the helmets! Head for the exit.\n");
 }
 
 void	check_collectible(t_game *game, int x, int y)

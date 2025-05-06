@@ -6,7 +6,7 @@
 /*   By: bfebles- <bfebles-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/01 20:57:27 by bfebles-          #+#    #+#             */
-/*   Updated: 2025/05/03 11:43:53 by bfebles-         ###   ########.fr       */
+/*   Updated: 2025/05/06 17:48:29 by bfebles-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ static void	count_elements(t_map *map)
 			else if (map->grid[x][y] == 'C')
 				map->collectable++;
 			else if (map->grid[x][y] != '0' && map->grid[x][y] != '1')
-				ft_error("Carácter inválido en el mapa");
+				ft_error("Invalid character on the map");
 			y++;
 		}
 		x++;
@@ -49,15 +49,15 @@ void	check_map(t_map *map)
 void	check_map_char(t_map *map)
 {
 	if (map->player == 0)
-		ft_error("No hay jugador en el mapa");
+		ft_error("No player on the map");
 	if (map->player > 1)
-		ft_error("Hay más de un jugador en el mapa");
+		ft_error("There is more than one player on the map");
 	if (map->exit == 0)
-		ft_error("No hay salida en el mapa");
+		ft_error("No exit on the map");
 	if (map->exit > 1)
-		ft_error("Hay más de una salida en el mapa");
+		ft_error("There is more than one exit on the map");
 	if (map->collectable < 1)
-		ft_error("No hay coleccionables en el mapa");
+		ft_error("There are no collectibles on the map");
 }
 
 void	check_wall(t_map *map)
@@ -69,14 +69,14 @@ void	check_wall(t_map *map)
 	while (x < map->width)
 	{
 		if (map->grid[0][x] != '1' || map->grid[map->height - 1][x] != '1')
-			ft_error("Error pared");
+			ft_error("Wall error");
 		x++;
 	}
 	y = 0;
 	while (y < map->height)
 	{
 		if (map->grid[y][0] != '1' || map->grid[y][map->width - 1] != '1')
-			ft_error("Error pared");
+			ft_error("Wall error");
 		y++;
 	}
 }
@@ -91,7 +91,7 @@ void	check_recta(t_map *map)
 	while (i < map->height)
 	{
 		if (ft_strlen(map->grid[i]) != len)
-			ft_error("El mapa no es rectangular");
+			ft_error("The map is not rectangular");
 		i++;
 	}
 }

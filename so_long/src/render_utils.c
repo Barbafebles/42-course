@@ -6,7 +6,7 @@
 /*   By: bfebles- <bfebles-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/03 12:12:05 by bfebles-          #+#    #+#             */
-/*   Updated: 2025/05/06 12:22:07 by bfebles-         ###   ########.fr       */
+/*   Updated: 2025/05/06 17:55:17 by bfebles-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	print_map(t_game *game)
 {
 	size_t	y;
 
-	ft_printf("Mapa:\n");
+	ft_printf("Map:\n");
 	y = 0;
 	while (game->map.grid[y] != NULL)
 	{
@@ -43,7 +43,7 @@ void	init_player_image(t_game *game)
 				game->images.player_img = load_xpm_image(game->mlx,
 						"./xpm/cochemax.png");
 				if (!game->images.player_img)
-					ft_error("Error al cargar la imagen del jugador");
+					ft_error("Error loading player image");
 				mlx_image_to_window(game->mlx, game->images.player_img, x
 					* TILE_SIZE, y * TILE_SIZE);
 				return ;

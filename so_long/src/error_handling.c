@@ -6,7 +6,7 @@
 /*   By: bfebles- <bfebles-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/01 20:52:22 by bfebles-          #+#    #+#             */
-/*   Updated: 2025/05/05 19:20:45 by bfebles-         ###   ########.fr       */
+/*   Updated: 2025/05/06 17:43:49 by bfebles-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void	check_char(int i)
 {
 	if (!(ft_strchr("01PEC", i)))
-		ft_error("caracter no existe\n");
+		ft_error("character does not exist\n");
 }
 
 void	check_file(char *filename)
@@ -24,14 +24,14 @@ void	check_file(char *filename)
 
 	fd = open(filename, O_RDONLY);
 	if (fd < 0)
-		ft_error("No se puede abrir el archivo");
+		ft_error("Unable to open the file");
 	close(fd);
 }
 
 void	check_empty_map(t_map *map)
 {
 	if (map->height == 0 || map->width == 0)
-		ft_error("El mapa está vacío");
+		ft_error("The map is empty");
 }
 
 void	check_extension(char *filename)
@@ -41,7 +41,7 @@ void	check_extension(char *filename)
 	len = ft_strlen(filename);
 	if (len < 4 || ft_strncmp(&filename[len - 4], ".ber", 4) != 0)
 	{
-		ft_error("la extension del mapa no es la correcta.");
+		ft_error("the map extension is not correct");
 	}
 }
 

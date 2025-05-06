@@ -6,7 +6,7 @@
 /*   By: bfebles- <bfebles-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/01 20:58:57 by bfebles-          #+#    #+#             */
-/*   Updated: 2025/05/06 14:13:12 by bfebles-         ###   ########.fr       */
+/*   Updated: 2025/05/06 17:41:54 by bfebles-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,15 +16,15 @@ static void	setup_game(int argc, char **argv, t_game *game)
 {
 	if (argc != 2)
 	{
-		ft_printf("Uso: %s <mapa.ber>\n", argv[0]);
+		ft_printf("Usage: %s <mapa.ber>\n", argv[0]);
 		exit(EXIT_FAILURE);
 	}
 	if (!load_map(argv[1], &game->map))
-		ft_error("Error al cargar el mapa");
+		ft_error("Error loading map");
 	game->mlx = mlx_init(game->map.width * TILE_SIZE, game->map.height
 			* TILE_SIZE, "Formula 1", 0);
 	if (!game->mlx)
-		ft_error("Error al inicializar MLX");
+		ft_error("Error initializing MLX");
 	check_extension(argv[1]);
 	validate_map_complete(&game->map);
 }

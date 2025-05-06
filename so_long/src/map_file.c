@@ -6,7 +6,7 @@
 /*   By: bfebles- <bfebles-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/02 20:58:17 by bfebles-          #+#    #+#             */
-/*   Updated: 2025/05/06 12:20:50 by bfebles-         ###   ########.fr       */
+/*   Updated: 2025/05/06 17:46:11 by bfebles-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ int	open_map_file(char *filename)
 
 	fd = open(filename, O_RDONLY);
 	if (fd < 0)
-		ft_error("Error al abrir el archivo del mapa");
+		ft_error("Error opening map file");
 	return (fd);
 }
 

@@ -6,7 +6,7 @@
 /*   By: bfebles- <bfebles-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/03 12:15:45 by bfebles-          #+#    #+#             */
-/*   Updated: 2025/05/03 12:31:40 by bfebles-         ###   ########.fr       */
+/*   Updated: 2025/05/06 17:55:00 by bfebles-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ static void	prepare_casco_array(t_game *game)
 	game->images.num_cascos = count;
 	game->images.casco_imgs = malloc(sizeof(mlx_image_t *) * (count + 1));
 	if (game->images.casco_imgs == NULL)
-		ft_error("Error al asignar memoria para cascos");
+		ft_error("Error when allocating memory for hulls");
 }
 
 static void	draw_collectible_tile(t_game *game, size_t x, size_t y, size_t *idx)
@@ -42,7 +42,7 @@ static void	draw_collectible_tile(t_game *game, size_t x, size_t y, size_t *idx)
 	game->images.casco_imgs[*idx] = load_xpm_image(game->mlx,
 			"./xpm/cascomax_64.png");
 	if (game->images.casco_imgs[*idx] == NULL)
-		ft_error("Error al cargar imagen de casco");
+		ft_error("Error loading helmet image");
 	mlx_image_to_window(game->mlx, game->images.casco_imgs[*idx], x * TILE_SIZE,
 		y * TILE_SIZE);
 	(*idx)++;
@@ -89,5 +89,5 @@ void	render_static_map(t_game *game)
 {
 	prepare_casco_array(game);
 	draw_tiles(game);
-	ft_printf("Total de cascos cargados: %d\n", game->images.num_cascos);
+	ft_printf("Total hulls loaded: %d\n", game->images.num_cascos);
 }
