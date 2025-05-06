@@ -6,7 +6,7 @@
 /*   By: bfebles- <bfebles-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/07 19:03:16 by bfebles-          #+#    #+#             */
-/*   Updated: 2025/05/05 20:43:15 by bfebles-         ###   ########.fr       */
+/*   Updated: 2025/05/06 12:20:02 by bfebles-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,8 @@ void	check_exit(t_game *game, int x, int y)
 		ft_printf("coleccionables: %d\n", game->map.collectable);
 		if (game->map.collectable == 0)
 		{
-			ft_printf("\n¡Felicidades! Has completado el nivel %d\n", game->moves);
+			ft_printf("\n¡Felicidades! Has completado el nivel %d\n",
+				game->moves);
 			mlx_close_window(game->mlx);
 		}
 		else
@@ -30,7 +31,7 @@ void	check_exit(t_game *game, int x, int y)
 
 void	key_hook(mlx_key_data_t keydata, void *param)
 {
-	t_game *game;
+	t_game	*game;
 
 	game = (t_game *)param;
 	if (keydata.action != MLX_PRESS)
@@ -49,6 +50,3 @@ void	key_hook(mlx_key_data_t keydata, void *param)
 	else if (keydata.key == MLX_KEY_D || keydata.key == MLX_KEY_RIGHT)
 		move_player(game, 1, 0);
 }
-
-//  valgrind --leak-check=full --show-leak-kinds=definite ./so_long Maps/map.ber
-

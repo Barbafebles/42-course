@@ -6,7 +6,7 @@
 /*   By: bfebles- <bfebles-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/02 11:12:50 by bfebles-          #+#    #+#             */
-/*   Updated: 2025/05/05 19:25:10 by bfebles-         ###   ########.fr       */
+/*   Updated: 2025/05/06 12:23:13 by bfebles-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 # include "MLX42/include/MLX42/MLX42.h"
 # include "libft/libft.h"
-#include "ft_printf/ft_printf.h"
+# include "ft_printf/ft_printf.h"
 # include <fcntl.h>
 # include <stdio.h>
 # include <stdlib.h>

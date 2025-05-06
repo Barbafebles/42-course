@@ -6,7 +6,7 @@
 /*   By: bfebles- <bfebles-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/01 20:58:57 by bfebles-          #+#    #+#             */
-/*   Updated: 2025/05/05 20:29:25 by bfebles-         ###   ########.fr       */
+/*   Updated: 2025/05/06 12:17:41 by bfebles-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,8 @@ static void	setup_game(int argc, char **argv, t_game *game)
 	}
 	if (!load_map(argv[1], &game->map))
 		ft_error("Error al cargar el mapa");
-	game->mlx = mlx_init(game->map.width * TILE_SIZE,
-	                    game->map.height * TILE_SIZE,
-	                    "Formula 1", 0);
+	game->mlx = mlx_init(game->map.width * TILE_SIZE, game->map.height
+			* TILE_SIZE, "Formula 1", 0);
 	if (!game->mlx)
 		ft_error("Error al inicializar MLX");
 	check_extension(argv[1]);
@@ -32,8 +31,9 @@ static void	setup_game(int argc, char **argv, t_game *game)
 
 int	main(int argc, char **argv)
 {
-	t_game	game = {0};
+	t_game	game;
 
+	game = {0};
 	setup_game(argc, argv, &game);
 	print_map(&game);
 	load_textures(&game);
