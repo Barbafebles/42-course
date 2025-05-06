@@ -6,7 +6,7 @@
 /*   By: bfebles- <bfebles-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/01 20:58:57 by bfebles-          #+#    #+#             */
-/*   Updated: 2025/05/06 12:17:41 by bfebles-         ###   ########.fr       */
+/*   Updated: 2025/05/06 14:13:12 by bfebles-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ int	main(int argc, char **argv)
 {
 	t_game	game;
 
-	game = {0};
+	ft_bzero(&game, sizeof(t_game));
 	setup_game(argc, argv, &game);
 	print_map(&game);
 	load_textures(&game);
