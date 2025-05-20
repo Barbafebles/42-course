@@ -6,7 +6,7 @@
 /*   By: bfebles- <bfebles-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/02 20:28:19 by bfebles-          #+#    #+#             */
-/*   Updated: 2025/05/06 17:50:05 by bfebles-         ###   ########.fr       */
+/*   Updated: 2025/05/20 15:44:51 by bfebles-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,8 +46,8 @@ static void	finish_move(t_game *g, int x, int y, char next)
 {
 	if (next == 'E')
 		check_exit(g, x, y);
-	ft_printf("Movements made: %d\n", g->moves);
 	g->moves++;
+	ft_printf("Movements made: %d\n", g->moves);
 }
 
 void	move_player(t_game *game, int dx, int dy)
