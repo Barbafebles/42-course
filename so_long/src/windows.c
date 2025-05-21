@@ -6,7 +6,7 @@
 /*   By: bfebles- <bfebles-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/01 20:58:57 by bfebles-          #+#    #+#             */
-/*   Updated: 2025/05/20 17:19:20 by bfebles-         ###   ########.fr       */
+/*   Updated: 2025/05/20 18:14:51 by bfebles-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ static void	setup_game(int argc, char **argv, t_game *game)
 {
 	if (argc != 2)
 	{
-		ft_printf("Usage: %s <mapa.ber>\n", argv[0]);
+		ft_printf("Usage: %s <map.ber>\n", argv[0]);
 		exit(EXIT_FAILURE);
 	}
 	if (!load_map(argv[1], &game->map))
@@ -34,7 +34,6 @@ int	main(int argc, char **argv)
 	t_game	game;
 
 	ft_bzero(&game, sizeof(t_game));
-	
 	setup_game(argc, argv, &game);
 	print_map(&game);
 	load_textures(&game);
@@ -45,6 +44,5 @@ int	main(int argc, char **argv)
 	cleanup_images(&game);
 	free_map(&game.map);
 	mlx_terminate(game.mlx);
-	free(game.mlx);
 	return (0);
 }
