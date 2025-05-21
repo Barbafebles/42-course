@@ -34,10 +34,13 @@ int	main(int argc, char **argv)
 
 	if (!is_stack_sorted(stack_a))
 	{
+		// Assign indices before choosing the sorting algorithm if stack is not sorted
+		assign_indices(stack_a); 
+		
 		if (stack_a->size <= 5)
 			sort_small(stack_a, stack_b, stack_a->size);
 		else
-			counting_sort(stack_a, stack_b);
+			radix_sort(stack_a, stack_b); // Use radix_sort for larger stacks
 	}
 
 	free_stack(stack_a);

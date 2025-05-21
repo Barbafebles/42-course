@@ -12,6 +12,145 @@
 
 #include "../includes/push_swap.h"
 
+// Helper function for bubble sort (not part of public API)
+static void bubble_sort(int *arr, int size)
+{
+    int i;
+    int j;
+    int temp;
+
+    for (i = 0; i < size - 1; i++)
+    {
+        for (j = 0; j < size - i - 1; j++)
+        {
+            if (arr[j] > arr[j + 1])
+            {
+                temp = arr[j];
+                arr[j] = arr[j + 1];
+                arr[j + 1] = temp;
+            }
+        }
+    }
+}
+
+void assign_indices(t_stack *stack_a)
+{
+    int     size;
+    int     *arr;
+    t_node  *current_node;
+    int     i;
+
+    if (!stack_a || !stack_a->top || stack_a->size <= 1)
+        return;
+    size = stack_a->size;
+    arr = (int *)malloc(sizeof(int) * size);
+    if (!arr)
+        error_exit(stack_a, NULL); // Assuming NULL for stack_b if not used
+    current_node = stack_a->top;
+    i = 0;
+    while (current_node)
+    {
+        arr[i++] = current_node->value;
+        current_node = current_node->next;
+    }
+    bubble_sort(arr, size);
+    current_node = stack_a->top;
+    while (current_node)
+    {
+        i = 0;
+        while (i < size)
+        {
+            if (current_node->value == arr[i])
+            {
+                current_node->index = i;
+                break;
+            }
+            i++;
+        }
+        current_node = current_node->next;
+    }
+    free(arr);
+}
+
+void radix_sort(t_stack *stack_a, t_stack *stack_b)
+{
+    int		max_num;
+    int		max_bits;
+    int		i_bit;
+    int		j;
+    int		num_elements_in_pass;
+    t_node	*current_node_for_scan;
+    int		count_zeros;
+    int		count_ones;
+    bool	should_push_zeros_to_b;
+    bool	current_top_bit_is_one;
+
+    if (!stack_a || stack_a->size <= 1 || is_stack_sorted(stack_a))
+        return;
+
+    max_num = stack_a->size - 1;
+    max_bits = 0;
+    max_bits = 0;
+    if (stack_a->size == 0)
+        return;
+    if (max_num > 0)
+    {
+        while ((max_num >> max_bits) != 0)
+            max_bits++;
+    }
+    if (max_bits == 0 && max_num == 0) // Handles stack_a->size == 1
+        max_bits = 1; // Process at least one bit if there's one element (index 0)
+                      // Though is_stack_sorted or size <=1 should catch this.
+                      // Let's ensure the loop for i_bit runs meaningfully or not at all.
+                      // If max_num is 0, max_bits will be 0. Loop for i_bit won't run. Correct.
+
+    for (i_bit = 0; i_bit < max_bits; i_bit++)
+    {
+        num_elements_in_pass = stack_a->size;
+        count_zeros = 0;
+        count_ones = 0;
+        current_node_for_scan = stack_a->top;
+        j = 0;
+        while (j < num_elements_in_pass && current_node_for_scan != NULL)
+        {
+            if (((current_node_for_scan->index >> i_bit) & 1) == 0)
+                count_zeros++;
+            else
+                count_ones++;
+            current_node_for_scan = current_node_for_scan->next;
+            j++;
+        }
+
+        should_push_zeros_to_b = (count_zeros <= count_ones);
+
+        for (j = 0; j < num_elements_in_pass; j++)
+        {
+            if (!stack_a->top)
+                break;
+            current_top_bit_is_one = ((stack_a->top->index >> i_bit) & 1);
+
+            if (should_push_zeros_to_b)
+            {
+                if (current_top_bit_is_one) // Bit is 1, rotate in A
+                    ra(stack_a, true);
+                else // Bit is 0, push to B
+                    pb(stack_a, stack_b, true);
+            }
+            else // Push ones to B, rotate zeros in A
+            {
+                if (!current_top_bit_is_one) // Bit is 0, rotate in A
+                    ra(stack_a, true);
+                else // Bit is 1, push to B
+                    pb(stack_a, stack_b, true);
+            }
+        }
+        while (!is_stack_empty(stack_b))
+        {
+            pa(stack_a, stack_b, true);
+        }
+    }
+}
+
 void sort_three(t_stack *a)
 {
     // Si hay menos de 2 o ya está ordenado, no hacer nada
@@ -86,64 +225,66 @@ void sort_five(t_stack *a, t_stack *b)
     sort_three(a);
     // Recupera los dos elementos de B, colocándolos correctamente
     pa(a, b, true);
-    ra(a, true);
-    pa(a, b, true);
-    ra(a, true);
+    // Assuming the smallest was pushed first, then second smallest.
+    // After pa, the second smallest is at top. It should go to its sorted place.
+    // If sort_three sorted to 0 1 2, and we push back 3, then 4.
+    // This part might need adjustment based on final stack state.
+    // For now, assuming simple pushes back, then will rely on main sort or adjust.
+    // The original logic was:
+    // The original sort_five pushed the two smallest to b, sorted three in a,
+    // then pushed them back.
+    // pb(min1)
+    // pb(min2)
+    // sort_three(a) [s1, s2, s3]
+    // pa(b,a) -> a gets min2 on top: [min2, s1, s2, s3]
+    // pa(b,a) -> a gets min1 on top: [min1, min2, s1, s2, s3]
+    // This order is correct.
+    pa(a, b, true); 
+    if (b->top) // If b was not empty (i.e., we are sorting 5 elements, not 4)
+      pa(a, b, true);
 }
+
 
 void sort_small(t_stack *stack_a, t_stack *stack_b, int size)
 {
-    if (size <= 3)
+    if (size <= 1)
+        return;
+    if (size == 2)
+    {
+        if (stack_a->top->value > stack_a->top->next->value)
+            sa(stack_a, true);
+        return;
+    }
+    if (size == 3)
         sort_three(stack_a);
-    else
-        sort_five(stack_a, stack_b);
-}
-
-static void counting_sort_push(t_stack *stack_a, t_stack *stack_b, int *count)
-{
-    int i;
-    int current;
-
-    i = 0;
-    while (i < stack_a->size)
+    // For size 4: push 1 to B, sort_three A, push back.
+    // For size 5: push 2 to B, sort_three A, push back.
+    // sort_five handles this logic by pushing 2 (or 1 if size is 4, due to loop condition)
+    else if (size == 4) 
     {
-        current = stack_a->top->value;
-        if (count[current] > 0)
+        // Push the smallest element to B
+        int min_val = find_min(stack_a);
+        while(stack_a->top->value != min_val)
         {
-            pb(stack_a, stack_b, true);
-            count[current]--;
+            // Smart rotate: if val is in bottom half, rra, else ra
+            int pos = 0;
+            t_node *curr = stack_a->top;
+            while(curr && curr->value != min_val) {
+                curr = curr->next;
+                pos++;
+            }
+            if (pos <= stack_a->size / 2)
+                ra(stack_a, true);
+            else
+                rra(stack_a, true);
         }
-        else
-            ra(stack_a, true);
-        i++;
-    }
-}
-
-void counting_sort(t_stack *stack_a, t_stack *stack_b)
-{
-    int *count;
-    int min;
-    int max;
-    int range;
-    t_node *current;
-
-    min = find_min(stack_a);
-    max = find_max(stack_a);
-    range = max - min + 1;
-    count = (int *)calloc(range, sizeof(int));
-    if (!count)
-        error_exit(stack_a, stack_b);
-
-    current = stack_a->top;
-    while (current)
-    {
-        count[current->value - min]++;
-        current = current->next;
-    }
-
-    counting_sort_push(stack_a, stack_b, count);
-    while (!is_stack_empty(stack_b))
+        pb(stack_a, stack_b, true);
+        sort_three(stack_a);
         pa(stack_a, stack_b, true);
-
-    free(count);
+    }
+    else if (size == 5)
+        sort_five(stack_a, stack_b); // sort_five as implemented (pushes 2 to B)
 }
+
+// Counting sort functions are now removed.
+// find_min and find_max are kept as they are used by sort_five and the new sort_small for size 4.

@@ -136,7 +136,7 @@ void	display_stacks(t_stack *stack_a, t_stack *stack_b)
 	current_a = stack_a ? stack_a->top : NULL;
 	current_b = stack_b ? stack_b->top : NULL;
 	write(1, "\n", 1);
-	write(1, "Stack A:\t\tStack B:\n", 21);
+	write(1, "Stack A:\t\tStack B:\n", 20); // Corrected size from 21 to 20
 	write(1, "--------\t\t--------\n", 19);
 	while (current_a || current_b)
 	{
