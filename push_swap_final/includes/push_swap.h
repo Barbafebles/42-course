@@ -78,7 +78,8 @@ void	rrr(t_stack *stack_a, t_stack *stack_b, bool print);
 void	sort_small(t_stack *stack_a, t_stack *stack_b, int size);
 void	sort_three(t_stack *stack_a);
 void	sort_five(t_stack *stack_a, t_stack *stack_b);
-void	counting_sort(t_stack *stack_a, t_stack *stack_b);
+void	assign_indices(t_stack *stack_a);
+void	radix_sort(t_stack *stack_a, t_stack *stack_b);
 
 /* Input parsing and validation */
 int		parse_args(int argc, char **argv, t_stack *stack_a);
