@@ -5,17 +5,13 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: bfebles- <bfebles-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/01 00:00:00 by user              #+#    #+#             */
-/*   Updated: 2025/05/02 12:37:31 by bfebles-         ###   ########.fr       */
+/*   Created: 2025/05/22 17:34:50 by bfebles-          #+#    #+#             */
+/*   Updated: 2025/05/22 17:45:08 by bfebles-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
 
-/*
- * Converts a string to a long integer
- * Handles negative numbers and overflow/underflow
- */
 long	ft_atol(const char *str)
 {
 	long	result;
@@ -41,10 +37,6 @@ long	ft_atol(const char *str)
 	return (result * sign);
 }
 
-/*
- * Checks if a string represents a valid integer
- * Returns 1 if valid, 0 if invalid
- */
 int	is_valid_number(char *str)
 {
 	int		i;
@@ -67,48 +59,90 @@ int	is_valid_number(char *str)
 	return (1);
 }
 
-/**
- * Checks if stack contains duplicate values
- * Returns 1 if duplicates found, 0 otherwise
- */
 int	has_duplicates(t_stack *stack)
 {
 	t_node	*current;
-	t_node	*check;
+	t_node	*runner;
 
 	current = stack->top;
 	while (current)
 	{
-		check = current->next;
-		while (check)
+		runner = current->next;
+		while (runner)
 		{
-			if (current->value == check->value)
+			if (current->value == runner->value)
 				return (1);
-			check = check->next;
+			runner = runner->next;
 		}
 		current = current->next;
 	}
 	return (0);
 }
 
-/*
- * Parse command line arguments and populate stack_a
- * Returns 0 on success, -1 on error
- */
- int	parse_args(int argc, char **argv, t_stack *stack_a)
- {
-	 int		i;
-	 long	num;
- 
-	 i = argc - 1;
-	 while (i > 0)
-	 {
-		 if (!is_valid_number(argv[i]))
-			 return (-1);
-		 num = ft_atol(argv[i]);
-		 push_to_stack(stack_a, (int)num);
-		 i--;
-	 }
-	 return (0);
- }
- 
+void	free_split_array(char **array)
+{
+	int	i;
+
+	if (!array)
+		return ;
+	i = 0;
+	while (array[i])
+	{
+		free(array[i]);
+		i++;
+	}
+	free(array);
+}
+
+int	parse_args(int argc, char **argv, t_stack *stack_a)
+{
+	char	**numbers_to_parse;
+	int		i;
+	bool	is_split_needed;
+	int		count;
+
+	is_split_needed = false;
+	if (argc == 2)
+	{
+		numbers_to_parse = ft_split(argv[1], ' ');
+		is_split_needed = true;
+	}
+	else
+	{
+		numbers_to_parse = argv + 1;
+		// Directamente usar argv a partir del segundo elemento
+	}
+	if (!numbers_to_parse) // ft_split podría devolver NULL
+		return (-1);
+	// Contar los elementos primero para saber desde dónde empezar a empujar inversamente
+	count = 0;
+	if (is_split_needed)
+	{
+		while (numbers_to_parse[count])
+			count++;
+	}
+	else
+	{
+		count = argc - 1; // Para argv, ya tenemos el conteo
+	}
+	i = count - 1; // Empieza desde el último índice válido
+	while (i >= 0) // Itera hacia atrás
+	{
+		if (!is_valid_number(numbers_to_parse[i]))
+		{
+			if (is_split_needed)
+				free_split_array(numbers_to_parse);
+			return (-1);
+		}
+		if (is_split_needed && numbers_to_parse[i][0] == '\0')
+		{
+			free_split_array(numbers_to_parse);
+			return (-1);
+		}
+		push_to_stack(stack_a, ft_atol(numbers_to_parse[i]));
+		i--;
+	}
+	if (is_split_needed)
+		free_split_array(numbers_to_parse);
+	return (0);
+}

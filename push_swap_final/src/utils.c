@@ -6,7 +6,7 @@
 /*   By: bfebles- <bfebles-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/01 00:00:00 by user              #+#    #+#             */
-/*   Updated: 2025/05/02 11:35:49 by bfebles-         ###   ########.fr       */
+/*   Updated: 2025/05/22 15:26:45 by bfebles-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,8 @@ int	ft_isdigit(int c)
  */
 int	ft_isspace(int c)
 {
-	return (c == ' ' || c == '\t' || c == '\n' || c == '\v'
-		|| c == '\f' || c == '\r');
+	return (c == ' ' || c == '\t' || c == '\n' || c == '\v' || c == '\f'
+		|| c == '\r');
 }
 
 /*
@@ -47,9 +47,7 @@ int	ft_isspace(int c)
  */
 void	error_exit(t_stack *stack_a, t_stack *stack_b)
 {
-	ft_putstr_fd(RED, 2);
 	ft_putstr_fd("Error\n", 2);
-	ft_putstr_fd(RESET, 2);
 	if (stack_a)
 		free_stack(stack_a);
 	if (stack_b)

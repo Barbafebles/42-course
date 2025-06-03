@@ -5,20 +5,20 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: bfebles- <bfebles-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/01 00:00:00 by user              #+#    #+#             */
-/*   Updated: 2025/05/02 13:42:42 by bfebles-         ###   ########.fr       */
+/*   Created: 2025/05/22 15:20:26 by bfebles-          #+#    #+#             */
+/*   Updated: 2025/05/22 17:19:15 by bfebles-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
 
-# include <stdlib.h>
-# include <unistd.h>
-# include <limits.h>
-# include <stdio.h>
-#include <stdlib.h>
-# include <stdbool.h>
+# include "libft.h"   // Incluye tu libft.h aquí.
+# include <limits.h>  // Para INT_MAX, INT_MIN
+# include <stdbool.h> // Para bool
+# include <stdio.h>   // Solo si usas printf (normalmente para DEBUG)
+# include <stdlib.h>  // Para malloc, free
+# include <unistd.h>  // Para write
 
 /* Color codes for terminal output */
 # define RED "\033[0;31m"
@@ -28,7 +28,8 @@
 # define RESET "\033[0m"
 
 /* Debug mode flag */
-# define DEBUG 0
+ # define DEBUG 0
+// Puedes cambiar a 1 para ver el output de display_stacks si lo usas con DEBUG.
 
 /* Stack node structure */
 typedef struct s_node
@@ -36,61 +37,62 @@ typedef struct s_node
 	int				value;
 	int				index;
 	struct s_node	*next;
-}	t_node;
+}					t_node;
 
 /* Stack structure */
 typedef struct s_stack
 {
-	t_node	*top;
-	int		size;
-	char	name;
-}	t_stack;
+	t_node			*top;
+	int				size;
+	char			name;
+}					t_stack;
 
 /* Function prototypes */
 
 /* Stack initialization */
-t_stack	*init_stack(char name);
-void	free_stack(t_stack *stack);
+t_stack				*init_stack(char name);
+void				free_stack(t_stack *stack);
 
 /* Stack utility functions */
-void	push_to_stack(t_stack *stack, int value);
-int		pop_from_stack(t_stack *stack);
-int		is_stack_empty(t_stack *stack);
-int		is_stack_sorted(t_stack *stack);
-void	display_stacks(t_stack *stack_a, t_stack *stack_b);
-int		find_min(t_stack *stack);
-int		find_max(t_stack *stack);
+void				push_to_stack(t_stack *stack, int value);
+int					pop_from_stack(t_stack *stack);
+int					is_stack_empty(t_stack *stack);
+int					is_stack_sorted(t_stack *stack);
+void				display_stacks(t_stack *stack_a, t_stack *stack_b);
+int					find_min(t_stack *stack);
+int					find_max(t_stack *stack);
 
 /* Stack operations */
-void	sa(t_stack *stack_a, bool print);
-void	sb(t_stack *stack_b, bool print);
-void	ss(t_stack *stack_a, t_stack *stack_b, bool print);
-void	pa(t_stack *stack_a, t_stack *stack_b, bool print);
-void	pb(t_stack *stack_a, t_stack *stack_b, bool print);
-void	ra(t_stack *stack_a, bool print);
-void	rb(t_stack *stack_b, bool print);
-void	rr(t_stack *stack_a, t_stack *stack_b, bool print);
-void	rra(t_stack *stack_a, bool print);
-void	rrb(t_stack *stack_b, bool print);
-void	rrr(t_stack *stack_a, t_stack *stack_b, bool print);
+void				sa(t_stack *stack_a, bool print);
+void				sb(t_stack *stack_b, bool print);
+void				ss(t_stack *stack_a, t_stack *stack_b, bool print);
+void				pa(t_stack *stack_a, t_stack *stack_b, bool print);
+void				pb(t_stack *stack_a, t_stack *stack_b, bool print);
+void				ra(t_stack *stack_a, bool print);
+void				rb(t_stack *stack_b, bool print);
+void				rr(t_stack *stack_a, t_stack *stack_b, bool print);
+void				rra(t_stack *stack_a, bool print);
+void				rrb(t_stack *stack_b, bool print);
+void				rrr(t_stack *stack_a, t_stack *stack_b, bool print);
 
 /* Sorting algorithms */
-void	sort_small(t_stack *stack_a, t_stack *stack_b, int size);
-void	sort_three(t_stack *stack_a);
-void	sort_five(t_stack *stack_a, t_stack *stack_b);
-void	assign_indices(t_stack *stack_a);
-void	radix_sort(t_stack *stack_a, t_stack *stack_b);
+void				sort_small(t_stack *stack_a, t_stack *stack_b, int size);
+void				sort_three(t_stack *stack_a);
+void				sort_five(t_stack *stack_a, t_stack *stack_b);
+void				assign_indices(t_stack *stack_a);
+void	chunk_sort(t_stack *a, t_stack *b);
 
 /* Input parsing and validation */
-int		parse_args(int argc, char **argv, t_stack *stack_a);
-int		is_valid_number(char *str);
-int		has_duplicates(t_stack *stack);
-long	ft_atol(const char *str);
+int					parse_args(int argc, char **argv, t_stack *stack_a);
+int					is_valid_number(char *str);
+int					has_duplicates(t_stack *stack);
+long	ft_atol(const char *str); // RE-AÑADIDO
+void				free_split_array(char **array);
 
 /* Utility functions */
-void	ft_putstr_fd(char *s, int fd);
-int		ft_isdigit(int c);
-int		ft_isspace(int c);
-void	error_exit(t_stack *stack_a, t_stack *stack_b);
+void	ft_putstr_fd(char *s, int fd); // RE-AÑADIDO
+int	ft_isdigit(int c);              // RE-AÑADIDO
+int	ft_isspace(int c);              // RE-AÑADIDO
+void				error_exit(t_stack *stack_a, t_stack *stack_b);
 
 #endif
