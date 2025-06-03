@@ -3,15 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   input_parsing.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bfebles- <bfebles-@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: bfebles <bfebles-student.42madrid.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/22 17:34:50 by bfebles-          #+#    #+#             */
-/*   Updated: 2025/05/22 17:45:08 by bfebles-         ###   ########.fr       */
+/*   Updated: 2025/05/23 11:30:00 by Jules             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/push_swap.h"
+#include "../includes/push_swap.h" // For t_stack, INT_MAX, INT_MIN, ft_isspace, ft_isdigit, ft_split, ft_strtrim, push_to_stack etc.
+#include <stdlib.h> // For free, NULL
+#include <stdbool.h> // For bool
 
+// Assuming ft_atol from the original file:
 long	ft_atol(const char *str)
 {
 	long	result;
@@ -37,16 +40,26 @@ long	ft_atol(const char *str)
 	return (result * sign);
 }
 
+// Assuming is_valid_number from the original file:
 int	is_valid_number(char *str)
 {
 	int		i;
 	long	num;
 
 	i = 0;
-	if (str[i] == '-' || str[i] == '+')
+	if (str[0] == '-' || str[0] == '+')
+	{
+		if (str[1] == '\0')
+			return (0);
 		i++;
-	if (!str[i])
+	}
+
+	if (str[i] == '\0' && i > 0)
 		return (0);
+
+	if (str[i] == '\0' && i == 0)
+		return (0);
+
 	while (str[i])
 	{
 		if (!ft_isdigit(str[i]))
@@ -59,6 +72,7 @@ int	is_valid_number(char *str)
 	return (1);
 }
 
+// Assuming has_duplicates from the original file
 int	has_duplicates(t_stack *stack)
 {
 	t_node	*current;
@@ -79,6 +93,7 @@ int	has_duplicates(t_stack *stack)
 	return (0);
 }
 
+// Assuming free_split_array from the original file:
 void	free_split_array(char **array)
 {
 	int	i;
@@ -94,27 +109,44 @@ void	free_split_array(char **array)
 	free(array);
 }
 
+// Modified parse_args function:
 int	parse_args(int argc, char **argv, t_stack *stack_a)
 {
 	char	**numbers_to_parse;
+	char	*trimmed_arg;
 	int		i;
 	bool	is_split_needed;
 	int		count;
 
 	is_split_needed = false;
+
 	if (argc == 2)
 	{
+		char *temp_check_empty = ft_strtrim(argv[1], " \t\n\v\f\r");
+		if (!temp_check_empty) {
+		    return (-1);
+		}
+		if (temp_check_empty[0] == '\0') {
+		    free(temp_check_empty);
+		    return (-1);
+		}
+		free(temp_check_empty);
+
 		numbers_to_parse = ft_split(argv[1], ' ');
 		is_split_needed = true;
+		if (!numbers_to_parse)
+			return (-1);
+
+		if (numbers_to_parse[0] == NULL) {
+		    free_split_array(numbers_to_parse);
+		    return (-1);
+		}
 	}
 	else
 	{
 		numbers_to_parse = argv + 1;
-		// Directamente usar argv a partir del segundo elemento
 	}
-	if (!numbers_to_parse) // ft_split podría devolver NULL
-		return (-1);
-	// Contar los elementos primero para saber desde dónde empezar a empujar inversamente
+
 	count = 0;
 	if (is_split_needed)
 	{
@@ -123,26 +155,51 @@ int	parse_args(int argc, char **argv, t_stack *stack_a)
 	}
 	else
 	{
-		count = argc - 1; // Para argv, ya tenemos el conteo
+		count = argc - 1;
 	}
-	i = count - 1; // Empieza desde el último índice válido
-	while (i >= 0) // Itera hacia atrás
+
+	if (count == 0)
 	{
-		if (!is_valid_number(numbers_to_parse[i]))
+		if (is_split_needed)
+			free_split_array(numbers_to_parse);
+		return (-1);
+	}
+
+	i = count - 1;
+	while (i >= 0)
+	{
+		trimmed_arg = ft_strtrim(numbers_to_parse[i], " \t\n\v\f\r");
+		if (!trimmed_arg)
 		{
 			if (is_split_needed)
 				free_split_array(numbers_to_parse);
 			return (-1);
 		}
-		if (is_split_needed && numbers_to_parse[i][0] == '\0')
+
+		if (trimmed_arg[0] == '\0')
 		{
-			free_split_array(numbers_to_parse);
+			free(trimmed_arg);
+			if (is_split_needed)
+				free_split_array(numbers_to_parse);
 			return (-1);
 		}
-		push_to_stack(stack_a, ft_atol(numbers_to_parse[i]));
+
+		if (!is_valid_number(trimmed_arg))
+		{
+			free(trimmed_arg);
+			if (is_split_needed)
+				free_split_array(numbers_to_parse);
+			return (-1);
+		}
+
+		push_to_stack(stack_a, ft_atol(trimmed_arg));
+		free(trimmed_arg);
+
 		i--;
 	}
+
 	if (is_split_needed)
 		free_split_array(numbers_to_parse);
+
 	return (0);
 }
