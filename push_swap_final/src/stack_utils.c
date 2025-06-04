@@ -3,14 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   stack_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bfebles- <bfebles-@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: Jules <jules@example.com>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/01 00:00:00 by user              #+#    #+#             */
-/*   Updated: 2025/05/22 17:34:01 by bfebles-         ###   ########.fr       */
+/*   Created: 2023/01/01 00:00:00 by original_author   #+#    #+#             */
+/*   Updated: 2025/05/25 by Jules                      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
+#include <stdlib.h>
 
 t_stack	*init_stack(char name)
 {
@@ -46,6 +47,8 @@ void	push_to_stack(t_stack *stack, int value)
 {
 	t_node	*new_node;
 
+	if (!stack)
+		return;
 	new_node = (t_node *)malloc(sizeof(t_node));
 	if (!new_node)
 		return ;
@@ -61,7 +64,7 @@ int	pop_from_stack(t_stack *stack)
 	t_node	*temp;
 	int		value;
 
-	if (!stack->top)
+	if (!stack || !stack->top)
 		return (0);
 	temp = stack->top;
 	value = temp->value;
@@ -73,6 +76,8 @@ int	pop_from_stack(t_stack *stack)
 
 int	is_stack_empty(t_stack *stack)
 {
+	if (!stack)
+		return (1);
 	return (stack->size == 0);
 }
 
@@ -80,7 +85,7 @@ int	is_stack_sorted(t_stack *stack)
 {
 	t_node	*current;
 
-	if (stack->size <= 1)
+	if (!stack || stack->size <= 1)
 		return (1);
 	current = stack->top;
 	while (current && current->next)
@@ -95,75 +100,76 @@ int	is_stack_sorted(t_stack *stack)
 int	find_min(t_stack *stack)
 {
 	t_node	*current;
-	int		min;
+	int		min_val;
 
-	if (!stack->top)
+	if (!stack || !stack->top)
 		return (0);
 	current = stack->top;
-	min = current->value;
+	min_val = current->value;
+	current = current->next;
 	while (current)
 	{
-		if (current->value < min)
-			min = current->value;
+		if (current->value < min_val)
+			min_val = current->value;
 		current = current->next;
 	}
-	return (min);
+	return (min_val);
 }
 
 int	find_max(t_stack *stack)
 {
 	t_node	*current;
-	int		max;
+	int		max_val;
 
-	if (!stack->top)
+	if (!stack || !stack->top)
 		return (0);
 	current = stack->top;
-	max = current->value;
+	max_val = current->value;
+	current = current->next;
 	while (current)
 	{
-		if (current->value > max)
-			max = current->value;
+		if (current->value > max_val)
+			max_val = current->value;
 		current = current->next;
 	}
-	return (max);
+	return (max_val);
 }
 
 void	display_stacks(t_stack *stack_a, t_stack *stack_b)
 {
-	t_node	*current_a;
-	t_node	*current_b;
+	t_node	*curr_a;
+	t_node	*curr_b;
 
-	current_a = stack_a ? stack_a->top : NULL;
-	current_b = stack_b ? stack_b->top : NULL;
-	write(1, "\n", 1);
-	write(1, "Stack A:\t\tStack B:\n", 20); // Corrected size from 21 to 20
-	write(1, "--------\t\t--------\n", 19);
-	while (current_a || current_b)
+	curr_a = NULL;
+	curr_b = NULL;
+	if (stack_a != NULL)
+		curr_a = stack_a->top;
+	if (stack_b != NULL)
+		curr_b = stack_b->top;
+	ft_putstr_fd("\nStack A:		Stack B:\n", STDOUT_FILENO);
+	ft_putstr_fd("--------		--------\n", STDOUT_FILENO);
+	while (curr_a || curr_b)
 	{
-		if (current_a)
+		if (curr_a)
 		{
-			ft_putstr_fd(BLUE, 1);
-			write(1, "  ", 2);
-			write(1, &"0123456789"[current_a->value % 10], 1);
-			write(1, &"0123456789"[current_a->value / 10 % 10], 1);
-			write(1, "  ", 2);
-			ft_putstr_fd(RESET, 1);
-			current_a = current_a->next;
+			ft_putstr_fd((char *)BLUE, STDOUT_FILENO);
+			ft_putnbr_fd(curr_a->value, STDOUT_FILENO);
+			ft_putstr_fd((char *)RESET, STDOUT_FILENO);
+			curr_a = curr_a->next;
 		}
 		else
-			write(1, "     ", 5);
-		write(1, "\t\t", 2);
-		if (current_b)
+			ft_putstr_fd("    ", STDOUT_FILENO);
+		ft_putstr_fd("		", STDOUT_FILENO);
+		if (curr_b)
 		{
-			ft_putstr_fd(GREEN, 1);
-			write(1, "  ", 2);
-			write(1, &"0123456789"[current_b->value % 10], 1);
-			write(1, &"0123456789"[current_b->value / 10 % 10], 1);
-			write(1, "  ", 2);
-			ft_putstr_fd(RESET, 1);
-			current_b = current_b->next;
+			ft_putstr_fd((char *)GREEN, STDOUT_FILENO);
+			ft_putnbr_fd(curr_b->value, STDOUT_FILENO);
+			ft_putstr_fd((char *)RESET, STDOUT_FILENO);
+			curr_b = curr_b->next;
 		}
-		write(1, "\n", 1);
+		else
+			ft_putstr_fd("    ", STDOUT_FILENO);
+		ft_putstr_fd("\n", STDOUT_FILENO);
 	}
-	write(1, "\n", 1);
+	ft_putstr_fd("\n", STDOUT_FILENO);
 }

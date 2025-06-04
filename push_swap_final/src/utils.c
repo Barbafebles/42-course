@@ -1,53 +1,42 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   utils.c                                            :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: bfebles- <bfebles-@student.42madrid.com    +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/01 00:00:00 by user              #+#    #+#             */
-/*   Updated: 2025/05/22 15:26:45 by bfebles-         ###   ########.fr       */
+/*   utils.c                                                                  */
+/*                                                                            */
+/*   By: Jules <jules@example.com>                                            */
+/*                                                                            */
+/*   Created: 2025/01/01 by Jules                                             */
+/*   Updated: 2025/01/01 by Jules                                             */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
 
-/*
- * Writes a string to the specified file descriptor
- */
 void	ft_putstr_fd(char *s, int fd)
 {
 	int	i;
 
+	if (!s)
+		return ;
 	i = 0;
 	while (s[i])
 		i++;
 	write(fd, s, i);
 }
 
-/*
- * Checks if a character is a digit (0-9)
- */
 int	ft_isdigit(int c)
 {
 	return (c >= '0' && c <= '9');
 }
 
-/*
- * Checks if a character is a whitespace
- */
 int	ft_isspace(int c)
 {
 	return (c == ' ' || c == '\t' || c == '\n' || c == '\v' || c == '\f'
 		|| c == '\r');
 }
 
-/*
- * Prints error message and exits the program
- */
 void	error_exit(t_stack *stack_a, t_stack *stack_b)
 {
-	ft_putstr_fd("Error\n", 2);
+	ft_putstr_fd("Error\n", STDERR_FILENO);
 	if (stack_a)
 		free_stack(stack_a);
 	if (stack_b)
