@@ -3,25 +3,35 @@
 /*                                                        :::      ::::::::   */
 /*   sorting_algorithms.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bfebles- <bfebles-@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: bfebles <bfebles-student.42madrid.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/01 00:00:00 by user              #+#    #+#             */
-/*   Updated: 2025/05/22 17:31:56 by bfebles-         ###   ########.fr       */
+/*   Updated: 2025/05/24 by Jules                      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
+#include <stdlib.h> // For malloc, free
 
-// Helper function for bubble sort (not part of public API)
+static void	bubble_sort(int *arr, int size);
+static int	*create_and_fill_array(t_stack *stack_a, int size);
+static void	assign_idx_to_stack_nodes(t_stack *stack_a, 									int *sorted_arr, int size);
+static void	move_smallest_to_b(t_stack *a, t_stack *b);
+static void	sort_four(t_stack *a, t_stack *b);
+static void	push_chunk_to_b(t_stack *a, t_stack *b, 							int chunk_limit_val, int chunk_mid_val);
+static void	move_max_from_b_to_a(t_stack *a, t_stack *b);
+
 static void	bubble_sort(int *arr, int size)
 {
 	int	i;
 	int	j;
 	int	temp;
 
-	for (i = 0; i < size - 1; i++)
+	i = 0;
+	while (i < size - 1)
 	{
-		for (j = 0; j < size - i - 1; j++)
+		j = 0;
+		while (j < size - i - 1)
 		{
 			if (arr[j] > arr[j + 1])
 			{
@@ -29,19 +39,18 @@ static void	bubble_sort(int *arr, int size)
 				arr[j] = arr[j + 1];
 				arr[j + 1] = temp;
 			}
+			j++;
 		}
+		i++;
 	}
 }
-void	assign_indices(t_stack *stack_a)
+
+static int	*create_and_fill_array(t_stack *stack_a, int size)
 {
-	int		size;
 	int		*arr;
 	t_node	*current;
 	int		i;
 
-	if (!stack_a || !stack_a->top || stack_a->size <= 1)
-		return ;
-	size = stack_a->size;
 	arr = (int *)malloc(sizeof(int) * size);
 	if (!arr)
 		error_exit(stack_a, NULL);
@@ -53,222 +62,209 @@ void	assign_indices(t_stack *stack_a)
 		current = current->next;
 	}
 	bubble_sort(arr, size);
+	return (arr);
+}
+
+static void	assign_idx_to_stack_nodes(t_stack *stack_a, 									int *sorted_arr, int size)
+{
+	t_node	*current;
+	int		i;
+
 	current = stack_a->top;
 	while (current)
 	{
 		i = 0;
 		while (i < size)
 		{
-			if (current->value == arr[i])
+			if (current->value == sorted_arr[i])
 			{
-				current->index = i;
+				current->index = i; // Assign index based on sorted position
 				break ;
 			}
 			i++;
 		}
 		current = current->next;
 	}
+}
+
+void	assign_indices(t_stack *stack_a)
+{
+	int	size;
+	int	*arr;
+
+	if (!stack_a || !stack_a->top || stack_a->size <= 1)
+		return ;
+	size = stack_a->size;
+	arr = create_and_fill_array(stack_a, size);
+	assign_idx_to_stack_nodes(stack_a, arr, size);
 	free(arr);
 }
 
-void	radix_sort(t_stack *a, t_stack *b)
+void	sort_three(t_stack *s_a)
 {
-	int	max_bits;
-	int	max_num;
-	int	i;
-	int	j;
-	int	size;
+	int	v_top;
+	int	v_mid;
+	int	v_bot;
 
-	max_bits = 0;
-	max_num = a->size - 1;
-	i = 0;
-	while ((max_num >> max_bits) != 0)
-		max_bits++;
-	for (i = 0; i < max_bits; i++)
-	{
-		j = 0;
-		size = a->size;
-		while (j++ < size)
-		{
-			if (((a->top->index >> i) & 1) == 1)
-				ra(a, true);
-			else
-				pb(a, b, true);
-		}
-		while (b->size > 0)
-			pa(a, b, true);
-	}
-}
-
-void	sort_three(t_stack *stack_a)
-{
-	int	top;
-	int	mid;
-	int	bot;
-
-	top = stack_a->top->value;
-	mid = stack_a->top->next->value;
-	bot = stack_a->top->next->next->value;
-	if (is_stack_sorted(stack_a))
+	if (is_stack_sorted(s_a))
 		return ;
-	// Case: 4 2 1 (top, mid, bot) -> 2 1 4 -> 1 2 4
-	if (top > mid && mid > bot)
+	v_top = s_a->top->value;
+	v_mid = s_a->top->next->value;
+	v_bot = s_a->top->next->next->value;
+	if (v_top > v_mid && v_mid > v_bot)
 	{
-		ra(stack_a, true);
-		sa(stack_a, true);
+		sa(s_a, true);
+		rra(s_a, true);
 	}
-	// Case: 4 1 2 -> 1 2 4
-	else if (top > bot && bot > mid)
+	else if (v_top > v_mid && v_mid < v_bot && v_top > v_bot)
+		ra(s_a, true);
+	else if (v_top < v_mid && v_mid > v_bot && v_top > v_bot)
+		rra(s_a, true);
+	else if (v_top > v_mid && v_mid < v_bot && v_top < v_bot)
+		sa(s_a, true);
+	else if (v_top < v_mid && v_mid > v_bot && v_top < v_bot)
 	{
-		ra(stack_a, true);
-	}
-	// Case: 2 4 1 -> 4 1 2 -> 1 2 4
-	else if (mid > top && top > bot)
-	{
-		rra(stack_a, true);
-	}
-	// Case: 1 4 2 -> 4 1 2 -> 1 2 4
-	else if (top < mid && mid > bot && top < bot)
-	{
-		rra(stack_a, true);
-		sa(stack_a, true);
-	}
-	// Case: 2 1 4 -> 1 2 4
-	else if (top > mid && mid < bot && top < bot)
-	{
-		sa(stack_a, true);
+		sa(s_a, true);
+		ra(s_a, true);
 	}
 }
-void	sort_five(t_stack *a, t_stack *b)
-{
-	int		i;
-	int		min;
-	int		pos;
-	t_node	*cur;
 
-	// Empuja dos mínimos a la pila B
-	for (i = 0; i < 2; i++)
-	{
-		min = find_min(a);
-		pos = 0;
-		cur = a->top;
-		while (cur->value != min)
-		{
-			cur = cur->next;
-			pos++;
-		}
-		// elegir la rotación más corta
-		if (pos <= a->size / 2)
-			while (a->top->value != min)
-				ra(a, true);
-		else
-			while (a->top->value != min)
-				rra(a, true);
-		pb(a, b, true);
-	}
-	// Ordena los 3 restantes en A
-	sort_three(a);
-	pa(a, b, true);
-	pa(a, b, true);
-	if (b->top) // If b was not empty (i.e., we are sorting 5 elements, not 4)
-		pa(a, b, true);
-}
-
-void	sort_small(t_stack *stack_a, t_stack *stack_b, int size)
+static void	move_smallest_to_b(t_stack *a, t_stack *b)
 {
 	int		min_val;
 	int		pos;
 	t_node	*curr;
 
-	if (size <= 1)
+	min_val = find_min(a);
+	pos = 0;
+	curr = a->top;
+	while (curr && curr->value != min_val)
+	{
+		curr = curr->next;
+		pos++;
+	}
+	while (a->top->value != min_val)
+	{
+		if (pos <= a->size / 2)
+			ra(a, true);
+		else
+			rra(a, true);
+	}
+	pb(a, b, true);
+}
+
+static void	sort_four(t_stack *a, t_stack *b)
+{
+	if (is_stack_sorted(a))
+		return ;
+	move_smallest_to_b(a, b);
+	sort_three(a);
+	pa(a, b, true);
+}
+
+void	sort_five(t_stack *a, t_stack *b)
+{
+	if (is_stack_sorted(a))
+		return ;
+	move_smallest_to_b(a, b);
+	move_smallest_to_b(a, b);
+	sort_three(a);
+	pa(a, b, true);
+	pa(a, b, true);
+}
+
+void	sort_small(t_stack *stack_a, t_stack *stack_b, int size)
+{
+	if (size <= 1 || is_stack_sorted(stack_a))
 		return ;
 	if (size == 2)
 	{
 		if (stack_a->top->value > stack_a->top->next->value)
 			sa(stack_a, true);
-		return ;
 	}
-	if (size == 3)
+	else if (size == 3)
 		sort_three(stack_a);
 	else if (size == 4)
-	{
-		// Push the smallest element to B
-		min_val = find_min(stack_a);
-		while (stack_a->top->value != min_val)
-		{
-			// Smart rotate: if val is in bottom half, rra, else ra
-			pos = 0;
-			curr = stack_a->top;
-			while (curr && curr->value != min_val)
-			{
-				curr = curr->next;
-				pos++;
-			}
-			if (pos <= stack_a->size / 2)
-				ra(stack_a, true);
-			else
-				rra(stack_a, true);
-		}
-		pb(stack_a, stack_b, true);
-		sort_three(stack_a);
-		pa(stack_a, stack_b, true);
-	}
+		sort_four(stack_a, stack_b);
 	else if (size == 5)
-		sort_five(stack_a, stack_b); // sort_five as implemented (pushes 2 to B)
+		sort_five(stack_a, stack_b);
+}
+
+static void	push_chunk_to_b(t_stack *a, t_stack *b, 							int chunk_limit_val, int chunk_mid_val)
+{
+	int	scanned_this_pass;
+	int	initial_a_size_this_call;
+
+	scanned_this_pass = 0;
+	initial_a_size_this_call = a->size;
+	while (scanned_this_pass < initial_a_size_this_call && a->size > 0)
+	{
+		if (a->top->index < chunk_limit_val)
+		{
+			pb(a, b, true);
+			if (b->top->index < chunk_mid_val)
+			{
+				if (b->size > 1)
+					rb(b, true);
+			}
+		}
+		else
+			ra(a, true);
+		scanned_this_pass++;
+	}
+}
+
+static void	move_max_from_b_to_a(t_stack *a, t_stack *b)
+{
+	int		max_val;
+	int		pos;
+	t_node	*tmp;
+
+	if (is_stack_empty(b))
+		return ;
+	max_val = find_max(b);
+	pos = 0;
+	tmp = b->top;
+	while (tmp && tmp->value != max_val)
+	{
+		tmp = tmp->next;
+		pos++;
+	}
+	while (b->top->value != max_val)
+	{
+		if (pos <= b->size / 2)
+			rb(b, true);
+		else
+			rrb(b, true);
+	}
+	pa(a, b, true);
 }
 
 void	chunk_sort(t_stack *a, t_stack *b)
 {
-	int		chunk_size;
-	int		current_chunk;
-	int		i;
-	int		total_chunks;
-	int		stack_size;
-	int		max;
-	int		pos;
-	t_node	*tmp;
+	int	chunk_s;
+	int	num_chunks;
+	int	c_processed;
+	int	target_idx_upper_bound;
+	int	target_idx_mid_point;
 
-	stack_size = a->size;
-	if (stack_size <= 100)
-		chunk_size = 20;
+	if (a->size <= 1 || is_stack_sorted(a))
+		return ;
+	assign_indices(a);
+	if (a->size <= 100)
+		chunk_s = 20;
 	else
-		chunk_size = 45;
-	total_chunks = (stack_size + chunk_size - 1) / chunk_size;
-	current_chunk = 0;
-	while (current_chunk < total_chunks)
+		chunk_s = (a->size / 11) + 5;
+	if (chunk_s <= 0) chunk_s = 1;
+	num_chunks = (a->size + chunk_s - 1) / chunk_s;
+	c_processed = 0;
+	while (c_processed < num_chunks)
 	{
-		i = 0;
-		while (i < stack_size && a->size > 0)
-		{
-			if (a->top->index >= current_chunk * chunk_size
-				&& a->top->index < (current_chunk + 1) * chunk_size)
-			{
-				pb(a, b, true);
-				if (b->top->index < current_chunk * chunk_size + chunk_size / 2)
-					rb(b, true);
-			}
-			else
-				ra(a, true);
-			i++;
-		}
-		current_chunk++;
+		target_idx_upper_bound = (c_processed + 1) * chunk_s;
+		target_idx_mid_point = c_processed * chunk_s + (chunk_s / 2);
+		push_chunk_to_b(a, b, target_idx_upper_bound, target_idx_mid_point);
+		c_processed++;
 	}
 	while (!is_stack_empty(b))
-	{
-		max = find_max(b);
-		pos = 0;
-		tmp = b->top;
-		while (tmp && tmp->value != max)
-		{
-			tmp = tmp->next;
-			pos++;
-		}
-		if (pos <= b->size / 2)
-			while (b->top->value != max)
-				rb(b, true);
-		else
-			while (b->top->value != max)
-				rrb(b, true);
-		pa(a, b, true);
-	}
+		move_max_from_b_to_a(a, b);
 }
