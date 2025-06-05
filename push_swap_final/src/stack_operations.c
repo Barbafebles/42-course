@@ -6,15 +6,12 @@
 /*   By: bfebles- <bfebles-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/01 00:00:00 by user              #+#    #+#             */
-/*   Updated: 2025/05/22 17:32:12 by bfebles-         ###   ########.fr       */
+/*   Updated: 2025/06/05 15:19:37 by bfebles-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
 
-/*
- * sa: Swap the first 2 elements at the top of stack a
- */
 void	sa(t_stack *stack_a, bool print)
 {
 	t_node	*first;
@@ -38,9 +35,6 @@ void	sa(t_stack *stack_a, bool print)
 		display_stacks(stack_a, NULL);
 }
 
-/*
- * sb: Swap the first 2 elements at the top of stack b
- */
 void	sb(t_stack *stack_b, bool print)
 {
 	t_node	*first;
@@ -64,9 +58,6 @@ void	sb(t_stack *stack_b, bool print)
 		display_stacks(NULL, stack_b);
 }
 
-/*
- * ss: sa and sb at the same time
- */
 void	ss(t_stack *stack_a, t_stack *stack_b, bool print)
 {
 	sa(stack_a, false);
@@ -77,9 +68,6 @@ void	ss(t_stack *stack_a, t_stack *stack_b, bool print)
 		display_stacks(stack_a, stack_b);
 }
 
-/*
- * pa: Take the first element at the top of b and put it at the top of a
- */
 void	pa(t_stack *stack_a, t_stack *stack_b, bool print)
 {
 	t_node	*temp;
@@ -102,9 +90,6 @@ void	pa(t_stack *stack_a, t_stack *stack_b, bool print)
 		display_stacks(stack_a, stack_b);
 }
 
-/*
- * pb: Take the first element at the top of a and put it at the top of b
- */
 void	pb(t_stack *stack_a, t_stack *stack_b, bool print)
 {
 	t_node	*temp;

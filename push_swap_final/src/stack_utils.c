@@ -3,15 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   stack_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: Jules <jules@example.com>                  +#+  +:+       +#+        */
+/*   By: bfebles- <bfebles-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/01 00:00:00 by original_author   #+#    #+#             */
-/*   Updated: 2025/05/25 by Jules                      ###   ########.fr       */
+/*   Created: 2023/01/01 00:00:00 by original_au       #+#    #+#             */
+/*   Updated: 2025/06/04 16:12:35 by bfebles-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
-#include <stdlib.h>
 
 t_stack	*init_stack(char name)
 {
@@ -48,7 +47,7 @@ void	push_to_stack(t_stack *stack, int value)
 	t_node	*new_node;
 
 	if (!stack)
-		return;
+		return ;
 	new_node = (t_node *)malloc(sizeof(t_node));
 	if (!new_node)
 		return ;
@@ -80,7 +79,7 @@ int	is_stack_empty(t_stack *stack)
 		return (1);
 	return (stack->size == 0);
 }
-
+//-------------------------------------------------------------------
 int	is_stack_sorted(t_stack *stack)
 {
 	t_node	*current;

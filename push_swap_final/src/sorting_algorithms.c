@@ -3,22 +3,21 @@
 /*                                                        :::      ::::::::   */
 /*   sorting_algorithms.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bfebles <bfebles-student.42madrid.com>     +#+  +:+       +#+        */
+/*   By: bfebles- <bfebles-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/01 00:00:00 by user              #+#    #+#             */
-/*   Updated: 2025/05/24 by Jules                      ###   ########.fr       */
+/*   Updated: 2025/06/05 15:19:12 by bfebles-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
-#include <stdlib.h> // For malloc, free
 
 static void	bubble_sort(int *arr, int size);
 static int	*create_and_fill_array(t_stack *stack_a, int size);
-static void	assign_idx_to_stack_nodes(t_stack *stack_a, 									int *sorted_arr, int size);
+static void	assign_idx_to_stack_nodes(t_stack *stack_a, int *sorted_arr, int size);
 static void	move_smallest_to_b(t_stack *a, t_stack *b);
 static void	sort_four(t_stack *a, t_stack *b);
-static void	push_chunk_to_b(t_stack *a, t_stack *b, 							int chunk_limit_val, int chunk_mid_val);
+static void	push_chunk_to_b(t_stack *a, t_stack *b, int chunk_limit_val, int chunk_mid_val);
 static void	move_max_from_b_to_a(t_stack *a, t_stack *b);
 
 static void	bubble_sort(int *arr, int size)
@@ -65,7 +64,7 @@ static int	*create_and_fill_array(t_stack *stack_a, int size)
 	return (arr);
 }
 
-static void	assign_idx_to_stack_nodes(t_stack *stack_a, 									int *sorted_arr, int size)
+static void	assign_idx_to_stack_nodes(t_stack *stack_a, int *sorted_arr, int size)
 {
 	t_node	*current;
 	int		i;
@@ -78,7 +77,7 @@ static void	assign_idx_to_stack_nodes(t_stack *stack_a, 									int *sorted_arr
 		{
 			if (current->value == sorted_arr[i])
 			{
-				current->index = i; // Assign index based on sorted position
+				current->index = i;
 				break ;
 			}
 			i++;
@@ -190,7 +189,7 @@ void	sort_small(t_stack *stack_a, t_stack *stack_b, int size)
 		sort_five(stack_a, stack_b);
 }
 
-static void	push_chunk_to_b(t_stack *a, t_stack *b, 							int chunk_limit_val, int chunk_mid_val)
+static void	push_chunk_to_b(t_stack *a, t_stack *b, int chunk_limit_val, int chunk_mid_val)
 {
 	int	scanned_this_pass;
 	int	initial_a_size_this_call;
