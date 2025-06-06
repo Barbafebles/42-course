@@ -6,7 +6,7 @@
 /*   By: bfebles- <bfebles-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/04 16:41:49 by bfebles-          #+#    #+#             */
-/*   Updated: 2025/06/05 15:20:14 by bfebles-         ###   ########.fr       */
+/*   Updated: 2025/06/06 15:14:22 by bfebles-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ int	is_valid_number(char *str)
 		i++;
 	}
 	if (str[i] == '\0')
-		return (0); 
+		return (0);
 	while (str[i])
 	{
 		if (!ft_isdigit(str[i]))
@@ -62,7 +62,6 @@ int	is_valid_number(char *str)
 		return (0);
 	return (1);
 }
-
 
 void	free_split_array(char **array)
 {
@@ -77,4 +76,24 @@ void	free_split_array(char **array)
 		i++;
 	}
 	free(array);
+}
+
+int	has_duplicates(t_stack *stack)
+{
+	t_node	*current;
+	t_node	*runner;
+
+	current = stack->top;
+	while (current)
+	{
+		runner = current->next;
+		while (runner)
+		{
+			if (current->value == runner->value)
+				return (1);
+			runner = runner->next;
+		}
+		current = current->next;
+	}
+	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: bfebles- <bfebles-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/01 00:00:00 by original_au       #+#    #+#             */
-/*   Updated: 2025/06/04 16:12:35 by bfebles-         ###   ########.fr       */
+/*   Updated: 2025/06/05 20:42:56 by bfebles-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,97 +78,4 @@ int	is_stack_empty(t_stack *stack)
 	if (!stack)
 		return (1);
 	return (stack->size == 0);
-}
-//-------------------------------------------------------------------
-int	is_stack_sorted(t_stack *stack)
-{
-	t_node	*current;
-
-	if (!stack || stack->size <= 1)
-		return (1);
-	current = stack->top;
-	while (current && current->next)
-	{
-		if (current->value > current->next->value)
-			return (0);
-		current = current->next;
-	}
-	return (1);
-}
-
-int	find_min(t_stack *stack)
-{
-	t_node	*current;
-	int		min_val;
-
-	if (!stack || !stack->top)
-		return (0);
-	current = stack->top;
-	min_val = current->value;
-	current = current->next;
-	while (current)
-	{
-		if (current->value < min_val)
-			min_val = current->value;
-		current = current->next;
-	}
-	return (min_val);
-}
-
-int	find_max(t_stack *stack)
-{
-	t_node	*current;
-	int		max_val;
-
-	if (!stack || !stack->top)
-		return (0);
-	current = stack->top;
-	max_val = current->value;
-	current = current->next;
-	while (current)
-	{
-		if (current->value > max_val)
-			max_val = current->value;
-		current = current->next;
-	}
-	return (max_val);
-}
-
-void	display_stacks(t_stack *stack_a, t_stack *stack_b)
-{
-	t_node	*curr_a;
-	t_node	*curr_b;
-
-	curr_a = NULL;
-	curr_b = NULL;
-	if (stack_a != NULL)
-		curr_a = stack_a->top;
-	if (stack_b != NULL)
-		curr_b = stack_b->top;
-	ft_putstr_fd("\nStack A:		Stack B:\n", STDOUT_FILENO);
-	ft_putstr_fd("--------		--------\n", STDOUT_FILENO);
-	while (curr_a || curr_b)
-	{
-		if (curr_a)
-		{
-			ft_putstr_fd((char *)BLUE, STDOUT_FILENO);
-			ft_putnbr_fd(curr_a->value, STDOUT_FILENO);
-			ft_putstr_fd((char *)RESET, STDOUT_FILENO);
-			curr_a = curr_a->next;
-		}
-		else
-			ft_putstr_fd("    ", STDOUT_FILENO);
-		ft_putstr_fd("		", STDOUT_FILENO);
-		if (curr_b)
-		{
-			ft_putstr_fd((char *)GREEN, STDOUT_FILENO);
-			ft_putnbr_fd(curr_b->value, STDOUT_FILENO);
-			ft_putstr_fd((char *)RESET, STDOUT_FILENO);
-			curr_b = curr_b->next;
-		}
-		else
-			ft_putstr_fd("    ", STDOUT_FILENO);
-		ft_putstr_fd("\n", STDOUT_FILENO);
-	}
-	ft_putstr_fd("\n", STDOUT_FILENO);
 }

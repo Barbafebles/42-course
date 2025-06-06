@@ -6,7 +6,7 @@
 /*   By: bfebles- <bfebles-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/01 00:00:00 by user              #+#    #+#             */
-/*   Updated: 2025/06/05 15:19:59 by bfebles-         ###   ########.fr       */
+/*   Updated: 2025/06/05 20:44:45 by bfebles-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,14 +106,4 @@ void	rrb(t_stack *stack_b, bool print)
 		ft_putstr_fd("rrb\n", 1);
 	if (DEBUG)
 		display_stacks(NULL, stack_b);
-}
-
-void	rrr(t_stack *stack_a, t_stack *stack_b, bool print)
-{
-	rra(stack_a, false);
-	rrb(stack_b, false);
-	if (print)
-		ft_putstr_fd("rrr\n", 1);
-	if (DEBUG)
-		display_stacks(stack_a, stack_b);
 }
