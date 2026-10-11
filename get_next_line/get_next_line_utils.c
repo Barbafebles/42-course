@@ -57,13 +57,21 @@ char	*ft_strjoin(char *stash, char *buff)
 	if (!stash)
 	{
 		stash = malloc(sizeof(char));
+		if (!stash)
+			return (NULL);
 		stash[0] = '\0';
 	}
-	if (!stash || !buff)
+	if (!buff)
+	{
+		free(stash);
 		return (NULL);
+	}
 	str = malloc(sizeof(char) * (ft_strlen(stash) + ft_strlen(buff) + 1));
 	if (!str)
+	{
+		free(stash);
 		return (NULL);
+	}
 	i = -1;
 	j = 0;
 	while (stash[++i])
