@@ -18,7 +18,6 @@ Los trabajos de esta tabla están confirmados como terminados por la autora. Ese
 ## Otros trabajos del repositorio
 
 - [pipex](./pipex): copia histórica incompleta. La versión final ya no está disponible; no se incluye entre los trabajos destacados.
-- [philo](./philo): ejercicio relacionado con hilos y sincronización (**estado de finalización pendiente de confirmar**).
 
 > Algunos directorios pueden contener archivos de prueba o versiones de trabajo. Este repositorio refleja un proceso de aprendizaje y no pretende ser una colección de productos finales.
 
