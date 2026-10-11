@@ -17,3 +17,4 @@ cc -Wall -Wextra -Werror -I. ejemplo.c libft.a -o ejemplo
 ```
 
 `ejemplo.c` debe aportar su propio `main` e incluir `libft.h`. La biblioteca no es un programa ejecutable. `make clean` elimina objetos generados y `make fclean` también la biblioteca.
+  
