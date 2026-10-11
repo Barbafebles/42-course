@@ -16,5 +16,5 @@ cc -Wall -Wextra -Werror -I. ejemplo.c libftprintf.a -o ejemplo
 ./ejemplo
 ```
 
-El archivo `ejemplo.c` debe incluir `ft_printf.h` y definir `main`. `make clean` elimina objetos y `make fclean` también la biblioteca.
+El archivo `ejemplo.c` debe incluir `ft_printf.h` y definir `main`. `make clean` elimina objetos y `make fclean` también la biblioteca.  
 
