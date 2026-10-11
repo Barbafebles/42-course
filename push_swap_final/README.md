@@ -28,6 +28,3 @@ make
 
 La salida contiene operaciones de las pilas, no la lista ordenada. No se requiere ejecutar los binarios `checker_Mac` o `checker_linux` incluidos para compilar. `make clean` y `make fclean` limpian los productos generados.
 
-## Verificación
-
-Auditoría del 11 de octubre de 2026 en Linux: compila con las opciones del Makefile. Un simulador independiente de operaciones comprobó las 24 permutaciones de cuatro valores y 20 muestras de 5, 10, 50 y 100 enteros distintos. También se comprobó el rechazo de duplicados, texto y enteros fuera de rango; sin argumentos sale sin operaciones. No se han validado límites de movimientos, fugas de memoria ni todos los casos extremos. No hay suite propia de tests en el repositorio.
