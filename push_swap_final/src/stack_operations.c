@@ -70,20 +70,16 @@ void	ss(t_stack *stack_a, t_stack *stack_b, bool print)
 
 void	pa(t_stack *stack_a, t_stack *stack_b, bool print)
 {
-	t_node	*temp;
-	int		value;
-	int		index;
+	t_node	*node;
 
-	if (is_stack_empty(stack_b))
+	if (!stack_a || is_stack_empty(stack_b))
 		return ;
-	temp = stack_b->top;
-	value = temp->value;
-	index = temp->index;
-	stack_b->top = temp->next;
-	free(temp);
+	node = stack_b->top;
+	stack_b->top = node->next;
 	stack_b->size--;
-	push_to_stack(stack_a, value);
-	stack_a->top->index = index;
+	node->next = stack_a->top;
+	stack_a->top = node;
+	stack_a->size++;
 	if (print)
 		ft_putstr_fd("pa\n", 1);
 	if (DEBUG)
@@ -92,20 +88,16 @@ void	pa(t_stack *stack_a, t_stack *stack_b, bool print)
 
 void	pb(t_stack *stack_a, t_stack *stack_b, bool print)
 {
-	t_node	*temp;
-	int		value;
-	int		index;
+	t_node	*node;
 
-	if (is_stack_empty(stack_a))
+	if (!stack_b || is_stack_empty(stack_a))
 		return ;
-	temp = stack_a->top;
-	value = temp->value;
-	index = temp->index;
-	stack_a->top = temp->next;
-	free(temp);
+	node = stack_a->top;
+	stack_a->top = node->next;
 	stack_a->size--;
-	push_to_stack(stack_b, value);
-	stack_b->top->index = index;
+	node->next = stack_b->top;
+	stack_b->top = node;
+	stack_b->size++;
 	if (print)
 		ft_putstr_fd("pb\n", 1);
 	if (DEBUG)

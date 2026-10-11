@@ -39,27 +39,33 @@ long	ft_atol(const char *str)
 
 int	is_valid_number(char *str)
 {
+	long	value;
+	long	limit;
 	int		i;
-	long	num;
+	int		digit;
 
+	if (!str || !str[0])
+		return (0);
 	i = 0;
-	if (str[0] == '-' || str[0] == '+')
+	limit = INT_MAX;
+	if (str[i] == '-' || str[i] == '+')
 	{
-		if (str[1] == '\0')
-			return (0);
+		if (str[i] == '-')
+			limit = (long)INT_MAX + 1;
 		i++;
 	}
-	if (str[i] == '\0')
+	if (!str[i])
 		return (0);
+	value = 0;
 	while (str[i])
 	{
 		if (!ft_isdigit(str[i]))
 			return (0);
-		i++;
+		digit = str[i++] - '0';
+		if (value > (limit - digit) / 10)
+			return (0);
+		value = value * 10 + digit;
 	}
-	num = ft_atol(str);
-	if (num > INT_MAX || num < INT_MIN)
-		return (0);
 	return (1);
 }
 

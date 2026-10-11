@@ -1,0 +1,21 @@
+name: push_swap checks
+
+on:
+  push:
+    paths:
+      - "push_swap_final/**"
+      - ".github/workflows/push-swap-checks.yml"
+  pull_request:
+    paths:
+      - "push_swap_final/**"
+      - ".github/workflows/push-swap-checks.yml"
+
+jobs:
+  linux-build-and-tests:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Build push_swap
+        run: make -C push_swap_final
+      - name: Run deterministic regression tests
+        run: python3 push_swap_final/tests/test_push_swap.py

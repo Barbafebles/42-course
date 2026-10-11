@@ -70,7 +70,11 @@ static int	process_individual_arg_content(t_stack *stack_a, char *arg_str)
 		free(trimmed_arg);
 		return (-1);
 	}
-	push_to_stack(stack_a, ft_atol(trimmed_arg));
+	if (push_to_stack(stack_a, (int)ft_atol(trimmed_arg)) == -1)
+	{
+		free(trimmed_arg);
+		return (-1);
+	}
 	free(trimmed_arg);
 	return (0);
 }

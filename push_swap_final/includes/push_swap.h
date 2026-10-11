@@ -46,7 +46,7 @@ t_stack				*init_stack(char name);
 void				free_stack(t_stack *stack);
 
 /* Stack utility functions */
-void				push_to_stack(t_stack *stack, int value);
+int					push_to_stack(t_stack *stack, int value);
 int					pop_from_stack(t_stack *stack);
 int					is_stack_empty(t_stack *stack);
 int					is_stack_sorted(t_stack *stack);

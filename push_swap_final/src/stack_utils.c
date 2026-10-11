@@ -42,20 +42,21 @@ void	free_stack(t_stack *stack)
 	free(stack);
 }
 
-void	push_to_stack(t_stack *stack, int value)
+int	push_to_stack(t_stack *stack, int value)
 {
 	t_node	*new_node;
 
 	if (!stack)
-		return ;
+		return (-1);
 	new_node = (t_node *)malloc(sizeof(t_node));
 	if (!new_node)
-		return ;
+		return (-1);
 	new_node->value = value;
 	new_node->index = -1;
 	new_node->next = stack->top;
 	stack->top = new_node;
 	stack->size++;
+	return (0);
 }
 
 int	pop_from_stack(t_stack *stack)
