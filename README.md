@@ -26,10 +26,7 @@ Los trabajos de esta tabla están confirmados como terminados por la autora. Ese
 
 42 utiliza una metodología de aprendizaje práctico, colaboración y revisión entre estudiantes (*peer-to-peer*).
 
-## Compilación y revisión
+## Compilación
 
 Cada trabajo tiene sus propias instrucciones; no hay una compilación global del repositorio. Los requisitos y resultados están documentados en los README de cada directorio.
 
-Auditoría del 11 de octubre de 2026 en Linux: Libft y ft_printf compilan; get_next_line pasó comprobaciones de lectura; push_swap pasó 44 casos de ordenación. La copia publicada de pipex presenta errores de compilación y código incompleto. la autora confirma que so_long funciona; la auditoría no pudo ejecutarlo por faltar CMake y entorno gráfico. minitalk compila y está confirmado como terminado por la autora; philo falla al compilar.
-
-No hay una suite propia de CI para estos trabajos. Los tests y workflows dentro de MLX42 pertenecen a la dependencia, no validan automáticamente el juego.
