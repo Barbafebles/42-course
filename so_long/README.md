@@ -16,3 +16,19 @@ Juego 2D programado en C como parte del programa de 42 Madrid.
 Los fuentes están en [`src/`](./src), los mapas en [`Maps/`](./Maps) y los recursos gráficos en [`xpm/`](./xpm). El proyecto incluye un `Makefile`.
 
 Este trabajo sigue un enunciado académico de 42 Madrid.
+
+## Compilar y ejecutar
+
+Requiere compilador C, Make, CMake, GLFW y soporte gráfico OpenGL. MLX42 está incluida en el repositorio. Desde este directorio:
+
+```sh
+# Linux, con las dependencias instaladas
+make OS=LINUX
+./so_long Maps/map.ber
+```
+
+Para macOS el Makefile admite `make OS=MACOS` y busca GLFW en `/opt/homebrew/opt/glfw/lib`; esa ruta puede necesitar adaptación en otros equipos. Los requisitos detallados de la biblioteca se encuentran en [MLX42](./MLX42/README.md).
+
+## Verificación
+
+Auditoría del 11 de octubre de 2026: `make` se detuvo porque el entorno Linux utilizado no tiene CMake. No se ha confirmado la compilación completa, la ejecución gráfica ni todos los mapas. Los mapas incluidos permiten preparar pruebas de validación; los tests de MLX42 corresponden a la biblioteca y no constituyen una suite del juego.
