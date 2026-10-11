@@ -23,8 +23,3 @@ En otra terminal, sustituye `12345` por el PID que muestra el servidor:
 
 Usa únicamente el PID del servidor de prueba. Finaliza el servidor con Ctrl+C. Las bibliotecas Libft y ft_printf están incluidas.
 
-## Verificación
-
-Auditoría del 11 de octubre de 2026 en Linux: cliente y servidor compilan. No se ha comprobado todavía la transmisión, la concurrencia entre clientes ni todos los errores. La finalización académica está confirmada por la autora.
-
-Pendiente de revisión técnica: la variable que comunica el manejador de señal con el bucle del cliente no usa `volatile sig_atomic_t`; la espera de confirmación no tiene tiempo límite. Estos puntos no se han modificado en la PR de documentación.
