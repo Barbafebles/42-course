@@ -48,6 +48,8 @@ int	ft_printf(char const *format, ...)
 		if (*format == '%')
 		{
 			++format;
+			if (*format == '\0')
+				break ;
 			counter += ft_format((char *)format, arguments);
 		}
 		else

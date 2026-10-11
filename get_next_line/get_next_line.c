@@ -44,7 +44,10 @@ char	*read_line(int fd, char *rest)
 
 	buffer = (char *)malloc(BUFFER_SIZE + 1 * sizeof(char));
 	if (!buffer)
+	{
+		free(rest);
 		return (NULL);
+	}
 	bytes_read = 1;
 	while (!(ft_strchr(rest, '\n')) && bytes_read != 0)
 	{
@@ -57,6 +60,11 @@ char	*read_line(int fd, char *rest)
 		}
 		buffer[bytes_read] = '\0';
 		rest = ft_strjoin(rest, buffer);
+		if (!rest)
+		{
+			free(buffer);
+			return (NULL);
+		}
 	}
 	free(buffer);
 	return (rest);
@@ -78,7 +86,10 @@ char	*newrest(char *rest)
 	}
 	rest_caract = malloc(sizeof(char) * (ft_strlen(rest) - i + 1));
 	if (!rest_caract)
+	{
+		free(rest);
 		return (NULL);
+	}
 	k = 0;
 	++i;
 	while (rest[i])
@@ -104,6 +115,12 @@ char	*get_next_line(int fd)
 	if (!str)
 		return (NULL);
 	line = get_line(str);
+	if (!line)
+	{
+		free(str);
+		str = NULL;
+		return (NULL);
+	}
 	str = newrest(str);
 	return (line);
 }

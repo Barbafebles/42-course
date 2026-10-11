@@ -17,6 +17,8 @@ void	*ft_calloc(unsigned long num, unsigned long size)
 	unsigned long	i;
 	void			*ptr;
 
+	if (size != 0 && num > (unsigned long)-1 / size)
+		return (NULL);
 	i = 0;
 	ptr = malloc(num * size);
 	if (!ptr)
