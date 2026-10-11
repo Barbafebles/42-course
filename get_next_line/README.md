@@ -16,4 +16,4 @@ cc -Wall -Wextra -Werror -D BUFFER_SIZE=42 -I. ejemplo.c get_next_line.c get_nex
 ```
 
 `ejemplo.c` debe incluir `get_next_line.h`, abrir el archivo y llamar a la función hasta recibir `NULL`. Cada línea devuelta debe liberarse con `free`; el descriptor debe cerrarse con `close`. El `main` comentado del fuente es una prueba histórica y no debe activarse tal cual: no termina al llegar a `NULL`.
-
+  
