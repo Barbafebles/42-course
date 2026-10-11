@@ -29,6 +29,6 @@ make OS=LINUX
 
 Para macOS el Makefile admite `make OS=MACOS` y busca GLFW en `/opt/homebrew/opt/glfw/lib`; esa ruta puede necesitar adaptación en otros equipos. Los requisitos detallados de la biblioteca se encuentran en [MLX42](./MLX42/README.md).
 
-## Verificación
-
+## Verificación 
+   
 Auditoría del 11 de octubre de 2026: `make` se detuvo porque el entorno Linux utilizado no tiene CMake. La autora confirma que el juego funciona en su entorno. La auditoría no pudo reproducir la compilación completa ni la ejecución gráfica, y no validó todos los mapas. Las capturas del juego están pendientes de añadir. Los mapas incluidos permiten preparar pruebas de validación; los tests de MLX42 corresponden a la biblioteca y no constituyen una suite del juego.
